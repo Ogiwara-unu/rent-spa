@@ -1,0 +1,22 @@
+<div class="col-md-12 mt-4">
+    @if(status===0){
+        <p>Usuario y/o contraseña incorrecta</p>
+    }
+    <div class="col-md-4 mx-auto">
+        <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)"> <!-- MANDA EL FORMULARIO AL TS-->
+            <h3 class="text-center">Inicio de sesión</h3>
+            <div class="form-group">
+                <label>Email</label>
+                <input class="form-control" name="email" type="email" #email="ngModel" [(ngModel)]="user.email" required>
+            </div>
+            <div class="form-group">
+                <label>Contraseña</label>
+                <input class="form-control" name="password" type="password" #password="ngModel" [(ngModel)]="user.password" required>
+            </div>
+
+            <div>
+                <input type="submit" class="btn btn-primary mt-3" value="Iniciar Sesión">
+            </div>
+        </form>
+    </div>
+</div>
