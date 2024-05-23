@@ -1,43 +1,51 @@
-<div class="container">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Rent a car</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<div class="container-fluid" style="background-color: #222121; height: 70px;">
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <img src="../assets/img/2.png" alt="Logo" width="5%" height="10%" class="d-inline-block align-top">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" style="padding-top: 28px; margin-left: 50px;" aria-current="page" href="#">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <div class="subnav">
+              <button class="subnav-btn">Catálogo</button>
+           
+            </div>
+            <div class="subnav-content">
+                <span>
+                  <a></a>
+                </span>
+            </div>
+          </li>
+        </ul>
+        <!--Solo se presenta si no existe una identidad autenticada-->
+        @if (!identity) {
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item" style="padding-left: 850px;"><a [routerLink]="['login']">Iniciar Sesión</a></li>
+            <a>|</a>
+            <li><a>Registrarse</a></li>
+          </ul>
+        }
+        @else {
+          <ul class="navbar-nav navbar-right">
+            @if (identity.image) {
+              <li class="m-1">
+                <img src="" alt="Usuario autenticado">
+              </li>
+            }
+            <!--Presentamos un dropdown con opciones del menu para otras funcionalidades-->
+          </ul>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Inicio</a>
-        </li>
-        <li class="nav-item">
-          <div class="subnav">
-              <button class="subnav-btn">Funcionalidades</button>
-              <div class="subnav-content">
-                 <!-- <span><a></a></span> --> 
-              </div>
-          </div>
-        </li>
-      </ul>
-
-          @if (!identity) {
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item"> <a [routerLink]="['login']"> Login</a> </li>
-                  <li class="nav-item"> <a>Registro</a></li>
-              </ul>
-          }
-          @else {
-              <ul class="navbar-nav navbar-right">
-                  @if (identity.image) {
-                      <li class="m-1">
-                          <img src="" alt="Usuario Autenticado">
-                      </li>
-                  }
-                  <!-- Presentamos opciones del menu para otras funcionalidades-->
-              </ul>
-          }
-
+        }
+       
+        
+      </div>
     </div>
   </nav>
-  <router-outlet></router-outlet> <!--ESTO DEFINE DONDE SE DESPLIEGA EL ELEMT DE RUTA, O SEA LAS VISTAS UNU -->
+  <router-outlet></router-outlet>
+  
 </div>

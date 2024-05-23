@@ -1,58 +1,61 @@
-.navbar{
+nav{
+    background-color: #222121;
+    height: 70px;
+    padding: 0;
+    margin: 0;
+}
+.navbar a{
     float: left;
-    font-size: 1em;
+    font-size: 1.5em;
+    font-family: Monaco;
     text-align: center;
     padding: 14px 16px;
+    margin-left: 10px;
+    color: #F2F2F2;
 }
-
-.subnav a{
-    float:left;
+.subnav{
+    float: left;
     font-size: 1em;
-    color: black;
+    color: #F2F2F2;
     text-align: center;
-    padding: 12px 14px;
+    padding: 14px 16px;
     text-decoration: none;
 }
-
 .navbar a:hover, .subnav:hover{
-    background-color: rgb(187, 187, 187);
+    background-color: #737373;
 }
-
 .subnav {
     float: left;
     overflow: hidden;
-} 
-
+}
 .subnav .subnav-btn{
-    font-size: 1.2em;
+    font-size: 1.5em;
+    font-family: Monaco;
     border: none;
     outline: none;
-    color: black;
+    color: #F2F2F2;
     padding: 14px 16px;
     background-color: inherit;
     margin: 0;
 }
-
 .subnav-content{
     display: none;
     position: absolute;
     left: 0;
-    background-color: grey;
+    background-color: #e0dede;
     width: 100%;
     z-index: 1;
 }
-
 .subnav-content a{
     float: left;
-    color: black;
+    color: #000;
     text-decoration: none;
 }
-
 .subnav-content a:hover{
-    background-color: rgb(187, 187, 187);
-    color: black;
+    background-color: #737373;
+    color: #222121;
 }
-
 .subnav:hover .subnav-content{
     display: block;
 }
+
