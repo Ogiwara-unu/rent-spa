@@ -1,6 +1,6 @@
 <div class="col-md-12 mt-4">
     <h3>Registro de Usuario</h3>
-    <form class="col-md-8 mx-auto" #singupForm="ngForm" (ngSubmit)="onSubmit(singupForm)">
+    <form class="col-md-8 mx-auto" #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm)">
         <div class="form-group">            
             <label for="name">Nombre</label>  <!--DEBE DE TENER UNA MAYUSCULA PARA SER VALIDO-->
             <input id="name" type="text" #name="ngModel" class="form-control" name="name"  
@@ -19,6 +19,6 @@
             <input id="password" type="password" #password="ngModel" class="form-control" name="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{4,}$"
                 [(ngModel)]="user.password">
         </div>        
-        <input type="submit" class="btn btn-primary mt-2" value="Guardar" [disabled]="singupForm.invalid">
+        <input type="submit" class="btn btn-primary mt-2" value="Guardar" [disabled]="signupForm.invalid">
     </form>
 </div>

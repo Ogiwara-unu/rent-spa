@@ -47,7 +47,7 @@ export class UserService{
         let options = {
           headers
         };
-        return this._http.post(this.urlAPI + 'user/singup', params, options);
+        return this._http.post(this.urlAPI + 'user/signup', params, options);
       
     }
 
