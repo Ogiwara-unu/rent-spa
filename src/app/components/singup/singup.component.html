@@ -1,0 +1,37 @@
+<div class="col-md-12 mt-4">
+    <h3>Registro de Usuario</h3>
+    <span>
+        @switch (status) {
+            @case (0) {
+                <div class="alert alert-succes"><p>Registro exitoso</p></div>
+            }
+            @case (1) {
+                <div class="alert alert-succes"><p>No se pudo agregar el Usuario</p></div>
+            }
+            @case (2) {
+                <div class="alert alert-succes"><p>Error del servidor</p></div>
+            }
+        }
+    </span>
+    <form class="col-md-8 mx-auto" #singupForm="ngForm" (ngSubmit)="onSubmit(singupForm)">
+    
+            <label for="name">Nombre</label>
+            <input type="text" #name="ngModel" class="form-contol" name="name" required pattern="{a-zA-Z+}" [(ngModel)]="user.name" />
+            @if (! name.valid && name.touched) {
+                <small class="invalid-feedback d-block">formato invalido</small>
+            }
+  
+            <label for="email">Correo</label>                                     <!--INVESTOGAR PATRON-->
+            <input type="text" #email="ngModel" class="form-contol" name="email" required pattern="{a-zA-Z+}" [(ngModel)]="user.email" />
+            @if (! email.valid && email.touched) {
+                <small class="invalid-feedback d-block">formato invalido</small>
+            }
+
+            <label for="password">Contraseña</label>                                     <!--INVESTOGAR PATRON-->
+            <input type="text" #password="ngModel" class="form-contol" name="password" required pattern="{a-zA-Z+}" [(ngModel)]="user.password" />
+            @if (! password.valid && password.touched) {
+                <small class="invalid-feedback d-block">formato invalido</small>
+            }
+
+    </form>
+</div>
