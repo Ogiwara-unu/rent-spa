@@ -1,0 +1,50 @@
+/* Estilos CSS para el formulario de inicio de sesión */
+.page-container {
+    background: linear-gradient(to bottom, #F2F2F2, #A6A6A6, #737373);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    background-color: #F2F2F2;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 400px; /* Ajusta este valor según sea necesario */
+}
+
+.login-title {
+    color: #262626;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    color: #737373;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #A6A6A6;
+    border-radius: 5px;
+}
+
+.login-button {
+    background-color: #262626;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background-color: #0D0D0D;
+}

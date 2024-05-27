@@ -8,8 +8,8 @@ export const routes: Routes = [
     {path:'',component:HomeComponent}, //PATH ES EL ELEMENTO QUE VA DESPUES DEL LOCALHOST:4200
     {path:'home',component:HomeComponent}, //AL PARECER EL ORDEN DE LAS RUTAS IMPORTA
     {path:'login',component:LoginComponent},
-    {path:'singup',component:SingupComponent},
+    {path:'signup',component:SingupComponent},
     
     {path:'**',component:ErrorComponent},
     
-]; //Holi soy Jafeth jiji
+]; 
