@@ -11,3 +11,24 @@ h1, h2{
 .m-25{
     margin: 25px;
 }
+
+.tta-container { /*REVISAR*/
+    display: flex;
+    justify-content: center;
+    margin: 15dvb;
+  }
+  .tta {
+    width: 80%;
+  }
+
+  @media (min-width: 768px) {
+    .carousel {
+      width: 80%;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .carousel {
+      width: 80%;
+    }
+  }

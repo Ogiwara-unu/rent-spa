@@ -1,0 +1,31 @@
+<div class="page-container">
+    <div class="col-md-12 mt-4">
+        <div class="col-md-8 mx-auto signup-container"> <!-- Aplica la clase signup-container -->
+            <h3>Registro de Usuario</h3>
+            <form #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm)">
+                <div class="form-group">
+                    <label for="name">Nombre</label>
+                    <input id="name" type="text" #name="ngModel" class="form-control" name="name"
+                        pattern="^(?=.*[a-z])(?=.*[A-Z]).{4,}$" [(ngModel)]="user.name" />
+                    @if(!name.valid && name.touched){
+                    <small class="invalid-feedback d-block">Formato invalido</small>
+                    }
+
+                    <label for="email">Correo</label>
+                    <input id="email" type="email" #email="ngModel" class="form-control" name="email"
+                        pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+                        [(ngModel)]="user.email" />
+                    @if(!email.valid && email.touched){
+                    <small class="invalid-feedback d-block">Formato invalido</small>
+                    }
+                    <label for="password">Contraseña</label>
+                    <input id="password" type="password" #password="ngModel" class="form-control" name="password"
+                        pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{4,}$" [(ngModel)]="user.password">
+                </div>
+                <div class="text-center"><input type="submit" class="btn btn-primary mt-2 signup-button" value="Registrar"
+                        [disabled]="signupForm.invalid"> <!-- Aplica la clase signup-button --></div>
+
+            </form>
+        </div>
+    </div>
+</div>

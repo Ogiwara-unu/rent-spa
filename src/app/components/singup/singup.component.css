@@ -7,7 +7,7 @@
     align-items: center;
 }
 
-.login-container {
+.signup-container {
     background-color: #F2F2F2;
     padding: 20px;
     border-radius: 10px;
@@ -15,7 +15,7 @@
     margin-bottom: 400px; /* Ajusta este valor según sea necesario */
 }
 
-.login-title {
+.signup-title {
     color: #262626;
     font-size: 24px;
     margin-bottom: 20px;
@@ -36,7 +36,7 @@
     border-radius: 5px;
 }
 
-.login-button {
+.signup-button {
     background-color: #262626;
     color: #FFFFFF;
     border: none;
@@ -45,6 +45,6 @@
     cursor: pointer;
 }
 
-.login-button:hover {
+.signup-button:hover {
     background-color: #0D0D0D;
 }
