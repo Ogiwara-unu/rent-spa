@@ -58,4 +58,11 @@ nav{
 .subnav:hover .subnav-content{
     display: block;
 }
-
+.type{
+    font-family: Monaco;
+    font-size: 1.5em;
+}
+.type2{
+    font-family: Monaco;
+    font-size: 1.6em;
+}

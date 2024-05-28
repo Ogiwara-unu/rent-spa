@@ -1,34 +1,39 @@
-.container{
-    text-align: center;
-    margin: 50px 250px;
+#galeria .col-lg-4, #anuncios col-lg-6, #galeria2 .col-lg-4{
+padding: 25px;
+margin: 0 !important;
 }
-h1, h2{
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+#anuncios img {
+  width: 100%;
+  height: 500px;
 }
-.m-30{
-    margin-top: 30px;
+#galeria img{
+  width: 100%;
+  height: 350px;
 }
-.m-25{
-    margin: 25px;
+#galeria2 img{
+  width: 100%;
+  height: 300px;
+}
+#galeria img:hover, #galeria2 img:hover{
+  border: 5px solid #f7f7f7;
+}
+#galeria h1, #anuncios p, #galeria2 h1, #galeria2 p{
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  line-height: 1.7;
+  text-align: center;
+  align-content: center;
+  
+}
+#anuncios h2{
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-weight: bold;
 }
 
-.tta-container { /*REVISAR*/
-    display: flex;
-    justify-content: center;
-    margin: 15dvb;
-  }
-  .tta {
-    width: 80%;
-  }
+#anuncios button{
+  color: #F2F2F2;
+  background-color: #222121;
+}
 
-  @media (min-width: 768px) {
-    .carousel {
-      width: 80%;
-    }
-  }
-
-  @media (min-width: 1200px) {
-    .carousel {
-      width: 80%;
-    }
-  }
+#anuncios button:hover{
+  background-color: #737373;
+}
