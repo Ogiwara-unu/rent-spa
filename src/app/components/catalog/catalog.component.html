@@ -1,0 +1,17 @@
+<div class="catalog-container" *ngIf="status === 200">
+    <div class="card" *ngFor="let vehiculo of vehiculos">
+      <img [src]="'http://127.0.0.1:8000/api/v1//vehiculo/getImage/' + vehiculo.img" alt="{{ vehiculo.marca }} {{ vehiculo.modelo }}">
+      <div class="card-content">
+        <h2>{{ vehiculo.marca }} {{ vehiculo.modelo }}</h2>
+        <p>Transmisión: {{ vehiculo.transmision }}</p>
+        <p>Precio: {{ vehiculo.precio | currency }}</p>
+        <p>Kilometraje: {{ vehiculo.kilometraje | number }}</p>
+        <p>Año: {{ vehiculo.anio }}</p>
+        <p>Estado: {{ vehiculo.estado }}</p>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="status !== 200">
+    <p>No se pudieron cargar los vehículos. Intente nuevamente más tarde.</p>
+  </div>
+  
