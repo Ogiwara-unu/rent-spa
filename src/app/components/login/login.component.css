@@ -1,50 +1,135 @@
-/* Estilos CSS para el formulario de inicio de sesión */
-.page-container {
-    background: linear-gradient(to bottom, #F2F2F2, #A6A6A6, #737373);
-    min-height: 100vh;
+/* Estilos globales */
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+.wrapper {
+    background: #ececec;
+    padding: 0 20px 0 20px;
+}
+
+.main {
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 100vh;
 }
 
-.login-container {
-    background-color: #F2F2F2;
-    padding: 20px;
+.row {
+    width: 900px;
+    height: 550px;
     border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 400px; /* Ajusta este valor según sea necesario */
+    background: #fff;
+    box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.2);
 }
 
-.login-title {
-    color: #262626;
-    font-size: 24px;
-    margin-bottom: 20px;
+.side-image {
+    background-image: url('../../../assets/img/imgLogin.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    border-radius: 10px 0 0 10px;
 }
 
-.form-group {
-    margin-bottom: 20px;
+img {
+    width: 35px;
+    position: absolute;
+    top: 30px;
+    left: 30px;
 }
 
-.form-label {
-    color: #737373;
+.text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-.form-control {
+i {
+    font-weight: 400;
+    font-size: 15px;
+}
+
+.right {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.input-box {
+    width: 330px;
+    box-sizing: border-box;
+}
+
+.input-box header {
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.input-field {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 0 10px 0 10px;
+}
+
+.input {
+    height: 45px;
     width: 100%;
-    padding: 10px;
-    border: 1px solid #A6A6A6;
-    border-radius: 5px;
-}
-
-.login-button {
-    background-color: #262626;
-    color: #FFFFFF;
+    background: transparent;
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    outline: none;
+    margin-bottom: 20px;
+    color: #40414a;
 }
 
-.login-button:hover {
-    background-color: #0D0D0D;
+.input-box .input-field label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.input-field .input:focus ~ label,
+.input-field .input:not(:placeholder-shown) ~ label {
+    top: -10px;
+    font-size: 13px;
+    color: #5d5076;
+}
+
+.input-field .input:focus {
+    border-bottom: 1px solid #743ae1;
+}
+
+.submit {
+    border: none;
+    outline: none;
+    height: 45px;
+    background: #ececec;
+    border-radius: 5px;
+    transition: .4s;
+}
+
+.submit:hover {
+    background: rgba(37, 95, 156, 0.9);
+    color: #fff;
+}
+
+@media only screen and (max-width: 768px) {
+    .side-image {
+        border-radius: 10px 10px 0 0;
+    }
+    .text {
+        position: absolute;
+        top: 70%;
+        text-align: center;
+    }
+    .row {
+        max-width: 420px;
+        width: 100%;
+    }
 }
