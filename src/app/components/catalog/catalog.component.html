@@ -1,6 +1,6 @@
 <div class="catalog-container" *ngIf="status === 200">
     <div class="card" *ngFor="let vehiculo of vehiculos">
-      <img [src]="'http://127.0.0.1:8000/api/v1//vehiculo/getImage/' + vehiculo.img" alt="{{ vehiculo.marca }} {{ vehiculo.modelo }}">
+      <img [src]="'http://127.0.0.1:8000/api/v1/vehiculo/getImage/' + vehiculo.img" alt="{{ vehiculo.marca }} {{ vehiculo.modelo }}">
       <div class="card-content">
         <h2>{{ vehiculo.marca }} {{ vehiculo.modelo }}</h2>
         <p>Transmisión: {{ vehiculo.transmision }}</p>
