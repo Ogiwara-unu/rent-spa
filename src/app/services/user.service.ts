@@ -40,6 +40,22 @@ export class UserService{
         return this._http.get(this.urlAPI+'user/getidentity',options);
     }
 
+    store(user: User): Observable<any> {
+        let userJson = JSON.stringify(user);
+        let params = 'data=' + userJson;
+        let headers;
+        let bearerToken = sessionStorage.getItem('token');
+        if (bearerToken) {
+          headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('bearertoken', bearerToken);
+        } else {
+          headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+        }
+        let options = {
+          headers
+        };
+        return this._http.post(this.urlAPI + 'user/add', params, options);
+      }
+
     create(user: User): Observable<any> {
         let userJson = JSON.stringify(user);
         let params = 'data=' + userJson;
