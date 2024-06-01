@@ -1,34 +1,15 @@
-nav{
+nav {
     background-color: #222121;
     height: 70px;
     padding: 0;
     margin: 0;
-}
-.navbar a{
-    float: left;
+  }
+  .navbar a {
     font-size: 1.5em;
-    font-family: Monaco; /*Holis*/
-    text-align: center;
-    padding: 14px 16px;
-    margin-left: 10px;
+    font-family: Monaco;
     color: #F2F2F2;
-}
-.subnav{
-    float: left;
-    font-size: 1em;
-    color: #F2F2F2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-.navbar a:hover, .subnav:hover{
-    background-color: #737373;
-}
-.subnav {
-    float: left;
-    overflow: hidden;
-}
-.subnav .subnav-btn{
+  }
+  .subnav-btn {
     font-size: 1.5em;
     font-family: Monaco;
     border: none;
@@ -37,32 +18,27 @@ nav{
     padding: 14px 16px;
     background-color: inherit;
     margin: 0;
-}
-.subnav-content{
+  }
+  .subnav-content {
     display: none;
     position: absolute;
     left: 0;
     background-color: #e0dede;
     width: 100%;
     z-index: 1;
-}
-.subnav-content a{
-    float: left;
+  }
+  .subnav-content a {
     color: #000;
     text-decoration: none;
-}
-.subnav-content a:hover{
-    background-color: #737373;
-    color: #222121;
-}
-.subnav:hover .subnav-content{
+  }
+  .subnav:hover .subnav-content {
     display: block;
-}
-.type{
+  }
+  .type {
     font-family: Monaco;
     font-size: 1.5em;
-}
-.type2{
+  }
+  .type2 {
     font-family: Monaco;
     font-size: 1.6em;
-}
+  }

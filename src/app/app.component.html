@@ -1,110 +1,85 @@
-<div class="container-fluid" style="background-color: #222121; height: 70px;">
-  <nav class="navbar navbar-expand-lg">
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
-        <img src="../assets/img/2.png" alt="Logo" width="5%" height="10%" class="d-inline-block align-top">
+      <a class="navbar-brand" href="#">
+        <img src="../assets/img/2.png" alt="Logo" width="90" height="60" class="d-inline-block align-top me-3">
+      </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" style="padding-top: 28px; margin-left: 50px;" aria-current="page" href="#">Inicio</a>
+            <a class="nav-link active mt-2" aria-current="page" href="#">Inicio</a>
           </li>
           <li class="nav-item">
             <div class="subnav">
-              <button class="subnav-btn" [routerLink]="['catalog']"  >Catálogo</button>
-           
-            </div>
-            <div class="subnav-content">
+              <button class="subnav-btn" [routerLink]="['catalog']">Catálogo</button>
+              <div class="subnav-content">
                 <span>
-                  <a></a> <!--lnaudn-->
+                  <a></a> <!-- lnaudn -->
                 </span>
+              </div>
             </div>
           </li>
         </ul>
-        <!--Solo se presenta si no existe una identidad autenticada-->
         @if (!identity) {
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item" style="padding-left: 850px;"><a class="text-decoration-none" [routerLink]="['login']">Iniciar Sesión</a></li>
-            <a>|</a>
-            <li ><a class="text-decoration-none" [routerLink]="['signup']">Registrarse</a></li>
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link text-decoration-none" [routerLink]="['login']">Iniciar Sesión</a></li>
+            <a class="nav-link">|</a>
+            <li class="nav-item"><a class="nav-link text-decoration-none" [routerLink]="['signup']">Registrarse</a></li>
           </ul>
         }
         @else {
-          <ul class="navbar-nav navbar-right">
+          <ul class="navbar-nav ms-auto">
             @if (identity.image) {
-              <li class="m-1">
-                <img src="" alt="Usuario autenticado">
+              <li class="nav-item">
+                <img src="" alt="Usuario autenticado" class="rounded-circle" width="40" height="40">
               </li>
             }
-            <!--Presentamos un dropdown con opciones del menu para otras funcionalidades-->
+            <!-- Presentamos un dropdown con opciones del menú para otras funcionalidades -->
           </ul>
-
         }
-       
-        
       </div>
     </div>
   </nav>
+
   <router-outlet></router-outlet>
-   <!--Footer-->
-   <footer>
-    <div>
-      <div class="row no-gutters p-5 text-white" style="background-color: #31312F;">
-          <div class="col-lg-3">
-              <div class="row justify-content-left">
-                  <div class="col-md-7 text-center">
-                      <img src="../assets/img/2.png" alt="Logo" class="img-fluid">
-                  </div>
-              </div>
-          </div>
-          <div class="col-xs-12 col-md-6 col-lg-3">
-              <p class="h5 mb-3 type2">Contactos</p>
-              <div class="mb-2">
-                  <a class="text-white text-decoration-none type">Sugerencias: </a>
-                  <a class="text-white text-decoration-none type" href="#">carsnow.com</a>
-              </div>
-              <div class="mb-2">
-                  <a class="text-white text-decoration-none type">Teléfono: </a>
-                  <a class="text-white text-decoration-none type" href="#"></a>
-              </div>
-              <div class="mb-2">
-                  <a class="text-white text-decoration-none type">Correo: </a>
-                  <a class="text-white text-decoration-none type" href="#">info.carsnow.com</a>
-              </div>
-          </div>
-          <div class="col-xs-12 col-md-6 col-lg-3">
-              <p class="h5 mb-3 type2">Links</p>
-              <div class="mb-2">
-                  <a class="text-white text-decoration-none type" href="#">Terms & Conditions</a>
-              </div>
-              <div class="mb-2">
-                  <a class="text-white text-decoration-none type" href="#">Privacy Policy</a>
-              </div>
-          </div>
-          <div class="col-xs-12 col-md-6 col-lg-3">
-              <p class="h5 mb-3 type2">Creadores</p>
-              <div class="mb-2">
-                  <a class="text-white text-decoration-none type">Randall Álvarez</a>
-              </div>
-              <div class="mb-2">
-                  <a class="text-white text-decoration-none type">Jafeth Espinoza</a>
-              </div>
-                  <a class="text-white text-decoration-none type">Lelany Fernández</a>
-              </div>
-          </div>
-      </div>
-      <div class="row" style="background-color:#262626;">
-        <div class="text-center text-white">
-          © 2024 Derechos Reservados:
-        <a class="text-white text-decoration-none" href="https://tusitio.com/">carsnow.com</a>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container-fluid p-5 text-white" style="background-color: #31312F;">
+      <div class="row">
+        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0 text-center">
+          <img src="../assets/img/2.png" alt="Logo" class="img-fluid">
         </div>
-        
+        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+          <h5 class="type2">Contactos</h5>
+          <ul class="list-unstyled mb-0">
+            <li><a class="text-white text-decoration-none type">Sugerencias:</a> <a href="#" class="text-white text-decoration-none type">carsnow.com</a></li>
+            <li><a class="text-white text-decoration-none type">Teléfono:</a> <a href="#" class="text-white text-decoration-none type"></a></li>
+            <li><a class="text-white text-decoration-none type">Correo:</a> <a href="#" class="text-white text-decoration-none type">info.carsnow.com</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+          <h5 class="type2">Links</h5>
+          <ul class="list-unstyled mb-0">
+            <li><a href="#" class="text-white text-decoration-none type">Terms & Conditions</a></li>
+            <li><a href="#" class="text-white text-decoration-none type">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+          <h5 class="type2">Creadores</h5>
+          <ul class="list-unstyled mb-0">
+            <li><a class="text-white text-decoration-none type">Randall Álvarez</a></li>
+            <li><a class="text-white text-decoration-none type">Jafeth Espinoza</a></li>
+            <li><a class="text-white text-decoration-none type">Lelany Fernández</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
-   </footer>
-
-    
-  <!--FIN DEL FOOTER-->
-</div>
-
-  
+    <div class="container-fluid text-center text-white py-3" style="background-color:#262626;">
+      © 2024 Derechos Reservados: <a href="https://tusitio.com/" class="text-white text-decoration-none">carsnow.com</a>
+    </div>
+  </footer>
+</body>

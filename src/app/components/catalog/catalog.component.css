@@ -1,4 +1,98 @@
-.catalog-container {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 1.5rem;
+  font-family: "Merriweather Sans", sans-serif;
+  background-color: #F2F2F2;
+  color: #222121;
+  padding: 4rem;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 5rem;
+  font-size: 4rem;
+}
+
+.all-products {
+  display: grid;
+  gap: 2rem;
+  justify-content: center;
+}
+
+/* Ajustar el max-width para asegurar que las tarjetas se vean bien en diferentes tamaños de pantalla */
+.product {
+  overflow: hidden;
+  background-color: #F2F2F2;
+  box-shadow: 0 0 20px rgba(50, 50, 50, 0.5);
+  color: #222121;
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1.2rem;
+  transition: all 0.3s;
+  margin: auto;
+}
+
+.product:hover img {
+  transform: scale(1.1);
+}
+
+.product:hover {
+  box-shadow: 5px 15px 25px #000000;
+}
+
+.product img {
+  border-radius: 1.2rem;
+  height: 200px;
+  margin: 1rem;
+  transition: all 0.3s;
+}
+
+button {
+  padding: 1rem 3rem;
+  color: #F2F2F2;
+  background-color: #222121;
+  margin-top: 1rem;
+  transition: all 0.2s;
+  text-align: center;
+}
+
+button:hover {
+  background-color: #737373;
+  border: none;
+  transform: scale(1.1);
+}
+
+/* Responsive Design */
+@media (min-width: 1200px) {
+  .all-products {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .all-products {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .all-products {
+    grid-template-columns: 1fr;
+  }
+}
+
+/*.catalog-container {
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
@@ -6,11 +100,7 @@
   }
   
   .card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    width: 300px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
   }
   
   .card img {
@@ -32,4 +122,4 @@
     margin: 4px 0;
     color: #555;
   }
-  
+  */
