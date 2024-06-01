@@ -6,6 +6,7 @@ import { SingupComponent } from './components/singup/singup.component';
 import { CatalogComponent } from './components/catalog/catalog.component';
 import { TarjetaComponent } from './components/tarjeta/tarjeta.component';
 import { VehiculosComponent } from './components/vehiculos/vehiculos.component';
+import { ClienteComponent } from './components/cliente/cliente.component';
 
 export const routes: Routes = [
     {path:'',component:HomeComponent}, //PATH ES EL ELEMENTO QUE VA DESPUES DEL LOCALHOST:4200
@@ -15,7 +16,7 @@ export const routes: Routes = [
     {path:'catalog',component:CatalogComponent},
     {path:'tarjeta',component:TarjetaComponent},
     {path:'vehiculos',component:VehiculosComponent},
-    
+    {path:'cliente',component:ClienteComponent},
     {path:'**',component:ErrorComponent},
     
 ]; 
