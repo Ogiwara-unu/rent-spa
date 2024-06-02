@@ -23,23 +23,17 @@
             </div>
           </li>
         </ul>
-        @if (!identity) {
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item"><a class="nav-link text-decoration-none" [routerLink]="['login']">Iniciar Sesión</a></li>
-            <a class="nav-link">|</a>
-            <li class="nav-item"><a class="nav-link text-decoration-none" [routerLink]="['signup']">Registrarse</a></li>
-          </ul>
-        }
-        @else {
-          <ul class="navbar-nav ms-auto">
-            @if (identity.image) {
-              <li class="nav-item">
-                <img src="" alt="Usuario autenticado" class="rounded-circle" width="40" height="40">
-              </li>
-            }
-            <!-- Presentamos un dropdown con opciones del menú para otras funcionalidades -->
-          </ul>
-        }
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0" *ngIf="!identity">
+          <li class="nav-item"><a class="nav-link text-decoration-none" [routerLink]="['login']">Iniciar Sesión</a></li>
+          <a class="nav-link">|</a>
+          <li class="nav-item"><a class="nav-link text-decoration-none" [routerLink]="['signup']">Registrarse</a></li>
+        </ul>
+        <ul class="navbar-nav ms-auto" *ngIf="identity">
+          <li class="nav-item" *ngIf="identity.name">
+            <img src="../assets/img/am.gif" alt="Usuario autenticado" class="rounded-circle" width="40" height="40">
+          </li>
+          <!-- Presentamos un dropdown con opciones del menú para otras funcionalidades -->
+        </ul>
       </div>
     </div>
   </nav>
