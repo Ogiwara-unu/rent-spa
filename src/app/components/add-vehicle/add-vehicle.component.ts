@@ -24,7 +24,7 @@ export class AddVehicleComponent {
   ) {}
 
   onSubmit(form: any) {
-    console.log("Registrando Vehiculo ->"+this.vehicle.img);
+    console.log("Registrando Vehiculo ->"+this.vehicle.placa);
     this._vehicleService.store(this.vehicle).subscribe({
       next: (response) => {
         if (response.status == 201) {

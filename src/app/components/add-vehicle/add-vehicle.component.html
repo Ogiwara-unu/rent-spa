@@ -43,10 +43,10 @@
             <input id="estado" type="text" #estado="ngModel" class="input" name="estado" [(ngModel)]="vehicle.estado" required />
             <small class="invalid-feedback d-block" *ngIf="estado.invalid && estado.touched">Campo requerido</small>
           </p>
-          <p>
+          <!--<p>
             <label for="img">Imagen</label>
             <input id="img" type="file" (change)="onFileChange($event)" required />
-          </p>          
+          </p> -->    
           <p class="block">
             <input type="submit" class="submit" value="Agregar" [disabled]="vehicleForm.invalid" />
           </p>

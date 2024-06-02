@@ -21,22 +21,26 @@ export class VehiculoService {
     }
 
     store(vehicle: Vehiculo): Observable<any> {
+        // Asignar "Imagen" al campo img
+        vehicle.img = "Imagen";
+      
         let vehicleJson = JSON.stringify(vehicle);
-        let vehicleImage = vehicle.img;
         let params = 'data=' + vehicleJson;
         let headers;
         let bearerToken = sessionStorage.getItem('token');
+        
         if (bearerToken) {
-            headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('bearertoken', bearerToken);
+          headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('bearertoken', bearerToken);
         } else {
-            headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+          headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
         }
-
+      
         let options = {
-            headers
+          headers
         };
-
-        return this._http.post(this.urlAPI + 'vehiculo/add', params, options);
-    }
+      
+        return this._http.post(this.urlAPI + 'vehiculo', params, options);
+      }
+      
 
 }
