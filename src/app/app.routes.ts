@@ -8,6 +8,7 @@ import { TarjetaComponent } from './components/tarjeta/tarjeta.component';
 import { VehiculosComponent } from './components/vehiculos/vehiculos.component';
 import { ClienteComponent } from './components/cliente/cliente.component';
 import { AddUserComponent } from './components/add-user/add-user.component';
+import { AddVehicleComponent } from './components/add-vehicle/add-vehicle.component';
 
 export const routes: Routes = [
     {path:'',component:HomeComponent}, //PATH ES EL ELEMENTO QUE VA DESPUES DEL LOCALHOST:4200
@@ -19,6 +20,7 @@ export const routes: Routes = [
     {path:'vehiculos',component:VehiculosComponent},
     {path:'cliente',component:ClienteComponent},
     {path:'add-user',component:AddUserComponent},
+    {path:'add-vehicle',component:AddVehicleComponent},
     {path:'**',component:ErrorComponent},
 
 ]; 

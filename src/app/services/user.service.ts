@@ -54,7 +54,7 @@ export class UserService{
           headers
         };
         return this._http.post(this.urlAPI + 'user/add', params, options);
-      }
+    }
 
     create(user: User): Observable<any> {
         let userJson = JSON.stringify(user);
