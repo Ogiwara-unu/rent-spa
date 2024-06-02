@@ -1,2 +1,19 @@
-<p>error works!</p>
-<!-- AQUI HAY QUE CREAR UNA PAGINA DE ERROR -->
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-6 mt-5 p-2">
+            <img src="../assets/img/am.gif" class="error-image" alt="error page">
+        </div>
+        <div class="col-md-6 text-center text-md-left mt-5">
+            <span class="text-black error papyrus">400 <strong class="text-danger"> Error!</strong> </span>
+            <br>
+            <h5 class="text-uppercase mt-4 font-weight-bold text-black">oops! Page not found</h5>
+            <span>Sorry, the page you're looking for doesn't exist. If you think something is not working, report it.</span>
+            <br>
+            <div class="mt-4 mb-4">
+                <a href="#" target="_blank" class="btn btn-outline-danger border-danger shadow-lg mr-2 mt-2">Report Problem <i class="fas fa-exclamation-triangle"></i></a>
+                <a [routerLink]="'/home'" class="btn btn-outline-primary border-primary shadow-lg mt-2">Return Home <i class="fas fa-home"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+

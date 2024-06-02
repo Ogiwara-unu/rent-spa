@@ -1,0 +1,16 @@
+.papyrus {
+    font-family: papyrus;
+    font-size: 80px;
+}
+
+.error-image {
+    width: 100%;
+    height: auto;
+    border-radius: 15px; /* Aquí defines el border-radius */
+}
+
+@media (max-width: 768px) {
+    .papyrus {
+        font-size: 40px;
+    }
+}
