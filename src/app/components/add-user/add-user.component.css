@@ -59,7 +59,7 @@
     border-bottom: 1px solid #737373;
 }
 
-.user-form form button {
+.user-form form .button {
     background-color: #737373;
     border: 0;
     text-transform: uppercase;
@@ -71,8 +71,8 @@
     padding: 1em;
 }
 
-.user-form form button:hover,
-.user-form form button:focus {
+.user-form form .button:hover,
+.user-form form .button:focus {
     background-color: #0D0D0D;
     color: #F2F2F2;
     border: 5px solid #262626;

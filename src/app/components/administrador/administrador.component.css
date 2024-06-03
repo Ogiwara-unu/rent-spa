@@ -1,0 +1,55 @@
+.content {
+    max-width: 1000px;
+    border-radius: 1.2rem;
+    margin: 100px auto;
+    background-color: #F2F2F2;
+    box-shadow: 0 0 20px rgba(50, 50, 50, 0.5);
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 1.5rem;
+    padding: 20px;
+    text-align: center;
+}
+
+.optionsBtn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #E2E3DD;
+    margin: 40px 0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.7);
+}
+
+.btn {
+    border: none;
+    height: 60px;
+    width: 60px;
+    background: #E2E3DD;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.btn:hover {
+    transform: translateY(3px);
+    background-color: #737373;
+    color: #fff;
+    
+    box-shadow: 0 0 20px rgba(50, 50, 50, 0.5);
+}
+
+.btn img {
+    width: 35px;
+    height: 35px;
+}
+
+.text {
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .optionsBtn {
+        flex-direction: column;
+    }
+}

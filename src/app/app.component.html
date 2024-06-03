@@ -23,6 +23,7 @@
             </div>
           </li>
         </ul>
+        <!-- Authentication Links -->
         @if (!identity) {
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item"><a class="nav-link text-decoration-none" [routerLink]="['login']">Iniciar Sesión</a></li>
@@ -37,18 +38,20 @@
                 <img src="" alt="Usuario autenticado" class="rounded-circle" width="40" height="40">
               </li>
             }
-            <!-- Presentamos un dropdown con opciones del menú para otras funcionalidades -->
+            <!-- Dropdown menu for authenticated user -->
           </ul>
         }
       </div>
     </div>
   </nav>
 
-  <router-outlet></router-outlet>
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
 
   <!-- Footer -->
   <footer>
-    <div class="container-fluid p-5 text-white" style="background-color: #31312F;">
+    <div class="container-fluid p-5 text-white">
       <div class="row">
         <div class="col-lg-3 col-md-6 mb-4 mb-lg-0 text-center">
           <img src="../assets/img/2.png" alt="Logo" class="img-fluid">
@@ -82,4 +85,3 @@
       © 2024 Derechos Reservados: <a href="https://tusitio.com/" class="text-white text-decoration-none">carsnow.com</a>
     </div>
   </footer>
-</body>
