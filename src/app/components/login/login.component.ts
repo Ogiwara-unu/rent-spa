@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule], //ESTE ELEMENTO PERMITE ENLAZAR ELEMENTOS QUE FORMAN PARTE DE UN FORMULARIO Y CARGA EL MODEL
+  imports: [FormsModule], // ESTE ELEMENTO PERMITE ENLAZAR ELEMENTOS QUE FORMAN PARTE DE UN FORMULARIO Y CARGA EL MODEL
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   providers: [UserService]
@@ -23,7 +23,7 @@ export class LoginComponent {
     private _route: ActivatedRoute
   ) {
     this.status = -1;
-    this.user = new User(1,"","","",""); //EL 1 ES SOLO PARA INICIALIZAR EL OBJ
+    this.user = new User(1,"","","",""); // EL 1 ES SOLO PARA INICIALIZAR EL OBJ
   }
 
   onSubmit(form: any) {
@@ -31,21 +31,21 @@ export class LoginComponent {
     this._userService.login(this.user).subscribe({
       next: (response: any) => {
         if (response.status != 401) {
-          sessionStorage.setItem('token', response); //GUARDA LOS DATOS EN EL SS PARA QUE SOLO ESTEN DISPONIBLES POR EL TIEMPO DE VIDA DE LA SESIÓN
+          sessionStorage.setItem('token', response); // GUARDA LOS DATOS EN EL SS PARA QUE SOLO ESTEN DISPONIBLES POR EL TIEMPO DE VIDA DE LA SESIÓN
           this._userService.getIdentityFromAPI().subscribe({
             next: (resp: any) => {
               // SE CONVIERTE EL OBJ A UN JSON
               sessionStorage.setItem('identity', JSON.stringify(resp));
               console.log("Inicio de sesión exitoso :v");
-              this._router.navigate(['']); //MANDA HACIA UNA RUTA ESP A LA CUAL QUIERO  (EN ESTE CASO HOME)
+              window.location.href = ''; // REDIRECCIONA A LA RUTA DESEADA
             },
             error: (error: Error) => {
-              console.log("Ha Ocurrido un error al acceder a la identidad del usuario"); //MENSAJE DE DEPURACIÓN
+              console.log("Ha Ocurrido un error al acceder a la identidad del usuario"); // MENSAJE DE DEPURACIÓN
             }
           });
         } else {
           this.status = 0;
-          this.showAlert('Usuario y/o contraseña incorrecta', 'error'); //USO SWEETALERT2
+          this.showAlert('Usuario y/o contraseña incorrecta', 'error'); // USO SWEETALERT2
         }
       },
       error: (err: any) => {

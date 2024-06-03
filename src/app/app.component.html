@@ -1,5 +1,5 @@
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
         <img src="../assets/img/2.png" alt="Logo" width="90" height="60" class="d-inline-block align-top me-3">
@@ -14,25 +14,34 @@
           </li>
           <li class="nav-item">
             <div class="subnav">
-              <button class="subnav-btn" [routerLink]="['catalog']">Catálogo</button>
+              <button class="subnav-btn" [routerLink]="['/catalog']">Catálogo</button>
               <div class="subnav-content">
                 <span>
-                  <a></a> <!-- lnaudn -->
+                  <a></a>
                 </span>
               </div>
             </div>
           </li>
         </ul>
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0" *ngIf="!identity">
-          <li class="nav-item"><a class="nav-link text-decoration-none" [routerLink]="['login']">Iniciar Sesión</a></li>
+        <ul *ngIf="!identity" class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link text-decoration-none" [routerLink]="['/login']">Iniciar Sesión</a></li>
           <a class="nav-link">|</a>
-          <li class="nav-item"><a class="nav-link text-decoration-none" [routerLink]="['signup']">Registrarse</a></li>
+          <li class="nav-item"><a class="nav-link text-decoration-none" [routerLink]="['/signup']">Registrarse</a></li>
         </ul>
-        <ul class="navbar-nav ms-auto" *ngIf="identity">
-          <li class="nav-item" *ngIf="identity.name">
-            <img src="../assets/img/am.gif" alt="Usuario autenticado" class="rounded-circle" width="40" height="40">
+        <ul *ngIf="identity" class="navbar-nav ms-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {{ identity.name }}
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#" (click)="logout()">Cerrar Sesión</a></li>
+            </ul>
           </li>
-          <!-- Presentamos un dropdown con opciones del menú para otras funcionalidades -->
+        </ul>
+        <ul *ngIf="identity?.rol === 'admin'" class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link text-decoration-none" [routerLink]="['/admin']">Administración</a> <!--CAMBIAR LA RUTA CUANDO YA ESTE EL ADMIN-PANEL -->
+          </li>
         </ul>
       </div>
     </div>

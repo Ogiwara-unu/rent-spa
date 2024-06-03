@@ -1,18 +1,18 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet, Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,RouterLink,CommonModule],
+  imports: [RouterOutlet, RouterLink, CommonModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
   public identity: any;
 
-  
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.loadIdentity();
@@ -26,9 +26,14 @@ export class AppComponent implements OnInit {
         this.identity = JSON.parse(identity);
       } catch (error) {
         console.error("Invalid JSON in sessionStorage for key 'identity':", error);
-        this.identity = null;  // manejar el error de alguna otra forma
+        this.identity = null;
       }
     }
-  
+  }
+
+  logout() {
+    sessionStorage.removeItem('identity');
+    this.identity = null;
+    this.router.navigate(['']);
   }
 }
