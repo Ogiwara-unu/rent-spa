@@ -1,15 +1,3 @@
-body{
-  height: 100%;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-}
-.content {
-  flex: 1;
-}
-footer {
-  background-color: #31312F;
-}
 nav {
   background-color: #222121;
   height: 70px;
