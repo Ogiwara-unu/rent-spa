@@ -29,6 +29,7 @@ export class LicenciaComponent {
 
   onSubmit(form: any) {
     console.log("Registrando Usuario :v ->"+this.license.id);
+    console.log(this.license);
     this._licenseService.store(this.license).subscribe({
       next: (response) => {
         if (response.status == 201) {

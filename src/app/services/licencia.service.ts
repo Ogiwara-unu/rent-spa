@@ -28,8 +28,10 @@ export class LicenciaService {
         let params = 'data=' + licenseJson;
         let headers;
         let bearerToken = sessionStorage.getItem('token');
+        console.log(licenseJson);
         
         if (bearerToken) {
+
           headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('bearertoken', bearerToken);
         } else {
           headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
@@ -39,7 +41,7 @@ export class LicenciaService {
           headers
         };
       
-        return this._http.post(this.urlAPI + 'licencia', params, options);
+        return this._http.post(this.urlAPI + 'licencia/add', params, options);
       }
       
 
