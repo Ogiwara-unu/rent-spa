@@ -39,7 +39,7 @@ export class VehiculoService {
           headers
         };
       
-        return this._http.post(this.urlAPI + 'vehiculo', params, options);
+        return this._http.post(this.urlAPI + 'vehiculo/add', params, options);
       }
       
 

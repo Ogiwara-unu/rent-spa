@@ -1,1 +1,42 @@
-<p>tarjeta works!</p>
+<div class="content">
+    <div class="card-wrapper">
+        <div class="card-form">
+            <h3>Agregar Tarjeta</h3>
+            <form #tarjeraForm="ngForm" (ngSubmit)="onSubmit(tarjeraForm)">
+                <p>
+                    <label for="numero_tarjeta">Número de Tarjeta</label>
+                    <input id="numero_tarjeta" type="text" #numero_tarjeta="ngModel" class="input" name="numero_tarjeta" pattern="^\d{13,16}$" 
+                    [(ngModel)]="card.numero_tarjeta" required placeholder=""/>  
+                    <small class="invalid-feedback d-block" *ngIf="numero_tarjeta.invalid && numero_tarjeta.touched">Formato inválido</small>
+                </p>
+                <p>
+                    <label for="titular">Titular</label>
+                    <input id="titular" type="text" #titular="ngModel" class="input" name="titular"
+                        pattern="^[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]+$" [(ngModel)]="card.titular" required
+                        placeholder=""/>
+                    <small class="invalid-feedback d-block" *ngIf="titular.invalid && titular.touched">Formato inválido</small>
+                </p>
+                <p>
+                    <label for="fecha_vencimiento">Fecha de vencimiento</label>
+                    <input id="fecha_vencimiento" type="text" #fecha_vencimiento="ngModel" class="input" name="fecha_vencimiento"
+                        pattern="^(19|20)\d{2}-(0?[1-9]|1[0-2])-(0?[1-9]|[12]\d|3[01])$" [(ngModel)]="card.fecha_vencimiento" required
+                        placeholder=""/>  <!--CAMBIAR EL PATRON PARA PERMITIR NOMBRES Y APELLIDOS CON ESPACIOS AQUI Y EN EL BACKEND-->
+                    <small class="invalid-feedback d-block" *ngIf="fecha_vencimiento.invalid && fecha_vencimiento.touched">Formato inválido</small>
+                </p>
+                <p>
+                    <label for="cvv">Cvv</label>
+                    <input id="cvv" type="text" #cvv="ngModel" class="input" name="cvv"
+                        pattern="^\d{3}$" [(ngModel)]="card.cvv" required
+                        placeholder=""/>
+                    <small class="invalid-feedback d-block" *ngIf="cvv.invalid && cvv.touched">Formato inválido</small>
+                </p>
+                <p class="block .button">
+                    <input type="submit" class="submit button" value="Agregar" [disabled]="tarjeraForm.invalid" />
+                  </p>
+            </form>
+        </div>
+        <div class="card-info">
+            <img src="../assets/img/2.png" alt="Anuncio Imagen">
+        </div>
+    </div>
+</div>

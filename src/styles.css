@@ -1,6 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import '../node_modules/bootstrap-icons/font/bootstrap-icons.css';  /*HAY QUE SABER PONER LA RUTA DE LA IMPORTACIÓN*/
+
 body{
     background-color: #F2F2F2;
 }

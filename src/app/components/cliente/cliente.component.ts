@@ -24,7 +24,7 @@ export class ClienteComponent {
       private _routes: ActivatedRoute
     ){
       this.status= -1;
-      this.client = new Cliente(1,"","","","","","","");
+      this.client = new Cliente(0,"","","","","","","");
 
     }
 

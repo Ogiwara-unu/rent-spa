@@ -11,10 +11,11 @@ import { AddUserComponent } from './components/add-user/add-user.component';
 import { AddVehicleComponent } from './components/add-vehicle/add-vehicle.component';
 import { AdministradorComponent } from './components/administrador/administrador.component';
 import { LicenciaComponent } from './components/licencia/licencia.component';
+import { ViewUsersComponent } from './components/view-users/view-users.component';
 
 export const routes: Routes = [
     {path:'',component:HomeComponent}, //PATH ES EL ELEMENTO QUE VA DESPUES DEL LOCALHOST:4200
-    {path:'home',component:HomeComponent}, //AL PARECER EL ORDEN DE LAS RUTAS IMPORTA
+    {path:'home',component:HomeComponent}, //AL PARECER EL ORDEN DE LAS RUTAS IMPORTA EN LO QUE RESPECTA A LA DE ERROR
     {path:'login',component:LoginComponent},
     {path:'signup',component:SingupComponent},
     {path:'catalog',component:CatalogComponent},
@@ -25,6 +26,7 @@ export const routes: Routes = [
     {path:'add-vehicle',component:AddVehicleComponent},
     {path:'administrador',component:AdministradorComponent},
     {path:'licencias',component:LicenciaComponent},
+    {path:'view-users',component:ViewUsersComponent},
     {path:'**',component:ErrorComponent},
 
 ]; 

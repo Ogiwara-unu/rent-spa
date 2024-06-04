@@ -16,17 +16,17 @@ export class ClienteService{
         this.urlAPI =server.url;
     }
 
-    getClient(): Observable<any>{
+    getClients(): Observable<any>{
         return this._http.get(this.urlAPI + 'cliente/getClients')
     }
 
     store(client: Cliente):Observable <any>{
 
         let clientJson = JSON.stringify(client);
-        let params = 'data' + clientJson;
+        let params = 'data=' + clientJson;
         let headers;
         let bearerToken = sessionStorage.getItem('token');
-
+   
         if(bearerToken){
             headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('bearerToken', bearerToken);
 

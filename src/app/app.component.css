@@ -42,3 +42,11 @@ nav {
   font-family: Monaco;
   font-size: 1.6em;
 }
+
+.dropdown-menu{
+  background-color: #222121;
+}
+
+.dropdown-item{
+  background-color: #222121;
+}
