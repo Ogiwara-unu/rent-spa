@@ -28,6 +28,7 @@ export class LicenciaComponent {
   }
 
   onSubmit(form: any) {
+    this.license.id=0+this.license.id; 
     console.log("Registrando Usuario :v ->"+this.license.id);
     console.log(this.license);
     this._licenseService.store(this.license).subscribe({

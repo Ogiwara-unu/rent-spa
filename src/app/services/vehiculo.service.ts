@@ -28,7 +28,6 @@ export class VehiculoService {
         let params = 'data=' + vehicleJson;
         let headers;
         let bearerToken = sessionStorage.getItem('token');
-        
         if (bearerToken) {
           headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('bearertoken', bearerToken);
         } else {

@@ -21,17 +21,13 @@ export class LicenciaService {
     }
 
     store(license: Licencia): Observable<any> {
-        // Asignar "Imagen" al campo img
         license.img = "Imagen";
-      
         let licenseJson = JSON.stringify(license);
         let params = 'data=' + licenseJson;
         let headers;
         let bearerToken = sessionStorage.getItem('token');
         console.log(licenseJson);
-        
         if (bearerToken) {
-
           headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('bearertoken', bearerToken);
         } else {
           headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
