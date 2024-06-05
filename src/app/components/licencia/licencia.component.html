@@ -1,49 +1,46 @@
 <div class="content">
-    <div class="client-wrapper">
-            <div class="client-form">
-                <h3>Agregar Licencias</h3>
-                <form #licenciasForm="ngForm" (ngSubmit)="onSubmit(licenciasForm)">
-                    <p>
-                        <label for="id">Id</label>
-                        <input id="id" type="text" #id="ngModel" class="input" name="id" pattern="^\d{9}$" 
-                        [(ngModel)]="license.id" required placeholder=""/>
-                        <small class="invalid-feedback d-block" *ngIf="id.invalid && id.touched">Formato inválido</small>
-                    </p>
-                    <p>
-                        <label for="cliente_id">Id del Cliente</label>
-                        <input id="cliente_id" type="text" #cliente_id="ngModel" class="input" name="cliente_id" pattern="^\d{9}$" 
-                        [(ngModel)]="license.id" required placeholder=""/>
-                        <small class="invalid-feedback d-block" *ngIf="cliente_id.invalid && cliente_id.touched">Formato inválido</small>
-                    </p>
-                    <p>
-                        <label for="fecha_vencimiento">Fecha de Vencimiento</label>
-                        <input id="fecha_vencimiento" type="text" #fecha_vencimiento="ngModel" class="input" name="fecha_vencimiento"
+    <div class="license-wrapper">
+        <div class="license-form">
+            <h3>Agregar Licencias</h3>
+            <form #licenciaForm="ngForm" (ngSubmit)="onSubmit(licenciaForm)">
+                <p>
+                    <label for="id">Id</label>
+                    <input id="id" type="text" #id="ngModel" class="input" name="id" pattern=""
+                    [(ngModel)]="license.id" required placeholder=""/>
+                    <small class="invalid-feedback d-block" *ngIf="id.invalid && id.touched">Formato Inválido</small>
+                </p>
+                <p>
+                    <label for="cliente_id">Cliente id</label>
+                    <input id="cliente_id" type="text" #cliente_id="ngModel" class="input" name="id" pattern=""
+                    [(ngModel)]="license.cliente_id" required placeholder=""/>
+                    <small class="invalid-feedback d-block" *ngIf="cliente_id.invalid && cliente_id.touched">Formato Inválido</small>
+                </p>
+                <p>
+                    <label for="fecha_vencimiento">Fecha de Vencimiento</label>
+                    <input id="fecha_vencimiento" type="text" #fecha_vencimiento="ngModel" class="input" name="fecha_vencimiento"
                             pattern="^(19|20)\d{2}-(0?[1-9]|1[0-2])-(0?[1-9]|[12]\d|3[01])$"
                             [(ngModel)]="license.fecha_vencimiento" required
                             placeholder=""/>
-                        <small class="invalid-feedback d-block" *ngIf="fecha_vencimiento.invalid && fecha_vencimiento.touched">Formato inválido</small>
-                    </p>
-                    <p>
-                        <label for="tipo">Tipo</label>
+                    <small class="invalid-feedback d-block" *ngIf="fecha_vencimiento.invalid && fecha_vencimiento.touched">Formato Inválido</small>
+                </p>
+                <p>
+                    <label for="tipo">Tipo</label>
                         <input id="tipo" #tipo="ngModel" class="input" type="text" name="tipo"
                             [(ngModel)]="license.tipo" required placeholder=""/>
-                        <small class="invalid-feedback d-block" *ngIf="tipo.invalid && tipo.touched">Formato inválido</small>
-                    </p>
-                    <p class="block">
-                        <label for="tipo">Imagen</label>
-                            <input class="form-control" type="file" id="formFile " >
-                    </p>
-                            
-                    
-                    <p class="block .button">
-                        <input type="submit" class="submit button" value="Agregar" [disabled]="licenciasForm.invalid" />
-                      </p>
-                </form>
+                     <small class="invalid-feedback d-block" *ngIf="tipo.invalid && tipo.touched">Formato Inválido</small>
+                </p>
+                <p class="block">
+                    <label for="tipo">Imagen</label>
+                    <input class="form-control" type="file" id="formFile " >
+                </p>
+                <p class="block .button">
+                    <input type="submit" class="submit button" value="Agregar" [disabled]="licenciaForm.invalid" />
+                </p>
 
-            </div>
-            <div class="client-info">
-                <img src="../assets/img/2.png" alt="Anuncio Imagen">
-            </div>
+            </form>
+        </div>
+        <div class="license-info">
+            <img src="../assets/img/2.png" alt="Anuncio Imagen">
+        </div>
     </div>
 </div>
-

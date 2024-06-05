@@ -22,7 +22,13 @@
               </div>
             </div>
           </li>
+          <ul *ngIf="identity?.rol === 'admin'" class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link text-decoration-none mt-2" [routerLink]="['/administrador']">Administración</a> <!--CAMBIAR LA RUTA CUANDO YA ESTE EL ADMIN-PANEL -->
+            </li>
+          </ul>
         </ul>
+       
         <ul *ngIf="!identity" class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item"><a class="nav-link text-decoration-none" [routerLink]="['/login']">Iniciar Sesión</a></li>
           <a class="nav-link">|</a>
@@ -30,7 +36,7 @@
         </ul>
         <ul *ngIf="identity" class="navbar-nav ms-auto">
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" ><i class="bi bi-person-circle"></i>
               {{ identity.name }}
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -38,11 +44,7 @@
             </ul>
           </li>
         </ul>
-        <ul *ngIf="identity?.rol === 'admin'" class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link text-decoration-none" [routerLink]="['/administrador']">Administración</a> <!--CAMBIAR LA RUTA CUANDO YA ESTE EL ADMIN-PANEL -->
-          </li>
-        </ul>
+
       </div>
     </div>
   </nav>

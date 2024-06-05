@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-.client-wrapper {
+.license-wrapper {
     background-color: #F2F2F2;
     color: #0D0D0D;
     margin: 50px;
@@ -16,12 +16,12 @@
     flex-wrap: wrap;
 }
 
-.client-wrapper > * {
+.license-wrapper > * {
     padding: 1em;
     flex: 1 1 100%;
 }
 
-.client-info {
+.license-info {
     margin: 0;
     background-color: #0D0D0D;
     padding: 0;
@@ -32,24 +32,24 @@
     min-height: 300px;  /* Optional: minimum height to ensure vertical centering even if content is small */
 }
 
-.client-form form {
+.license-form form {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1em;
 }
 
-.client-form form .block {
+.license-form form .block {
     grid-column: 1 / 2;
 }
 
-.client-form form p {
+.license-form form p {
     margin: 0;
     padding: 1em;
 }
 
-.client-form form .button,
-.client-form form input,
-.client-form form textarea {
+.license-form form .button,
+.license-form form input,
+.license-form form textarea {
     width: 100%;
     padding: .7em;
     border: none;
@@ -59,20 +59,20 @@
     border-bottom: 1px solid #737373;
 }
 
-.client-form form .button {
+.license-form form .button {
     background-color: #737373;
     border: 0;
     text-transform: uppercase;
     padding: 1em;
 }
 
-.client-form h3 {
+.license-form h3 {
     text-align: center;
     padding: 1em;
 }
 
-.client-form form .button:hover,
-.client-form form .button:focus {
+.license-form form .button:hover,
+.license-form form .button:focus {
     background-color: #0D0D0D;
     color: #F2F2F2;
     border: 5px solid #262626;
@@ -80,38 +80,38 @@
     outline: 0;
 }
 
-.client-info img {
+.license-info img {
     width: 100%;
     height: auto;
 }
 
 /* MEDIUM SCREEN */
 @media (min-width: 700px) {
-    .client-wrapper {
+    .license-wrapper {
         display: grid;
         grid-template-columns: 2fr 1fr;
     }
     
-    .client-wrapper > * {
+    .license-wrapper > * {
         padding: 2em;
     }
 
-    .client-form form {
+    .license-form form {
         grid-template-columns: 1fr 1fr;
     }
 
-    .client-form form .block {
+    .license-form form .block {
         grid-column: 1 / 3;
     }
 
-    .client-info {
+    .license-info {
         height: auto;  /* Allow height to adjust based on content */
     }
 }
 
 /* LARGE SCREEN */
 @media (min-width: 1170px) {
-    .client-wrapper {
+    .license-wrapper {
         margin: 50px auto;
         max-width: 1170px;
     }
