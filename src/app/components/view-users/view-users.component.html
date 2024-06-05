@@ -2,7 +2,7 @@
     <div class="container">
         <div class="table_header">
           <h2>Usuarios</h2>
-          <button>Crear nuevo</button>
+          <button (click)="navigateToAddUser()">Crear nuevo</button>
           <div class="input_search">
             <input type="search" placeholder="Buscar" />
             <i class="bi bi-search" id="search"></i>
@@ -24,7 +24,7 @@
                 <td>{{ user.rol }}</td>
                 <td>
                   <i class="bi bi-pencil-square" id="icons"></i>
-                  <i class="bi bi-trash" id="icons"></i>
+                  <i class="bi bi-trash" id="icons" (click)="destroy(user.email)"></i>
                   <i class="bi bi-eye" id="icons"></i>
                 </td>
               </tr>
