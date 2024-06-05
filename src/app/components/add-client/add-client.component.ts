@@ -1,36 +1,36 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Licencia } from '../../models/licencia';
-import { LicenciaService } from '../../services/licencia.service';
+import { Cliente } from '../../models/cliente';
+import { ClienteService } from '../../services/cliente.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-licencia',
+  selector: 'app-add-client',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './licencia.component.html',
-  styleUrl: './licencia.component.css',
-  providers: [LicenciaService]
+  templateUrl: './add-client.component.html',
+  styleUrl: './add-client.component.css',
+  providers:[ClienteService]
 })
-export class LicenciaComponent {
+export class AddClientComponent {
   public status: number;
-  public license: Licencia;
-
+  public client: Cliente;
+  
   constructor(
-    private _licenseService: LicenciaService,
+    private _clientService: ClienteService,
     private _router: Router,
     private _routes: ActivatedRoute
-  ) {
-    this.status = -1;
-    this.license = new Licencia(1, 1, "", "", "");
+  ){
+    this.status= -1;
+    this.client = new Cliente(0,"","","","","","","");
+
   }
 
   onSubmit(form: any) {
-    console.log("Registrando Licencia ->"+this.license.id);
-    console.log(this.license);
-    this._licenseService.store(this.license).subscribe({
+    console.log("Registrando Cliente :v ->" + this.client.nombre);
+    this._clientService.store(this.client).subscribe({
       next: (response) => {
         if (response.status == 201) {
           form.reset();
@@ -55,4 +55,5 @@ export class LicenciaComponent {
       showConfirmButton: false
     });
   }
+
 }

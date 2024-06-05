@@ -29,7 +29,7 @@ export class ClienteComponent {
     }
 
     onSubmit(form: any) {
-      console.log("Registrando Cliente :v ->" + this.client.nombre);
+      console.log("Registrando Cliente ->" + this.client.nombre);
       this._clientService.store(this.client).subscribe({
         next: (response) => {
           if (response.status == 201) {

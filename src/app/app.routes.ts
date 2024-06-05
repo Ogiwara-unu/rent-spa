@@ -17,6 +17,8 @@ import { ViewLicensesComponent } from './components/view-licenses/view-licenses.
 import { ViewVehiclesComponent } from './components/view-vehicles/view-vehicles.component';
 import { ViewRentsComponent } from './components/view-rents/view-rents.component';
 import { AddRentComponent } from './components/add-rent/add-rent.component';
+import { AddClientComponent } from './components/add-client/add-client.component';
+import { AddLicenseComponent } from './components/add-license/add-license.component';
 
 export const routes: Routes = [
     {path:'',component:HomeComponent}, //PATH ES EL ELEMENTO QUE VA DESPUES DEL LOCALHOST:4200
@@ -37,6 +39,8 @@ export const routes: Routes = [
     {path:'view-vehicles',component:ViewVehiclesComponent},
     {path:'view-rents',component:ViewRentsComponent},
     {path:'add-rent',component:AddRentComponent},
-    {path:'**',component:ErrorComponent},
+    {path:'add-client',component:AddClientComponent},
+    {path:'add-license',component:AddLicenseComponent},
+    {path:'**',component:ErrorComponent}
 
 ]; 

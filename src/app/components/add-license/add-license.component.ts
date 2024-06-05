@@ -7,14 +7,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-licencia',
+  selector: 'app-add-license',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './licencia.component.html',
-  styleUrl: './licencia.component.css',
+  templateUrl: './add-license.component.html',
+  styleUrl: './add-license.component.css',
   providers: [LicenciaService]
 })
-export class LicenciaComponent {
+export class AddLicenseComponent {
   public status: number;
   public license: Licencia;
 
@@ -28,7 +28,7 @@ export class LicenciaComponent {
   }
 
   onSubmit(form: any) {
-    console.log("Registrando Licencia ->"+this.license.id);
+    console.log("Registrando Usuario :v ->"+this.license.id);
     console.log(this.license);
     this._licenseService.store(this.license).subscribe({
       next: (response) => {
