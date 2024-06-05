@@ -16,8 +16,21 @@ export class LicenciaService {
         this.urlAPI = server.url;
     }
 
-    getLicense(): Observable<any> {
-        return this._http.get(this.urlAPI + 'licencia/getLicenses')
+    getLicenses(): Observable<any> {
+      let headers;
+      let bearerToken = sessionStorage.getItem('token');
+
+      if (bearerToken) {
+          headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('bearertoken', bearerToken);
+        } else {
+          headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+        }
+      
+        let options = {
+          headers
+        };
+
+        return this._http.get(this.urlAPI + 'licencia/getLicenses', options);
     }
 
     store(license: Licencia): Observable<any> {
@@ -38,6 +51,23 @@ export class LicenciaService {
         };
       
         return this._http.post(this.urlAPI + 'licencia/add', params, options);
+      }
+
+      destroyLicense(id:number):Observable<any>{
+        let headers;
+        let bearerToken = sessionStorage.getItem('token');
+
+        if(bearerToken){
+          headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('bearertoken', bearerToken);
+        } else {
+          headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+        }
+
+         let options = {
+           headers
+         };
+
+      return this._http.delete(this.urlAPI + 'licencia/destroyLicense/' + id ,options);
       }
       
 

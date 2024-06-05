@@ -69,6 +69,6 @@ export class ClienteService{
           headers
         };
   
-        return this._http.delete(this.urlAPI + 'tarjeta/destroyCard/' + id ,options);
+        return this._http.delete(this.urlAPI + 'cliente/destroyClient/' + id ,options);
       }
 }
