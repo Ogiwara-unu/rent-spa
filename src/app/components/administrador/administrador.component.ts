@@ -32,7 +32,7 @@ export class AdministradorComponent {
   }
 
   navigateToviewLicenses(): void {
-    this._router.navigate(['/view-users']);
+    this._router.navigate(['/view-licenses']);
   }
 
   /* Rutas Clientes */
@@ -41,7 +41,7 @@ export class AdministradorComponent {
   }
 
   navigateToviewClients(): void {
-    this._router.navigate(['/view-users']);
+    this._router.navigate(['/view-clients']);
   }
 
   /* Rutas Vehiculo */
@@ -50,7 +50,7 @@ export class AdministradorComponent {
   }
 
   navigateToviewVehicles(): void {
-    this._router.navigate(['/view-users']);
+    this._router.navigate(['/view-vehicles']);
   }
 
   /* Rutas Tarjetas */
@@ -59,16 +59,16 @@ export class AdministradorComponent {
   }
 
   navigateToviewCards(): void {
-    this._router.navigate(['/view-users']);
+    this._router.navigate(['/view-cards']);
   }
 
   /* Rutas Renta */
   navigateToAddRent(): void {
-    this._router.navigate(['/add-card']);
+    this._router.navigate(['/add-rent']);
   }
 
   navigateToviewRents(): void {
-    this._router.navigate(['/view-users']);
+    this._router.navigate(['/view-rents']);
   }
 
 }

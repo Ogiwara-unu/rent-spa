@@ -17,7 +17,20 @@ export class ClienteService{
     }
 
     getClients(): Observable<any>{
-        return this._http.get(this.urlAPI + 'cliente/getClients')
+        let headers;
+        let bearerToken = sessionStorage.getItem('token');
+
+        if(bearerToken){
+            headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('bearertoken', bearerToken);
+        }else{
+            headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+        }
+
+        let options = {
+            headers
+        };
+
+        return this._http.get(this.urlAPI = '/cliente/getClients',options);
     }
 
     store(client: Cliente):Observable <any>{
@@ -41,4 +54,21 @@ export class ClienteService{
         return this._http.post(this.urlAPI + 'cliente/add', params, options);
 
     }
+
+    destroyClient(id:number):Observable<any>{
+        let headers;
+        let bearerToken = sessionStorage.getItem('token');
+  
+        if(bearerToken){
+          headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('bearertoken', bearerToken);
+        } else {
+          headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+        }
+  
+        let options = {
+          headers
+        };
+  
+        return this._http.delete(this.urlAPI + 'tarjeta/destroyCard/' + id ,options);
+      }
 }
