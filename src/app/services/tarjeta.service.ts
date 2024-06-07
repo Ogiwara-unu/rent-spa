@@ -30,7 +30,7 @@ export class TarjetaService{
             headers
         };
 
-        return this._http.get(this.urlAPI = 'tarjeta/getCards',options);
+        return this._http.get(this.urlAPI + 'tarjeta/getCards',options);
     }
 
     store(card: Tarjeta):Observable <any>{

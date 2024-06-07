@@ -11,17 +11,21 @@ import Swal from 'sweetalert2';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './add-vehicle.component.html',
-  styleUrls: ['./add-vehicle.component.css'],
+  styleUrl: './add-vehicle.component.css',
   providers: [VehiculoService]
 })
 export class AddVehicleComponent {
-  vehicle: Vehiculo = new Vehiculo(1, "", "", "", "", 0, 0, "", "", "");
-
+  public status: number;
+  public vehicle: Vehiculo;
+  
   constructor(
     private _vehicleService: VehiculoService,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {}
+    private _router: Router,
+    private _routes: ActivatedRoute
+  ) {
+    this.status = -1;
+    this.vehicle = new Vehiculo(1, "", "", "", "", 0, 0, "", "", "");
+  }
 
   onSubmit(form: any) {
     console.log("Registrando Vehiculo ->"+this.vehicle.placa);
