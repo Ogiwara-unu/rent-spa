@@ -1,1 +1,52 @@
-<p>view-rents works!</p>
+<body>
+    <div class="container">
+        <h2>Clientes</h2>
+        <div class="table_header">
+            <div class="input_search">
+                <input type="search" placeholder="Buscar" />
+                <i class="bi bi-search" id="search"></i>
+            </div>
+            <button (click)="navigateToAddRent()">Crear nuevo</button>
+        </div>
+        <div class="table_container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id<i class="bi bi-chevron-expand"></i></th>
+                        <th>Id Usuario<i class="bi bi-chevron-expand"></i></th>
+                        <th>Id Cliente<i class="bi bi-chevron-expand"></i></th>
+                        <th>Id Vehículo<i class="bi bi-chevron-expand"></i></th>
+                        <th>Id Tarjeta<i class="bi bi-chevron-expand"></i></th>
+                        <th>Tarifa Base<i class="bi bi-chevron-expand"></i></th>
+                        <th>Fecha De Entrega<i class="bi bi-chevron-expand"></i></th>
+                        <th>Fecha de Devolución<i class="bi bi-chevron-expand"></i></th>
+                        <th>Total<i class="bi bi-chevron-expand"></i></th>
+                        <th>Operaciones <i class="bi bi-chevron-expand"></i></th>
+                      
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let rent of rents">
+                        <td>{{ rent.id }}</td>
+                        <td>{{ rent.user_id }}</td>
+                        <td>{{ rent.cliente_id }}</td>
+                        <td>{{ rent.vehiculo_id }}</td>
+                        <td>{{ rent.tarjeta_id }}</td>
+                        <td>{{ rent.tarifa_base }}</td>
+                        <td>{{ rent.fecha_entrega }}</td>
+                        <td>{{ rent.fecha_devolucion }}</td>
+                        <td>{{ rent.total }}</td>
+                        <td>
+                            <i class="bi bi-pencil-square" id="icons"></i>
+                            <i class="bi bi-trash" id="icons" (click)="destroyRent(rent.id)"></i>
+                            <i class="bi bi-eye" id="icons"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="table_footer">
+            <p>Registro de Clientes</p>
+        </div>
+    </div>
+</body>

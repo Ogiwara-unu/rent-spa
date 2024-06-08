@@ -1,1 +1,49 @@
-<p>view-clients works!</p>
+<body>
+    <div class="container">
+        <h2>Clientes</h2>
+        <div class="table_header">
+            <div class="input_search">
+                <input type="search" placeholder="Buscar" />
+                <i class="bi bi-search" id="search"></i>
+            </div>
+            <button (click)="navigateToAddCliente()">Crear nuevo</button>
+        </div>
+        <div class="table_container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id<i class="bi bi-chevron-expand"></i></th>
+                        <th>Nombre<i class="bi bi-chevron-expand"></i></th>
+                        <th>Primer Apellido<i class="bi bi-chevron-expand"></i></th>
+                        <th>Segundo Apellido<i class="bi bi-chevron-expand"></i></th>
+                        <th>Teléfono<i class="bi bi-chevron-expand"></i></th>
+                        <th>Correo<i class="bi bi-chevron-expand"></i></th>
+                        <th>Dirección<i class="bi bi-chevron-expand"></i></th>
+                        <th>Fecha de Nacimiento<i class="bi bi-chevron-expand"></i></th>
+                        <th>Operaciones <i class="bi bi-chevron-expand"></i></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let client of clients">
+                        <td>{{ client.id }}</td>
+                        <td>{{ client.nombre }}</td>
+                        <td>{{ client.primer_apellido }}</td>
+                        <td>{{ client.segundo_apellido }}</td>
+                        <td>{{ client.telefono }}</td>
+                        <td>{{ client.email }}</td>
+                        <td>{{ client.direccion }}</td>
+                        <td>{{ client.fecha_nacimiento }}</td>
+                        <td>
+                            <i class="bi bi-pencil-square" id="icons"></i>
+                            <i class="bi bi-trash" id="icons" (click)="destroyClient(client.id)"></i>
+                            <i class="bi bi-eye" id="icons"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="table_footer">
+            <p>Registro de Clientes</p>
+        </div>
+    </div>
+</body>

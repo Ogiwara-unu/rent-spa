@@ -31,7 +31,7 @@ export class ViewClientsComponent {
       this.getClients();
     }
 
-    navigateToAddUser(): void {
+    navigateToAddCliente(): void {
       this._router.navigate(['/cliente']);
     }
 

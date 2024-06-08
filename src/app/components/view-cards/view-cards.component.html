@@ -1,1 +1,44 @@
-<p>view-cards works!</p>
+<body>
+    <div class="container">
+        <h2>Tarjetas</h2>
+        <div class="table_header">
+            <div class="input_search">
+                <input type="search" placeholder="Buscar" />
+                <i class="bi bi-search" id="search"></i>
+            </div>
+            <button (click)="navigateToAddCard()">Crear nuevo</button>
+        </div>
+        <div class="table_container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Número de Tarjeta<i class="bi bi-chevron-expand"></i></th>
+                        <th>Titular<i class="bi bi-chevron-expand"></i></th>
+                        <th>Fecha de Vencimiento<i class="bi bi-chevron-expand"></i></th>
+                        <th>CVV<i class="bi bi-chevron-expand"></i></th>
+                        <th>Id<i class="bi bi-chevron-expand"></i></th>
+                        <th>Operaciones <i class="bi bi-chevron-expand"></i></th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let card of cards">
+                        <td>{{ card.numero_tarjeta }}</td>
+                        <td>{{ card.titular }}</td>
+                        <td>{{ card.fecha_vencimiento }}</td>
+                        <td>{{ card.cvv }}</td>
+                        <td>{{ card.id }}</td>
+                        <td>
+                            <i class="bi bi-pencil-square" id="icons"></i>
+                            <i class="bi bi-trash" id="icons" (click)="destroyCard(card.id)"></i>
+                            <i class="bi bi-eye" id="icons"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="table_footer">
+            <p>Registro de Tarjetas</p>
+        </div>
+    </div>
+</body>

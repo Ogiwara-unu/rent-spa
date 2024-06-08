@@ -30,7 +30,7 @@ export class ClienteService{
             headers
         };
 
-        return this._http.get(this.urlAPI = '/cliente/getClients',options);
+        return this._http.get(this.urlAPI + 'cliente/getClients', options);
     }
 
     store(client: Cliente):Observable <any>{

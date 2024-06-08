@@ -90,6 +90,9 @@ button:hover {
     grid-template-columns: 1fr;
   }
 }
+li:hover{
+  background-color: #737373;
+}
 
 /*.catalog-container {
     display: flex;

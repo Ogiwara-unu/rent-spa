@@ -31,7 +31,7 @@ export class ViewCardsComponent {
       this.getCards();
     }
 
-    navigateToAddUser(): void {
+    navigateToAddCard(): void {
       this._router.navigate(['/add-card']);
     }
 

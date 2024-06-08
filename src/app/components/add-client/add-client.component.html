@@ -52,8 +52,7 @@
                 </p>
                 <p>
                     <label for="fecha_nacimiento">Fecha de Nacimiento</label>
-                    <input id="fecha_nacimiento" type="text" #fecha_nacimiento="ngModel" class="input" name="fecha_nacimiento"
-                        pattern="^(19|20)\d{2}-(0?[1-9]|1[0-2])-(0?[1-9]|[12]\d|3[01])$"
+                    <input id="fecha_nacimiento" type="date" #fecha_nacimiento="ngModel" class="input" name="fecha_nacimiento"
                         [(ngModel)]="client.fecha_nacimiento" required
                         placeholder="YYYY-MM-DD"/>
                     <small class="invalid-feedback d-block" *ngIf="fecha_nacimiento.invalid && fecha_nacimiento.touched">Formato inválido</small>

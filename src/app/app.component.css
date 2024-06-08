@@ -33,6 +33,12 @@ nav {
 }
 .subnav:hover .subnav-content {
   display: block;
+  
+}
+.navbar-nav li:hover{
+
+    background-color: #737373;
+
 }
 .type {
   font-family: Monaco;

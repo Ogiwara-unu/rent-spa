@@ -31,7 +31,7 @@ export class ViewRentsComponent {
       this.getRents();
     }
 
-    navigateToAddUser(): void {
+    navigateToAddRent(): void {
       this._router.navigate(['/add-rent']);
     }
 

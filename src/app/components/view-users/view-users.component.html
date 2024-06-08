@@ -1,37 +1,38 @@
 <body>
-    <div class="container">
-        <div class="table_header">
-          <h2>Usuarios</h2>
-          <button (click)="navigateToAddUser()">Crear nuevo</button>
+  <div class="container">
+    <h2>Usuarios</h2>
+      <div class="table_header">
+        
           <div class="input_search">
-            <input type="search" placeholder="Buscar" />
-            <i class="bi bi-search" id="search"></i>
+              <input type="search" placeholder="Buscar" />
+              <i class="bi bi-search" id="search"></i>
           </div>
-        </div>
-        <table>
-            <thead>
+          <button (click)="navigateToAddUser()">Crear nuevo</button>
+      </div>
+      <table>
+          <thead>
               <tr>
-                <th>name <i class="bi bi-chevron-expand"></i></th>
-                <th>email <i class="bi bi-chevron-expand"></i></th>
-                <th>rol <i class="bi bi-chevron-expand"></i></th>
-                <th>Operaciones <i class="bi bi-chevron-expand"></i></th>
+                  <th>Nombre<i class="bi bi-chevron-expand"></i></th>
+                  <th>Correo<i class="bi bi-chevron-expand"></i></th>
+                  <th>Rol<i class="bi bi-chevron-expand"></i></th>
+                  <th>Operaciones <i class="bi bi-chevron-expand"></i></th>
               </tr>
-            </thead>
-            <tbody>
+          </thead>
+          <tbody>
               <tr *ngFor="let user of users">
-                <td>{{ user.name }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.rol }}</td>
-                <td>
-                  <i class="bi bi-pencil-square" id="icons"></i>
-                  <i class="bi bi-trash" id="icons" (click)="destroy(user.email)"></i>
-                  <i class="bi bi-eye" id="icons"></i>
-                </td>
+                  <td>{{ user.name }}</td>
+                  <td>{{ user.email }}</td>
+                  <td>{{ user.rol }}</td>
+                  <td>
+                      <i class="bi bi-pencil-square" id="icons"></i>
+                      <i class="bi bi-trash" id="icons" (click)="destroy(user.email)"></i>
+                      <i class="bi bi-eye" id="icons"></i>
+                  </td>
               </tr>
-            </tbody>
-          </table>
-        <div class="table_fotter">
+          </tbody>
+      </table>
+      <div class="table_fotter">
           <p>Registro de usuarios</p>
-        </div>
-    </div>
+      </div>
+  </div>
 </body>
