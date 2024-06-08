@@ -41,6 +41,23 @@ export class VehiculoService {
         return this._http.post(this.urlAPI + 'vehiculo/add', params, options);
       }
 
+      getVehicles():Observable<any>{
+        let headers;
+        let bearerToken = sessionStorage.getItem('token');
+
+        if (bearerToken) {
+            headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('bearertoken', bearerToken);
+          } else {
+            headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+          }
+        
+          let options = {
+            headers
+          };
+
+          return this._http.get(this.urlAPI + 'vehiculo/getCars', options);
+      }
+
       destroyVehicle(placa:string):Observable<any>{
         let headers;
         let bearerToken = sessionStorage.getItem('token');

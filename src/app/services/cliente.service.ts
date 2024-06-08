@@ -13,7 +13,7 @@ export class ClienteService{
     constructor(
         private _http: HttpClient
     ){
-        this.urlAPI =server.url;
+        this.urlAPI = server.url;
     }
 
     getClients(): Observable<any>{

@@ -1,1 +1,84 @@
-<p>add-rent works!</p>
+<div class="content">
+    <div class="addRent-wrapper">
+        <div class="rent-form">
+            <h3>Agregar Renta</h3>
+            <form #rentForm="ngForm" (ngSubmit)="onSubmit(rentForm)">
+                <p>
+                    <label for="user_id">ID Usuario</label>
+                    <select id="user_id" #user_id="ngModel" class="input" name="user_id" [(ngModel)]="rent.user_id"
+                        required>
+                        <!-- Itera sobre el array de usuarios y genera una opción para cada usuario -->
+                        <option *ngFor="let user of users" [value]="user.id">{{ user.name }}</option>
+                    </select>
+                    <!-- Muestra un mensaje de error si el campo es inválido y se ha tocado -->
+                    <small class="invalid-feedback d-block" *ngIf="user_id.invalid && user_id.touched">Campo
+                        requerido</small>
+                </p>
+
+                <p>
+                    <label for="cliente_id">ID Cliente</label>
+                    <select id="cliente_id" #cliente_id="ngModel" class="input" name="cliente_id"
+                        [(ngModel)]="rent.cliente_id" required>
+                        <option *ngFor="let client of clients" [value]="client.id">{{ client.nombre }}</option>
+                    </select>
+                    <button type="button" class="btn" (click)="navigateToCliente()"><img src="../assets/img/agregar.png"
+                            alt="Agregar" /></button>
+                    <small class="invalid-feedback d-block" *ngIf="cliente_id.invalid && cliente_id.touched">Campo
+                        requerido</small>
+                </p>
+                <p>
+                    <label for="vehiculo_id">ID Vehículo</label>
+                    <select id="vehiculo_id" #vehiculo_id="ngModel" class="input" name="vehiculo_id"
+                        [(ngModel)]="rent.vehiculo_id" required>
+                        <option *ngFor="let vehicle of vehicles" [value]="vehicle.id">{{ vehicle.placa }}</option>
+                    </select>
+                    <small class="invalid-feedback d-block" *ngIf="vehiculo_id.invalid && vehiculo_id.touched">Campo
+                        requerido</small>
+                </p>
+                <p>
+                    <label for="tarjeta_id">ID Tarjeta</label>
+                    <select id="tarjeta_id" #tarjeta_id="ngModel" class="input" name="tarjeta_id"
+                        [(ngModel)]="rent.tarjeta_id" required>
+                        <option *ngFor="let card of cards" [value]="card.id">{{ card.id }}</option>
+                    </select>
+                    <small class="invalid-feedback d-block" *ngIf="tarjeta_id.invalid && tarjeta_id.touched">Campo
+                        requerido</small>
+                </p>
+                <p>
+                    <label for="tarifa_base">Tarifa Base</label>
+                    <input id="tarifa_base" type="number" #tarifa_base="ngModel" class="input" name="tarifa_base"
+                        [(ngModel)]="rent.tarifa_base" required />
+                    <small class="invalid-feedback d-block" *ngIf="tarifa_base.invalid && tarifa_base.touched">Campo
+                        requerido</small>
+                </p>
+                <p>
+                    <label for="fecha_entrega">Fecha de Entrega</label>
+                    <input id="fecha_entrega" type="date" #fecha_entrega="ngModel" class="input" name="fecha_entrega"
+                        [(ngModel)]="rent.fecha_entrega" required />
+                    <small class="invalid-feedback d-block" *ngIf="fecha_entrega.invalid && fecha_entrega.touched">Campo
+                        requerido</small>
+                </p>
+                <p>
+                    <label for="fecha_devolucion">Fecha de Devolución</label>
+                    <input id="fecha_devolucion" type="date" #fecha_devolucion="ngModel" class="input"
+                        name="fecha_devolucion" [(ngModel)]="rent.fecha_devolucion" required />
+                    <small class="invalid-feedback d-block"
+                        *ngIf="fecha_devolucion.invalid && fecha_devolucion.touched">Campo requerido</small>
+                </p>
+                <p>
+                    <label for="total">Total</label>
+                    <input id="total" type="number" #total="ngModel" class="input" name="total" [(ngModel)]="rent.total"
+                        required />
+                    <small class="invalid-feedback d-block" *ngIf="total.invalid && total.touched">Campo
+                        requerido</small>
+                </p>
+                <p class="block">
+                    <input type="submit" class="submit button" value="Agregar" [disabled]="rentForm.invalid" />
+                </p>
+            </form>
+        </div>
+        <div class="rent-info">
+            <img src="../assets/img/2.png" alt="Imagen de Renta">
+        </div>
+    </div>
+</div>
