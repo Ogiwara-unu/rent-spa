@@ -150,7 +150,7 @@ export class AddRentComponent {
 
   /* Rutas Clientes */
   navigateToCliente(): void {
-    this._router.navigate(['/cliente']);
+    this._router.navigate(['/add-client']);
   }
 
   ngOnInit(): void {

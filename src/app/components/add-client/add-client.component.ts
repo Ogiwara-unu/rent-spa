@@ -12,40 +12,45 @@ import Swal from 'sweetalert2';
   imports: [CommonModule, FormsModule],
   templateUrl: './add-client.component.html',
   styleUrl: './add-client.component.css',
-  providers:[ClienteService]
+  providers: [ClienteService]
 })
 export class AddClientComponent {
   public status: number;
   public client: Cliente;
-  
+  private returnUrl: string | null = null;
+
   constructor(
     private _clientService: ClienteService,
     private _router: Router,
     private _routes: ActivatedRoute
-  ){
-    this.status= -1;
-    this.client = new Cliente(0,"","","","","","","");
-
+  ) {
+    this.status = -1;
+    this.client = new Cliente(0, "", "", "", "", "", "", "");
   }
 
-  onSubmit(form: any) {
-    console.log("Registrando Cliente :v ->" + this.client.nombre);
-    this._clientService.store(this.client).subscribe({
+  ngOnInit(): void {
+    this.returnUrl = this._routes.snapshot.paramMap.get('returnUrl') || '/';
+}
+
+onSubmit(form: any) {
+  console.log("Registrando Cliente :v ->" + this.client.nombre);
+  this._clientService.store(this.client).subscribe({
       next: (response) => {
-        if (response.status == 201) {
-          form.reset();
-          this.showAlert('success', response.message);
-        } else if (response.status == 406) {
-          this.showAlert('error', 'Datos inválidos >:(');
-        } else {
-          this.showAlert('error', response.message);
-        }
+          if (response.status == 201) {
+              form.reset();
+              this.showAlert('success', response.message);
+              this._router.navigate(['add-license']);
+          } else if (response.status == 406) {
+              this.showAlert('error', 'Datos inválidos >:(');
+          } else {
+              this.showAlert('error', response.message);
+          }
       },
       error: (error: Error) => {
-        this.showAlert('error', 'Error del servidor');
+          this.showAlert('error', 'Error del servidor');
       }
-    });
-  }
+  });
+}
 
   showAlert(type: 'success' | 'error', message: string) {
     Swal.fire({
@@ -55,5 +60,4 @@ export class AddClientComponent {
       showConfirmButton: false
     });
   }
-
 }

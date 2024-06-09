@@ -17,6 +17,7 @@ import Swal from 'sweetalert2';
 export class AddLicenseComponent {
   public status: number;
   public license: Licencia;
+  private returnUrl: string | null = null;
 
   constructor(
     private _licenseService: LicenciaService,
@@ -27,25 +28,35 @@ export class AddLicenseComponent {
     this.license = new Licencia(1, 1, "", "", "");
   }
 
-  onSubmit(form: any) {
-    console.log("Registrando Usuario :v ->"+this.license.id);
-    console.log(this.license);
-    this._licenseService.store(this.license).subscribe({
+  /*ngOnInit(): void {
+    const clientId = this._routes.snapshot.paramMap.get('clientId');
+    this.returnUrl = this._routes.snapshot.paramMap.get('returnUrl') || '/';
+    
+    if (clientId) {
+        this.license.cliente_id = +clientId;
+    }
+}*/
+
+onSubmit(form: any) {
+  console.log("Registrando Licencia :v ->" + this.license.id);
+  console.log(this.license);
+  this._licenseService.store(this.license).subscribe({
       next: (response) => {
-        if (response.status == 201) {
-          form.reset();
-          this.showAlert('success', response.message);
-        } else if (response.status == 406) {
-          this.showAlert('error', 'Datos inválidos >:(');
-        } else {
-          this.showAlert('error', response.message);
-        }
+          if (response.status == 201) {
+              form.reset();
+              this.showAlert('success', response.message);
+              this._router.navigate(['add-rent']);
+          } else if (response.status == 406) {
+              this.showAlert('error', 'Datos inválidos >:(');
+          } else {
+              this.showAlert('error', response.message);
+          }
       },
       error: (error: Error) => {
-        this.showAlert('error', 'Error del servidor');
+          this.showAlert('error', 'Error del servidor');
       }
-    });
-  }
+  });
+}
 
   showAlert(type: 'success' | 'error', message: string) {
     Swal.fire({

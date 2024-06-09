@@ -126,6 +126,7 @@
     display: flex; /* Para centrar la imagen */
     justify-content: center; /* Para centrar la imagen */
     align-items: center; /* Para centrar la imagen */
+    margin-top: 25px; /* Se mueve un poco hacia abajo*/
 }
 
 .btn:hover {
