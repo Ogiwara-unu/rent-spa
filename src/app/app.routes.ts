@@ -41,6 +41,7 @@ export const routes: Routes = [
     {path:'add-rent',component:AddRentComponent},
     {path:'add-client',component:AddClientComponent},
     {path:'add-license',component:AddLicenseComponent},
+    {path:'show-card/:id',component:AddLicenseComponent},
     {path:'**',component:ErrorComponent}
 
 ]; 
