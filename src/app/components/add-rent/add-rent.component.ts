@@ -55,14 +55,13 @@ export class AddRentComponent {
     this.rent.fecha_entrega = this.formatDate(this.rent.fecha_entrega);
     this.rent.fecha_devolucion = this.formatDate(this.rent.fecha_devolucion);
 
-    this.rent.id = 3342; //AQUI ESTABA EL ERROR
+    // this.rent.id = 3342; //AQUI ESTABA EL ERROR
     //EN EL BACKEND NO ES NECESARIO ESTABLECER EL USUARIO PQ ESTE LO ASIGNA AUTOMATICAMENTE
     //YO DE VOS PROBARIA QUITAR LA COSA DE ELEGIR USUARIO POR EL ID DE LA RENTA
     //PROBALO Y SI NO TE FUNCIONA PUES DEJA EL COSO DE USUARIO JASJA
-
-    console.log("Registrando Renta ->" + this.rent.id);
-    console.log("usuario ->" + this.rent.user_id);
-    this.rent.user_id = parseInt(this.rent.user_id.toString());
+    
+    /*console.log("Registrando Renta ->" + this.rent.id);
+    this.rent.id = parseInt(this.rent.id.toString());
     console.log("cliente ->" + this.rent.cliente_id);
     this.rent.cliente_id = parseInt(this.rent.cliente_id.toString());
     console.log("vehiculo ->" + this.rent.vehiculo_id);
@@ -73,10 +72,9 @@ export class AddRentComponent {
     console.log("fecha entrega ->" + this.rent.fecha_entrega);
     console.log("fecha devolucion ->" + this.rent.fecha_devolucion);
     console.log("total ->" + this.rent.total);
-
-  
     this.rent.total = parseInt(this.rent.total.toString());
-    console.log(this.rent);
+    console.log(this.rent);*/
+    
     this._rentaService.store(this.rent).subscribe({
       next: (response) => {
         if (response.status == 201) {
@@ -124,11 +122,11 @@ export class AddRentComponent {
   onCardSelect() {
     console.log('Tarjeta seleccionada:', this.rent.tarjeta_id);
   }
-  onUserSelect() {
-    console.log('Usuario seleccionado:', this.rent.user_id);
-    const user_id = parseInt(this.rent.user_id.toString());
-    this.rent.user_id = user_id;
-    console.log(this.rent.user_id);
+  onIdRentSelect() {
+    console.log('ID seleccionado:', this.rent.id);
+    const rent_id = parseInt(this.rent.id.toString());
+    this.rent.id = rent_id;
+    console.log(this.rent.id);
   }
   onClientSelect() {
     console.log('Cliente seleccionado:', this.rent.cliente_id);

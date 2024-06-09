@@ -4,11 +4,9 @@
         <h3>Agregar Renta</h3>
         <form #rentForm="ngForm" (ngSubmit)="onSubmit(rentForm)">
           <p>
-            <label for="user_id">ID Usuario</label>
-            <select id="user_id" #user_id="ngModel" class="input" name="user_id" [(ngModel)]="rent.user_id" required (change)="onUserSelect()">
-              <option *ngFor="let user of users" [value]="user.id">{{ user.name }}</option>
-            </select>
-            <small class="invalid-feedback d-block" *ngIf="user_id.invalid && user_id.touched">Campo requerido</small>
+            <label for="renta_id">ID Renta</label>
+            <input id="renta_id" type="number" #renta_id="ngModel" class="input" name="renta_id" [(ngModel)]="rent.id" required (change)="onIdRentSelect()"/>
+            <small class="invalid-feedback d-block" *ngIf="renta_id.invalid && renta_id.touched">Campo requerido</small>
           </p>
   
           <p>
