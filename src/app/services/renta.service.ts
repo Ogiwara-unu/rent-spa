@@ -17,7 +17,6 @@ export class RentaService{
     }
 
     store(rent: Renta): Observable<any> {
-
       let rentJson = JSON.stringify(rent);
       let params = 'data=' + rentJson;
       let headers;

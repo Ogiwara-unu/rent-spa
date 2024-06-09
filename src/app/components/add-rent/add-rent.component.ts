@@ -16,7 +16,7 @@ import Swal from 'sweetalert2';
   imports: [CommonModule, FormsModule],
   templateUrl: './add-rent.component.html',
   styleUrl: './add-rent.component.css',
-  providers: [RentaService,UserService,ClienteService,VehiculoService,TarjetaService]
+  providers: [RentaService, UserService, ClienteService, VehiculoService, TarjetaService]
 })
 export class AddRentComponent {
   public status: number;
@@ -25,7 +25,9 @@ export class AddRentComponent {
   public clients: any[] = [];
   public vehicles: any[] = [];
   public cards: any[] = [];
-  
+
+  private _vehiculoId: number | null = null;
+
   constructor(
     private _rentaService: RentaService,
     private _userService: UserService,
@@ -33,14 +35,41 @@ export class AddRentComponent {
     private _vehiculoService: VehiculoService,
     private _tarjetaService: TarjetaService,
     private _router: Router,
-    private _routes: ActivatedRoute
+    private _routes: ActivatedRoute,
   ) {
     this.status = -1;
-    this.rent = new Renta(1, 0, 0, 0, "", 0 , 0, 0, 0);
+    this.rent = new Renta(1, 0, 0, 0, "", 0, "", "", 0);
+  }
+
+  get vehiculo_id(): number | null {
+    return this._vehiculoId;
+  }
+
+  set vehiculo_id(value: number | null) {
+    this._vehiculoId = value;
+    this.updateTarifaBase();
   }
 
   onSubmit(form: any) {
-    console.log("Registrando Renta ->"+this.rent.id);
+    // Formatear las fechas al formato "yyyy-MM-dd"
+    this.rent.fecha_entrega = this.formatDate(this.rent.fecha_entrega);
+    this.rent.fecha_devolucion = this.formatDate(this.rent.fecha_devolucion);
+
+    console.log("Registrando Renta ->" + this.rent.id);
+    console.log("usuario ->" + this.rent.user_id);
+    this.rent.user_id = parseInt(this.rent.user_id.toString());
+    console.log("cliente ->" + this.rent.cliente_id);
+    this.rent.cliente_id = parseInt(this.rent.cliente_id.toString());
+    console.log("vehiculo ->" + this.rent.vehiculo_id);
+    this.rent.vehiculo_id = parseInt(this.rent.vehiculo_id.toString());
+    console.log("tarjeta ->" + this.rent.tarjeta_id);
+    console.log("tarifa base ->" + this.rent.tarifa_base);
+    this.rent.tarifa_base = parseInt(this.rent.tarifa_base.toString());
+    console.log("fecha entrega ->" + this.rent.fecha_entrega);
+    console.log("fecha devolucion ->" + this.rent.fecha_devolucion);
+    console.log("total ->" + this.rent.total);
+    this.rent.total = parseInt(this.rent.total.toString());
+    console.log(this.rent);
     this._rentaService.store(this.rent).subscribe({
       next: (response) => {
         if (response.status == 201) {
@@ -56,6 +85,62 @@ export class AddRentComponent {
         this.showAlert('error', 'Error del servidor');
       }
     })
+  }
+
+  formatDate(dateString: string): string {
+    const parts = dateString.split('/');
+    const formattedDate = new Date(`${parts[2]}-${parts[1]}-${parts[0]}`);
+    return formattedDate.toISOString().split('T')[0];
+  }
+
+  updateTarifaBase() {
+    if (this.rent.vehiculo_id) {
+      // Se pasa estrictamente a string el valor que hay en rent.vehiculo_id para luego hacerlo int
+      const vehiculoId = parseInt(this.rent.vehiculo_id.toString());
+      console.log("Vehiculo seleccionado " + vehiculoId);
+      // Busca el vehículo en la lista de vehículos
+      const selectedVehicle = this.vehicles.find(vehicle => vehicle.id === vehiculoId);
+
+      if (selectedVehicle) {
+        this.rent.tarifa_base = selectedVehicle.precio;
+        this.rent.vehiculo_id = vehiculoId;
+        console.log(this.rent.vehiculo_id);
+        console.log('Tarifa base actualizada:', this.rent.tarifa_base);
+      } else {
+        console.log('Vehículo no encontrado en la lista de vehículos.');
+      }
+    } else {
+      console.log('ID de vehículo no válido.');
+    }
+  }
+
+  onCardSelect() {
+    console.log('Tarjeta seleccionada:', this.rent.tarjeta_id);
+  }
+  onUserSelect() {
+    console.log('Usuario seleccionado:', this.rent.user_id);
+    const user_id = parseInt(this.rent.user_id.toString());
+    this.rent.user_id = user_id;
+    console.log(this.rent.user_id);
+  }
+  onClientSelect() {
+    console.log('Cliente seleccionado:', this.rent.cliente_id);
+    const cliente_id = parseInt(this.rent.cliente_id.toString());
+    this.rent.cliente_id = cliente_id;
+    console.log(this.rent.cliente_id);
+  }
+
+  calculateTotalWithAdditionalCost() {
+    const fechaEntrega = new Date(this.rent.fecha_entrega);
+    const fechaDevolucion = new Date(this.rent.fecha_devolucion);
+    const diferenciaDias = Math.floor((fechaDevolucion.getTime() - fechaEntrega.getTime()) / (1000 * 3600 * 24));
+    const tarifaAdicionalPorDia = 10; // Puedes ajustar este valor según tus necesidades
+    this.rent.total = this.rent.tarifa_base + (diferenciaDias * tarifaAdicionalPorDia);
+  }
+
+  updateTotalOnDateChange() {
+    this.calculateTotalWithAdditionalCost();
+    console.log(this.rent.total);
   }
 
   /* Rutas Clientes */
@@ -111,8 +196,8 @@ export class AddRentComponent {
       response => {
         if (response.status === 200) {
           this.vehicles = response.data;
-          console.log(this.vehicles);
-          this.status = response.status;
+          console.log('Vehículos cargados:', this.vehicles);
+          this.status = response.status;  // Llamada añadida aquí
         } else {
           this.status = response.status;
         }
@@ -123,6 +208,7 @@ export class AddRentComponent {
       }
     );
   }
+
 
   loadCards() {
     this._tarjetaService.getCards().subscribe(
