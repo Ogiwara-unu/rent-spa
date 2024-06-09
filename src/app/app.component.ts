@@ -34,6 +34,7 @@ export class AppComponent implements OnInit {
   logout() {
     sessionStorage.removeItem('identity');
     this.identity = null;
+    sessionStorage.removeItem('token');
     this.router.navigate(['']);
   }
 }

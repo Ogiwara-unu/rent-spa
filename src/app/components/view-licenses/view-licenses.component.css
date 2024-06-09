@@ -114,6 +114,11 @@ table td #icons {
     color: #000;
 }
 
+table img{
+    width: 80px;
+    height: 80px;
+}
+
 tbody tr:hover {
     background-color: #bdbdbdbf;
 }
