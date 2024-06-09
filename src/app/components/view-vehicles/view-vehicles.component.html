@@ -39,9 +39,9 @@
                         <td>{{ vehicle.estado }}</td>
                         <td><img [src]="'http://127.0.0.1:8000/api/v1/vehiculo/getImage/' + vehicle.img" alt="{{ vehicle.marca }} {{ vehicle.modelo }}" class="vehicle-image"></td>
                         <td>
-                            <i class="bi bi-pencil-square" id="icons"></i>
+                            <i class="bi bi-pencil-square" id="icons" (click)="navigateToUpdate(vehicle.placa)"></i>
                             <i class="bi bi-trash" id="icons" (click)="destroyVehicle(vehicle.placa)"></i>
-                            <i class="bi bi-eye" id="icons"></i>
+                            <i class="bi bi-eye" id="icons" (click)="navigateToShow(vehicle.placa)"></i>
                         </td>
                     </tr>
                 </tbody>

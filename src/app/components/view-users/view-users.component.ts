@@ -35,6 +35,14 @@ export class ViewUsersComponent {
       this._router.navigate(['/add-user']);
     }
 
+    navigateToShow(email:any): void{
+      this._router.navigate(['/show-user/'+email]);
+    }
+
+    navigateToUpdate(email:any): void{
+      this._router.navigate(['/update-user/'+email]);
+    }
+
     getUsers() {
       this._userService.getUsers().subscribe(
         response => {

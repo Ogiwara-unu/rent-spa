@@ -35,6 +35,15 @@ export class ViewRentsComponent {
       this._router.navigate(['/add-rent']);
     }
 
+    navigateToShow(id:any): void{
+      this._router.navigate(['/show-rent/'+id]);
+    }
+
+    navigateToUpdate(id:any): void{
+      this._router.navigate(['/update-rent/'+ id ]);
+    }
+
+
     getRents() {
       this._rentService.getRents().subscribe(
         response => {

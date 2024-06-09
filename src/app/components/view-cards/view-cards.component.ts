@@ -35,6 +35,14 @@ export class ViewCardsComponent {
       this._router.navigate(['/add-card']);
     }
 
+    navigateToShow(id:any): void{
+      this._router.navigate(['/show-card/'+id]);
+    }
+
+    navigateToUpdate(id:any): void{
+      this._router.navigate(['/update-card/' + id]);
+    }
+
     getCards() {
       this._cardService.getCards().subscribe(
         response => {

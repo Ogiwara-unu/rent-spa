@@ -34,6 +34,15 @@ export class ViewVehiclesComponent {
       this._router.navigate(['/add-vehicle']);
     }
 
+    navigateToShow(placa:any): void{
+      this._router.navigate(['/show-vehicle/'+placa]);
+    }
+
+    navigateToUpdate(placa:any): void{
+      this._router.navigate(['/update-vehicle/'+ placa ]);
+    }
+
+
     getVehicles(){
       this._vehicleService.getCars().subscribe(
         response => {

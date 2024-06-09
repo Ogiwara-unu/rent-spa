@@ -29,9 +29,9 @@
                         <td>{{ license.tipo }}</td>
                         <td><img [src]="'http://127.0.0.1:8000/api/v1/licencia/getImage/' + license.img" alt="{{license.img}}"></td>
                         <td>
-                            <i class="bi bi-pencil-square" id="icons"></i>
+                            <i class="bi bi-pencil-square" id="icons" (click)="navigateToUpdate(license.id)"></i>
                             <i class="bi bi-trash" id="icons" (click)="destroyLicense(license.id)"></i>
-                            <i class="bi bi-eye" id="icons"></i>
+                            <i class="bi bi-eye" id="icons" (click)="navigateToShow(license.id)"></i>
                         </td>
                     </tr>
                 </tbody>

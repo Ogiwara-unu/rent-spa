@@ -35,6 +35,14 @@ export class ViewLicensesComponent {
       this._router.navigate(['/licencias']);
     }
 
+    navigateToShow(id:any): void{
+      this._router.navigate(['/show-license/'+id]);
+    }
+
+    navigateToUpdate(id:any): void{
+      this._router.navigate(['/update-license/'+ id ]);
+    }
+
     getLicenses() {
       this._licenseService.getLicenses().subscribe(
         response => {

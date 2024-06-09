@@ -35,6 +35,14 @@ export class ViewClientsComponent {
       this._router.navigate(['/cliente']);
     }
 
+    navigateToShow(id:any): void{
+      this._router.navigate(['/show-client/'+id]);
+    }
+
+    navigateToUpdate(id:any): void{
+      this._router.navigate(['/update-client/'+ id ]);
+    }
+
     getClients() {
       this._clientService.getClients().subscribe(
         response => {
