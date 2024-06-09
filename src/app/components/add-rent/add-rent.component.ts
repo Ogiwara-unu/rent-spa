@@ -55,6 +55,11 @@ export class AddRentComponent {
     this.rent.fecha_entrega = this.formatDate(this.rent.fecha_entrega);
     this.rent.fecha_devolucion = this.formatDate(this.rent.fecha_devolucion);
 
+    this.rent.id = 3342; //AQUI ESTABA EL ERROR
+    //EN EL BACKEND NO ES NECESARIO ESTABLECER EL USUARIO PQ ESTE LO ASIGNA AUTOMATICAMENTE
+    //YO DE VOS PROBARIA QUITAR LA COSA DE ELEGIR USUARIO POR EL ID DE LA RENTA
+    //PROBALO Y SI NO TE FUNCIONA PUES DEJA EL COSO DE USUARIO JASJA
+
     console.log("Registrando Renta ->" + this.rent.id);
     console.log("usuario ->" + this.rent.user_id);
     this.rent.user_id = parseInt(this.rent.user_id.toString());
@@ -68,6 +73,8 @@ export class AddRentComponent {
     console.log("fecha entrega ->" + this.rent.fecha_entrega);
     console.log("fecha devolucion ->" + this.rent.fecha_devolucion);
     console.log("total ->" + this.rent.total);
+
+  
     this.rent.total = parseInt(this.rent.total.toString());
     console.log(this.rent);
     this._rentaService.store(this.rent).subscribe({
