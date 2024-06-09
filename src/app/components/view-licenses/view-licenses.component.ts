@@ -73,6 +73,7 @@ export class ViewLicensesComponent {
       console.log('Eliminando licencia con id ->' + id);
       this._licenseService.destroyLicense(id).subscribe(
         response => {
+          console.log(response);
           if (response.status === 200) {
             console.log('Licencia eliminada con éxito.');
             this.licenses = this.licenses.filter(license => license.id !== id);
@@ -82,7 +83,7 @@ export class ViewLicensesComponent {
               'success'
             );
           } else if (response.status === 400) {
-            console.error('No se pudo eliminar la licencia:', response.error);
+            console.error('No se pudo eliminar la licencia:', response.message);
             Swal.fire(
               'Error',
               'No se pudo eliminar la licencia, compruebe que exista.',
