@@ -17,7 +17,7 @@ import Swal from 'sweetalert2';
 export class AddLicenseComponent {
   public status: number;
   public license: Licencia;
-  private returnUrl: string | null = null;
+  public selectedFile: File | null = null;
 
   constructor(
     private _licenseService: LicenciaService,
@@ -28,35 +28,55 @@ export class AddLicenseComponent {
     this.license = new Licencia(1, 1, "", "", "");
   }
 
-  /*ngOnInit(): void {
-    const clientId = this._routes.snapshot.paramMap.get('clientId');
-    this.returnUrl = this._routes.snapshot.paramMap.get('returnUrl') || '/';
-    
-    if (clientId) {
-        this.license.cliente_id = +clientId;
-    }
-}*/
-
-onSubmit(form: any) {
-  console.log("Registrando Licencia :v ->" + this.license.id);
-  console.log(this.license);
-  this._licenseService.store(this.license).subscribe({
-      next: (response) => {
-          if (response.status == 201) {
-              form.reset();
-              this.showAlert('success', response.message);
-              this._router.navigate(['add-rent']);
-          } else if (response.status == 406) {
-              this.showAlert('error', 'Datos inválidos >:(');
+  onSubmit(form: any) {
+    if (this.selectedFile) {
+      console.log('img ->'+this.selectedFile);
+      this._licenseService.uploadImage(this.selectedFile).subscribe({
+        next: (response) => {
+          if (response.status === 201) {
+            this.license.img = response.filename;
+            this.saveLicense(form);
           } else {
-              this.showAlert('error', response.message);
+            this.showAlert('error', 'Error al subir la imagen');
           }
-      },
-      error: (error: Error) => {
+        },
+        error: (error: any) => {
           this.showAlert('error', 'Error del servidor');
+        }
+      });
+    } else {
+      this.saveLicense(form);
+    }
+  }
+
+  saveLicense(form: any) {
+    this.license.id = parseInt(this.license.id.toString());
+    console.log('id ->' + this.license.id);
+    console.log('info general ->' + this.license);
+    this._licenseService.store(this.license).subscribe({
+      next: (response) => {
+        if (response.status === 201) {
+          form.reset();
+          this.showAlert('success', response.message);
+        } else if (response.status === 406) {
+          this.showAlert('error', 'Datos inválidos >:(');
+        } else {
+          this.showAlert('error', response.message);
+        }
+      },
+      error: (error: any) => {
+        this.showAlert('error', 'Error del servidor');
       }
-  });
-}
+    });
+  }
+
+  onFileChange(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
+      this.license.img = file.name; // Asignar el nombre del archivo al objeto vehicle
+    }
+  }
 
   showAlert(type: 'success' | 'error', message: string) {
     Swal.fire({

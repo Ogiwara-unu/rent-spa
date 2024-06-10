@@ -4,12 +4,6 @@
       <h3>Agregar Vehículo</h3>
       <form #vehicleForm="ngForm" (ngSubmit)="onSubmit(vehicleForm)">
         <p>
-          <label for="id">ID Vehiculo</label>
-          <input id="id" type="text" #id="ngModel" class="input" name="id" [(ngModel)]="vehicle.id"
-            required />
-          <small class="invalid-feedback d-block" *ngIf="id.invalid && id.touched">Campo requerido</small>
-        </p>
-        <p>
           <label for="placa">Placa</label>
           <input id="placa" type="text" #placa="ngModel" class="input" name="placa" [(ngModel)]="vehicle.placa"
             required />

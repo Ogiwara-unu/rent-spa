@@ -30,7 +30,7 @@
                 </p>
                 <p class="block">
                     <label for="tipo">Imagen</label>
-                    <input class="form-control" type="file" id="formFile " >
+                    <input class="form-control" type="file" id="formFile " (change)="onFileChange($event)">
                 </p>
                 <p class="block .button">
                     <input type="submit" class="submit button" value="Agregar" [disabled]="licenciaForm.invalid" />

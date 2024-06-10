@@ -17,6 +17,7 @@ import Swal from 'sweetalert2';
 export class LicenciaComponent {
   public status: number;
   public license: Licencia;
+  public selectedFile: File | null = null;
 
   constructor(
     private _licenseService: LicenciaService,
@@ -28,23 +29,53 @@ export class LicenciaComponent {
   }
 
   onSubmit(form: any) {
-    console.log("Registrando Licencia ->"+this.license.id);
-    console.log(this.license);
+    if (this.selectedFile) {
+      console.log('img ->'+this.selectedFile);
+      this._licenseService.uploadImage(this.selectedFile).subscribe({
+        next: (response) => {
+          if (response.status === 201) {
+            this.license.img = response.filename;
+            this.saveLicense(form);
+          } else {
+            this.showAlert('error', 'Error al subir la imagen');
+          }
+        },
+        error: (error: any) => {
+          this.showAlert('error', 'Error del servidor');
+        }
+      });
+    } else {
+      this.saveLicense(form);
+    }
+  }
+
+  saveLicense(form: any) {
+    this.license.id = parseInt(this.license.id.toString());
+    console.log('id ->' + this.license.id);
+    console.log('info general ->' + this.license);
     this._licenseService.store(this.license).subscribe({
       next: (response) => {
-        if (response.status == 201) {
+        if (response.status === 201) {
           form.reset();
           this.showAlert('success', response.message);
-        } else if (response.status == 406) {
+        } else if (response.status === 406) {
           this.showAlert('error', 'Datos inválidos >:(');
         } else {
           this.showAlert('error', response.message);
         }
       },
-      error: (error: Error) => {
+      error: (error: any) => {
         this.showAlert('error', 'Error del servidor');
       }
     });
+  }
+
+  onFileChange(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
+      this.license.img = file.name; // Asignar el nombre del archivo al objeto vehicle
+    }
   }
 
   showAlert(type: 'success' | 'error', message: string) {

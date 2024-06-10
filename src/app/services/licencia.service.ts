@@ -34,24 +34,35 @@ export class LicenciaService {
     }
 
     store(license: Licencia): Observable<any> {
-        license.img = "Imagen";
-        let licenseJson = JSON.stringify(license);
-        let params = 'data=' + licenseJson;
-        let headers;
-        let bearerToken = sessionStorage.getItem('token');
-        console.log(licenseJson);
-        if (bearerToken) {
-          headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('bearertoken', bearerToken);
-        } else {
-          headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
-        }
-      
-        let options = {
-          headers
-        };
-      
-        return this._http.post(this.urlAPI + 'licencia/add', params, options);
+      let licenseJson = JSON.stringify(license);
+      let params = 'data=' + licenseJson;
+      let headers;
+      let bearerToken = sessionStorage.getItem('token');
+      if (bearerToken) {
+        headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('bearertoken', bearerToken);
+      } else {
+        headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
       }
+  
+      let options = {
+        headers
+      };
+      
+      console.log(params);
+      return this._http.post(this.urlAPI + 'licencia/add', params, options);
+    }
+
+    uploadImage(file: File): Observable<any> {
+      const formData: FormData = new FormData();
+      formData.append('file0', file, file.name);
+      let headers = new HttpHeaders();
+      let bearerToken = sessionStorage.getItem('token');
+      if (bearerToken) {
+        headers = headers.set('bearertoken', bearerToken);
+      }
+  
+      return this._http.post(this.urlAPI + 'licencia/upload', formData, { headers });
+    }
 
       destroyLicense(id:number):Observable<any>{
         let headers;
