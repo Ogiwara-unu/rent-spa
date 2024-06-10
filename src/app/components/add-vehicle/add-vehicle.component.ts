@@ -51,6 +51,7 @@ export class AddVehicleComponent {
 
   onSubmit(form: any) {
     if (this.selectedFile) {
+      console.log('img ->'+this.selectedFile);
       this._vehicleService.uploadImage(this.selectedFile).subscribe({
         next: (response) => {
           if (response.status === 201) {
@@ -71,6 +72,8 @@ export class AddVehicleComponent {
 
   saveVehicle(form: any) {
     this.vehicle.id = parseInt(this.vehicle.id.toString());
+    console.log('id ->' + this.vehicle.id);
+    console.log('info general ->' + this.vehicle);
     this._vehicleService.store(this.vehicle).subscribe({
       next: (response) => {
         if (response.status === 201) {
