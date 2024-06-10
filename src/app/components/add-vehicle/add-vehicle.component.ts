@@ -17,7 +17,8 @@ import Swal from 'sweetalert2';
 export class AddVehicleComponent {
   public status: number;
   public vehicle: Vehiculo;
-  
+  public selectedFile: File | null = null;
+
   constructor(
     private _vehicleService: VehiculoService,
     private _router: Router,
@@ -27,6 +28,7 @@ export class AddVehicleComponent {
     this.vehicle = new Vehiculo(1, "", "", "", "", 0, 0, "", "", "");
   }
 
+  /*
   onSubmit(form: any) {
     console.log("Registrando Vehiculo ->"+this.vehicle.placa);
     this._vehicleService.store(this.vehicle).subscribe({
@@ -45,11 +47,51 @@ export class AddVehicleComponent {
       }
     })
   }
-  
+  */
+
+  onSubmit(form: any) {
+    if (this.selectedFile) {
+      this._vehicleService.uploadImage(this.selectedFile).subscribe({
+        next: (response) => {
+          if (response.status === 201) {
+            this.vehicle.img = response.filename;
+            this.saveVehicle(form);
+          } else {
+            this.showAlert('error', 'Error al subir la imagen');
+          }
+        },
+        error: (error: any) => {
+          this.showAlert('error', 'Error del servidor');
+        }
+      });
+    } else {
+      this.saveVehicle(form);
+    }
+  }
+
+  saveVehicle(form: any) {
+    this.vehicle.id = parseInt(this.vehicle.id.toString());
+    this._vehicleService.store(this.vehicle).subscribe({
+      next: (response) => {
+        if (response.status === 201) {
+          form.reset();
+          this.showAlert('success', response.message);
+        } else if (response.status === 406) {
+          this.showAlert('error', 'Datos inválidos >:(');
+        } else {
+          this.showAlert('error', response.message);
+        }
+      },
+      error: (error: any) => {
+        this.showAlert('error', 'Error del servidor');
+      }
+    });
+  }
 
   onFileChange(event: any) {
     const file = event.target.files[0];
     if (file) {
+      this.selectedFile = file;
       this.vehicle.img = file.name; // Asignar el nombre del archivo al objeto vehicle
     }
   }
@@ -62,5 +104,5 @@ export class AddVehicleComponent {
       showConfirmButton: false
     });
   }
-  
+
 }

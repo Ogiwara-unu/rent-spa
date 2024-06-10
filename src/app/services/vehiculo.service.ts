@@ -5,75 +5,87 @@ import { Vehiculo } from "../models/vehiculo";
 import { Observable } from "rxjs"; //Genera observable retornable al metodo que solicita la peticion
 
 @Injectable({
-    providedIn: 'root' //LO LLEVA TODA PROPIEDAD INJ Y ES ROOT PQ LO DEFINO EN LA RAIZ DE LA APP
+  providedIn: 'root' //LO LLEVA TODA PROPIEDAD INJ Y ES ROOT PQ LO DEFINO EN LA RAIZ DE LA APP
 })
 
 export class VehiculoService {
-    private urlAPI: string;
-    constructor(
-        private _http: HttpClient
-    ) {
-        this.urlAPI = server.url;
+  private urlAPI: string;
+  constructor(
+    private _http: HttpClient
+  ) {
+    this.urlAPI = server.url;
+  }
+
+  getCars(): Observable<any> {
+    return this._http.get(this.urlAPI + 'vehiculo/getCars')
+  }
+
+  store(vehicle: Vehiculo): Observable<any> {
+    let vehicleJson = JSON.stringify(vehicle);
+    let params = 'data=' + vehicleJson;
+    let headers;
+    let bearerToken = sessionStorage.getItem('token');
+    if (bearerToken) {
+      headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('bearertoken', bearerToken);
+    } else {
+      headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
     }
 
-    getCars(): Observable<any> {
-        return this._http.get(this.urlAPI + 'vehiculo/getCars')
+    let options = {
+      headers
+    };
+    
+    console.log(params);
+    return this._http.post(this.urlAPI + 'vehiculo/add', params, options);
+  }
+
+  uploadImage(file: File): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('file0', file, file.name);
+    let headers = new HttpHeaders();
+    let bearerToken = sessionStorage.getItem('token');
+    if (bearerToken) {
+      headers = headers.set('bearertoken', bearerToken);
     }
 
-    store(vehicle: Vehiculo): Observable<any> {
-        // Asignar "Imagen" al campo img
-        vehicle.img = "Imagen";
-      
-        let vehicleJson = JSON.stringify(vehicle);
-        let params = 'data=' + vehicleJson;
-        let headers;
-        let bearerToken = sessionStorage.getItem('token');
-        if (bearerToken) {
-          headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('bearertoken', bearerToken);
-        } else {
-          headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
-        }
-      
-        let options = {
-          headers
-        };
-      
-        return this._http.post(this.urlAPI + 'vehiculo/add', params, options);
-      }
+    return this._http.post(this.urlAPI + 'vehiculo/upload', formData, { headers });
+  }
 
-      getVehicles():Observable<any>{
-        let headers;
-        let bearerToken = sessionStorage.getItem('token');
 
-        if (bearerToken) {
-            headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('bearertoken', bearerToken);
-          } else {
-            headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
-          }
-        
-          let options = {
-            headers
-          };
 
-          return this._http.get(this.urlAPI + 'vehiculo/getCars', options);
-      }
+  getVehicles(): Observable<any> {
+    let headers;
+    let bearerToken = sessionStorage.getItem('token');
 
-      destroyVehicle(placa:string):Observable<any>{
-        let headers;
-        let bearerToken = sessionStorage.getItem('token');
-  
-        if(bearerToken){
-          headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('bearertoken', bearerToken);
-        } else {
-          headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
-        }
-  
-        let options = {
-          headers
-        };
-  
-        return this._http.delete(this.urlAPI + 'vehiculo/destroyCar/' + placa ,options);
-      }
-      
+    if (bearerToken) {
+      headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('bearertoken', bearerToken);
+    } else {
+      headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+    }
+
+    let options = {
+      headers
+    };
+
+    return this._http.get(this.urlAPI + 'vehiculo/getCars', options);
+  }
+
+  destroyVehicle(placa: string): Observable<any> {
+    let headers;
+    let bearerToken = sessionStorage.getItem('token');
+
+    if (bearerToken) {
+      headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('bearertoken', bearerToken);
+    } else {
+      headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+    }
+
+    let options = {
+      headers
+    };
+
+    return this._http.delete(this.urlAPI + 'vehiculo/destroyCar/' + placa, options);
+  }
+
 
 }
