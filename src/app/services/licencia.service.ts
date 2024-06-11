@@ -52,6 +52,42 @@ export class LicenciaService {
       return this._http.post(this.urlAPI + 'licencia/add', params, options);
     }
 
+    update(id:number , license:Licencia): Observable<any>{
+      let licenseJson = JSON.stringify(license);
+      let params = 'data=' + licenseJson;
+      let headers;
+      let bearerToken = sessionStorage.getItem('token');
+
+      if(bearerToken){
+          headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('bearertoken', bearerToken);
+      }else{
+          headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+      }
+
+      let options = {
+          headers
+      };
+
+      return this._http.put(this.urlAPI + 'licencia/updateLicense/' + id , params,options);
+    }
+
+    show(id:number):Observable<any>{
+      let headers;
+      let bearerToken = sessionStorage.getItem('token');
+
+      if(bearerToken){
+        headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('bearertoken', bearerToken);
+      }else{
+        headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+      }
+
+      let options = {
+        headers
+      };
+
+      return this._http.get(this.urlAPI + 'licencia/getLicense/' + id , options);
+    }
+
     uploadImage(file: File): Observable<any> {
       const formData: FormData = new FormData();
       formData.append('file0', file, file.name);

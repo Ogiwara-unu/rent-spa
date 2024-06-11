@@ -55,6 +55,42 @@ export class TarjetaService{
 
     }
 
+    update(id:string , card:Tarjeta): Observable<any>{
+        let cardJson = JSON.stringify(card);
+        let params = 'data=' + cardJson;
+        let headers;
+        let bearerToken = sessionStorage.getItem('token');
+
+        if(bearerToken){
+            headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('bearertoken', bearerToken);
+        }else{
+            headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+        }
+
+        let options = {
+            headers
+        };
+
+        return this._http.put(this.urlAPI + 'tarjeta/updateCard/' + id , params,options);
+    }
+
+    show(id:string):Observable<any>{
+        let headers;
+        let bearerToken = sessionStorage.getItem('token');
+
+        if(bearerToken){
+        headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('bearertoken', bearerToken);
+        }else{
+        headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+        }
+
+        let options = {
+        headers
+        };
+
+        return this._http.get(this.urlAPI + 'tarjeta/getCard/' + id,options);
+    }
+
     destroyCard(id:string):Observable<any>{
         let headers;
         let bearerToken = sessionStorage.getItem('token');

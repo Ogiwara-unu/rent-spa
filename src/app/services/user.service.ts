@@ -67,6 +67,42 @@ export class UserService{
       
     }
 
+    update(email: string, user: User): Observable<any> {
+      let userJson = JSON.stringify(user);
+      let params = 'data=' + userJson;
+      let headers;
+      let bearerToken = sessionStorage.getItem('token');
+  
+      if (bearerToken) {
+          headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('bearertoken', bearerToken);
+      } else {
+          headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+      }
+  
+      let options = {
+          headers
+      };
+  
+      return this._http.put(this.urlAPI + 'user/updateUser/' + email, params, options);
+  }
+
+  show(email: string): Observable<any>{
+    let headers;
+    let bearerToken = sessionStorage.getItem('token');
+
+    if(bearerToken){
+      headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('bearertoken', bearerToken);
+    }else{
+      headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+    }
+
+    let options = {
+      headers
+    };
+
+    return this._http.get(this.urlAPI + 'user/getUser/' + email,options);
+  }
+
     getUsers():Observable<any>{
         let headers;
         let bearerToken = sessionStorage.getItem('token');
