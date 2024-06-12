@@ -1,9 +1,11 @@
 /* Estilos globales */
 * {
-    font-family: 'Poppins', sans-serif;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
-
+.input-box header{
+    font-size: 1.5em;
+}
 .main {
     display: flex;
     justify-content: center;

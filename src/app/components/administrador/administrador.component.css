@@ -14,7 +14,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #E2E3DD;
+    background: #D9D9D9;
     margin: 40px 0;
     padding: 20px;
     border-radius: 10px;
@@ -25,7 +25,7 @@
     border: none;
     height: 60px;
     width: 60px;
-    background: #E2E3DD;
+    background: #D9D9D9;
     border-radius: 30px;
     cursor: pointer;
     transition: 0.5s;

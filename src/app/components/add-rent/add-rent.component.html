@@ -8,13 +8,16 @@
             <input id="renta_id" type="number" #renta_id="ngModel" class="input" name="renta_id" [(ngModel)]="rent.id" required (change)="onIdRentSelect()"/>
             <small class="invalid-feedback d-block" *ngIf="renta_id.invalid && renta_id.touched">Campo requerido</small>
           </p>
-  
-          <p>
+
+          <p >
             <label for="cliente_id">ID Cliente</label>
-            <select id="cliente_id" #cliente_id="ngModel" class="input" name="cliente_id" [(ngModel)]="rent.cliente_id" required (change)="onClientSelect()">
-              <option *ngFor="let client of clients" [value]="client.id">{{ client.nombre }}</option>
-            </select>
-            <button type="button" class="btn" (click)="navigateToCliente()"><img src="../assets/img/agregar.png" alt="Agregar" /></button>
+            <a class="client-field">
+              <select id="cliente_id" #cliente_id="ngModel" class="input" name="cliente_id" [(ngModel)]="rent.cliente_id" required (change)="onClientSelect()">
+                <option *ngFor="let client of clients" [value]="client.id">{{ client.nombre }}</option>
+              </select>
+              <button type="button" class="btn" (click)="navigateToCliente()"><img src="../assets/img/agregar.png" alt="Agregar" /></button>
+            </a>
+            
             <small class="invalid-feedback d-block" *ngIf="cliente_id.invalid && cliente_id.touched">Campo requerido</small>
           </p>
   

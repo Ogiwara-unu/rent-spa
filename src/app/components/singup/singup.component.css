@@ -1,7 +1,10 @@
 * {
-    font-family: 'Poppins', sans-serif;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
+.input-box header{
+    font-size: 1.5em;
+}
 .main {
     display: flex;
     justify-content: center;
@@ -129,7 +132,7 @@ i {
 }
 
 .submit:hover {
-    background: rgba(37, 95, 156, 0.9);
+    background: #222121;
     color: #fff;
 }
 
