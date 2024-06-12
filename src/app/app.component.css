@@ -4,10 +4,14 @@ nav {
   padding: 0;
   margin: 0;
 }
+.container-fluid{
+  background-color: #222121;
+}
 .navbar a {
   font-size: 1.5em;
   font-family: Monaco;
   color: #F2F2F2;
+  
 }
 .subnav-btn {
   font-size: 1.5em;
@@ -35,9 +39,9 @@ nav {
   display: block;
   
 }
-.navbar-nav li:hover{
+.subnav-btn:hover, .navbar a:hover{
 
-    background-color: #737373;
+    color: #D9D9D9;
 
 }
 .type {

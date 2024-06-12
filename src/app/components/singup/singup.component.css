@@ -70,6 +70,7 @@ i {
     flex-direction: column;
     position: relative;
     padding: 0 10px 0 10px;
+    font-size: 1.2em;
 }
 
 .input {

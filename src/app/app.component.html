@@ -1,58 +1,61 @@
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <img src="../assets/img/2.png" alt="Logo" width="90" height="60" class="d-inline-block align-top me-3">
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active mt-2" aria-current="page" href="#">Inicio</a>
-          </li>
-          <li class="nav-item p-1">
-            <div class="subnav">
-              <button class="subnav-btn" [routerLink]="['/catalog']">Catálogo</button>
-              <div class="subnav-content">
-                <span>
-                  <a></a>
-                </span>
-              </div>
-            </div>
-          </li>
-          <ul *ngIf="identity?.rol === 'admin'" class="navbar-nav me-auto mb-2 mb-lg-0">
+  <div class="row">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="../assets/img/2.png" alt="Logo" width="90" height="60" class="d-inline-block align-top me-3">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link text-decoration-none mt-2" [routerLink]="['/administrador']">Administración</a> <!--CAMBIAR LA RUTA CUANDO YA ESTE EL ADMIN-PANEL -->
+              <a class="nav-link active mt-2" aria-current="page" href="#">Inicio</a>
+            </li>
+            <li class="nav-item p-1">
+              <div class="subnav">
+                <button class="subnav-btn" [routerLink]="['/catalog']">Catálogo</button>
+                <div class="subnav-content">
+                  <span>
+                    <a></a>
+                  </span>
+                </div>
+              </div>
+            </li>
+            <ul *ngIf="identity?.rol === 'admin'" class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link text-decoration-none mt-2" [routerLink]="['/administrador']">Administración</a> <!--CAMBIAR LA RUTA CUANDO YA ESTE EL ADMIN-PANEL -->
+              </li>
+            </ul>
+          </ul>
+         
+          <ul *ngIf="!identity" class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link text-decoration-none" [routerLink]="['/login']">Iniciar Sesión</a></li>
+            <a class="nav-link">|</a>
+            <li class="nav-item"><a class="nav-link text-decoration-none" [routerLink]="['/signup']">Registrarse</a></li>
+          </ul>
+          <ul *ngIf="identity" class="navbar-nav ms-auto">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" ><i class="bi bi-person-circle"></i>
+                {{ identity.name }}
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#" (click)="logout()">Cerrar Sesión</a></li>
+              </ul>
             </li>
           </ul>
-        </ul>
-       
-        <ul *ngIf="!identity" class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link text-decoration-none" [routerLink]="['/login']">Iniciar Sesión</a></li>
-          <a class="nav-link">|</a>
-          <li class="nav-item"><a class="nav-link text-decoration-none" [routerLink]="['/signup']">Registrarse</a></li>
-        </ul>
-        <ul *ngIf="identity" class="navbar-nav ms-auto">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" ><i class="bi bi-person-circle"></i>
-              {{ identity.name }}
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#" (click)="logout()">Cerrar Sesión</a></li>
-            </ul>
-          </li>
-        </ul>
-
+  
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+  </div>
+ 
 
   <router-outlet></router-outlet>
 
   <!-- Footer -->
-  <footer>
+  <footer class="row">
     <div class="container-fluid p-5 text-white" style="background-color: #31312F;">
       <div class="row">
         <div class="col-lg-3 col-md-6 mb-4 mb-lg-0 text-center">
