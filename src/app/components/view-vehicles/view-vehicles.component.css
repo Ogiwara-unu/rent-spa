@@ -115,9 +115,10 @@ table td #icons {
 }
 
 .vehicle-image {
-    width: 50px;
+    width: 80px;
     height: auto;
     object-fit: cover;
+    border-radius: 10px;
 }
 
 tbody tr:hover {

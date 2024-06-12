@@ -62,7 +62,6 @@ export class UpdateLicenseComponent {
     this.upLicense.fecha_vencimiento = this.license.fecha_vencimiento;
     this.upLicense.tipo = this.license.tipo;
     this.upLicense.img = this.license.img;
-    console.log('waerraa' + JSON.stringify(this.upLicense));
     this._licenseService.update(this.license.id,this.upLicense).subscribe({
       next: (response) => {
         if (response.status === 200) {

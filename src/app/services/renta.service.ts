@@ -34,6 +34,42 @@ export class RentaService{
       return this._http.post(this.urlAPI + 'renta/add', params, options);
     }
 
+    update(id:number , rent:Renta):Observable<any>{
+      let rentJson = JSON.stringify(rent);
+      let params = 'data=' + rentJson;
+      let headers;
+      let bearerToken = sessionStorage.getItem('token');
+
+      if(bearerToken){
+          headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('bearertoken', bearerToken);
+      }else{
+          headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+      }
+
+      let options = {
+          headers
+      };
+
+      return this._http.put(this.urlAPI + 'renta/updateRent/' + id , params,options);
+  }
+
+  show(id:number):Observable<any>{
+    let headers;
+    let bearerToken = sessionStorage.getItem('token');
+
+    if(bearerToken){
+        headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('bearertoken', bearerToken);
+    }else{
+        headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+    }
+
+    let options = {
+        headers
+    };
+
+    return this._http.get(this.urlAPI + 'renta/getRent/' + id,options);
+}
+
     
 
     getRents():Observable<any>{

@@ -54,27 +54,7 @@ export class AddRentComponent {
     // Formatear las fechas al formato "yyyy-MM-dd"
     this.rent.fecha_entrega = this.formatDate(this.rent.fecha_entrega);
     this.rent.fecha_devolucion = this.formatDate(this.rent.fecha_devolucion);
-
-    // this.rent.id = 3342; //AQUI ESTABA EL ERROR
-    //EN EL BACKEND NO ES NECESARIO ESTABLECER EL USUARIO PQ ESTE LO ASIGNA AUTOMATICAMENTE
-    //YO DE VOS PROBARIA QUITAR LA COSA DE ELEGIR USUARIO POR EL ID DE LA RENTA
-    //PROBALO Y SI NO TE FUNCIONA PUES DEJA EL COSO DE USUARIO JASJA
-    
-    /*console.log("Registrando Renta ->" + this.rent.id);
-    this.rent.id = parseInt(this.rent.id.toString());
-    console.log("cliente ->" + this.rent.cliente_id);
-    this.rent.cliente_id = parseInt(this.rent.cliente_id.toString());
-    console.log("vehiculo ->" + this.rent.vehiculo_id);
-    this.rent.vehiculo_id = parseInt(this.rent.vehiculo_id.toString());
-    console.log("tarjeta ->" + this.rent.tarjeta_id);
-    console.log("tarifa base ->" + this.rent.tarifa_base);
-    this.rent.tarifa_base = parseInt(this.rent.tarifa_base.toString());
-    console.log("fecha entrega ->" + this.rent.fecha_entrega);
-    console.log("fecha devolucion ->" + this.rent.fecha_devolucion);
-    console.log("total ->" + this.rent.total);
-    this.rent.total = parseInt(this.rent.total.toString());
-    console.log(this.rent);*/
-    
+ 
     this._rentaService.store(this.rent).subscribe({
       next: (response) => {
         if (response.status == 201) {

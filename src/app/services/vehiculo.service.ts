@@ -35,8 +35,43 @@ export class VehiculoService {
       headers
     };
     
-    console.log(params);
     return this._http.post(this.urlAPI + 'vehiculo/add', params, options);
+  }
+
+  update(placa:string , vehicle:Vehiculo):Observable<any>{
+    let vehicleJson = JSON.stringify(vehicle);
+    let params = 'data=' + vehicleJson;
+    let headers;
+    let bearerToken = sessionStorage.getItem('token');
+
+    if(bearerToken){
+        headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('bearertoken', bearerToken);
+    }else{
+        headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+    }
+
+    let options = {
+        headers
+    };
+
+    return this._http.put(this.urlAPI + 'vehiculo/updateCar/' + placa , params,options);
+  }
+
+  show(placa:string):Observable<any>{
+    let headers;
+    let bearerToken = sessionStorage.getItem('token');
+
+    if(bearerToken){
+        headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('bearertoken', bearerToken);
+    }else{
+        headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+    }
+
+    let options = {
+        headers
+    };
+
+    return this._http.get(this.urlAPI + 'vehiculo/getCar/' + placa ,options);
   }
 
   uploadImage(file: File): Observable<any> {

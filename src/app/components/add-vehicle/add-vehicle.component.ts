@@ -28,27 +28,6 @@ export class AddVehicleComponent {
     this.vehicle = new Vehiculo(1, "", "", "", "", 0, 0, "", "", "");
   }
 
-  /*
-  onSubmit(form: any) {
-    console.log("Registrando Vehiculo ->"+this.vehicle.placa);
-    this._vehicleService.store(this.vehicle).subscribe({
-      next: (response) => {
-        if (response.status == 201) {
-          form.reset();
-          this.showAlert('success', response.message);
-        } else if (response.status == 406) {
-          this.showAlert('error', 'Datos inválidos >:(');
-        } else {
-          this.showAlert('error', response.message);
-        }
-      },
-      error: (error: Error) => {
-        this.showAlert('error', 'Error del servidor');
-      }
-    })
-  }
-  */
-
   onSubmit(form: any) {
     if (this.selectedFile) {
       console.log('img ->'+this.selectedFile);

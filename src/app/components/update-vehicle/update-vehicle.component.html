@@ -1,1 +1,68 @@
-<p>update-vehicle works!</p>
+<div class="content">
+    <div class="addVehicle-wrapper">
+      <div class="vehicle-form">
+        <h3>Agregar Vehículo</h3>
+        <form #updateForm="ngForm" (ngSubmit)="onSubmit(updateForm)">
+          <p>
+            <label for="placa">Placa</label>
+            <input id="placa" type="text" #placa="ngModel" class="input" name="placa" [(ngModel)]="vehicle.placa"
+              required readonly />
+            <small class="invalid-feedback d-block" *ngIf="placa.invalid && placa.touched">Campo requerido</small>
+          </p>
+          <p>
+            <label for="marca">Marca</label>
+            <input id="marca" type="text" #marca="ngModel" class="input" name="marca" [(ngModel)]="vehicle.marca"
+              required />
+            <small class="invalid-feedback d-block" *ngIf="marca.invalid && marca.touched">Campo requerido</small>
+          </p>
+          <p>
+            <label for="modelo">Modelo</label>
+            <input id="modelo" type="text" #modelo="ngModel" class="input" name="modelo" [(ngModel)]="vehicle.modelo"
+              required />
+            <small class="invalid-feedback d-block" *ngIf="modelo.invalid && modelo.touched">Campo requerido</small>
+          </p>
+          <p>
+            <label for="transmision">Transmisión</label>
+            <input id="transmision" type="text" #transmision="ngModel" class="input" name="transmision"
+              [(ngModel)]="vehicle.transmision" required />
+            <small class="invalid-feedback d-block" *ngIf="transmision.invalid && transmision.touched">Campo
+              requerido</small>
+          </p>
+          <p>
+            <label for="precio">Precio</label>
+            <input id="precio" type="number" #precio="ngModel" class="input" name="precio" [(ngModel)]="vehicle.precio"
+              required />
+            <small class="invalid-feedback d-block" *ngIf="precio.invalid && precio.touched">Campo requerido</small>
+          </p>
+          <p>
+            <label for="kilometraje">Kilometraje</label>
+            <input id="kilometraje" type="number" #kilometraje="ngModel" class="input" name="kilometraje"
+              [(ngModel)]="vehicle.kilometraje" required />
+            <small class="invalid-feedback d-block" *ngIf="kilometraje.invalid && kilometraje.touched">Campo
+              requerido</small>
+          </p>
+          <p>
+            <label for="anio">Año</label>
+            <input id="anio" type="text" #anio="ngModel" class="input" name="anio" [(ngModel)]="vehicle.anio" required />
+            <small class="invalid-feedback d-block" *ngIf="anio.invalid && anio.touched">Campo requerido</small>
+          </p>
+          <p>
+            <label for="estado">Estado</label>
+            <input id="estado" type="text" #estado="ngModel" class="input" name="estado" [(ngModel)]="vehicle.estado"
+              required />
+            <small class="invalid-feedback d-block" *ngIf="estado.invalid && estado.touched">Campo requerido</small>
+          </p>
+          <p class="block">
+            <label for="tipo">Imagen</label>
+            <input class="form-control" type="file" id="formFile " (change)="onFileChange($event)">
+          </p>
+          <p class="block .button">
+            <input type="submit" class="submit button" value="Agregar" [disabled]="updateForm.invalid" />
+          </p>
+        </form>
+      </div>
+      <div class="vehicle-info">
+        <img src="../assets/img/2.png" alt="Anuncio Imagen">
+      </div>
+    </div>
+  </div>
