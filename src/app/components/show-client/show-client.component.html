@@ -1,1 +1,96 @@
-<p>show-client works!</p>
+<div class="content">
+    <div class="client-wrapper">
+        <div class="client-form">
+            <h3>Modificar Cliente</h3>
+            <form #updateForm="ngForm" (ngSubmit)="onSubmit(updateForm)">
+                <p>
+                    <label for="name">Nombre</label>
+                    <input id="name" type="text" #name="ngModel" class="input" name="name"
+                        pattern="^(?=.*[a-z])(?=.*[A-Z]).{4,}$" [(ngModel)]="client.nombre" readonly
+                        placeholder=""/>
+                    <small class="invalid-feedback d-block" *ngIf="name.invalid && name.touched">Formato inválido</small>
+                </p>
+                <p>
+                    <label for="primer_apellido">Primer Apellido</label>
+                    <input id="primer_apellido" type="text" #primer_apellido="ngModel" class="input" name="primer_apellido"
+                    pattern="^(?=.*[a-z])(?=.*[A-Z]).{4,}$" [(ngModel)]="client.primer_apellido" readonly
+                    placeholder=""/>
+                    <small class="invalid-feedback d-block" *ngIf="primer_apellido.invalid && primer_apellido.touched">Formato inválido</small>
+                </p>
+                <p>
+                    <label for="segundo_apellido">Segundo Apellido</label>
+                    <input id="segundo_apellido" type="text" #segundo_apellido="ngModel" class="input" name="segundo_apellido"
+                        pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,}$" [(ngModel)]="client.segundo_apellido" readonly
+                        placeholder="">
+                    <small class="invalid-feedback d-block" *ngIf="segundo_apellido.invalid && segundo_apellido.touched">Formato inválido</small>
+                </p>
+                <p>
+                <label for="telefono">Telefono</label>
+                <input id="telefono" type="text" #telefono="ngModel" class="input" name="telefono"
+                    [(ngModel)]="client.telefono" required placeholder="" readonly/>
+                <small class="invalid-feedback d-block" *ngIf="telefono.invalid && telefono.touched">Formato inválido</small>
+            </p>
+            <p>
+                <label for="email">Correo</label>
+                <input id="email" type="email" #email="ngModel" class="input" name="email"
+                pattern="[a-z0-9!#$%&'+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+                [(ngModel)]="client.email" required placeholder="" readonly/>
+                <small class="invalid-feedback d-block" *ngIf="email.invalid && email.touched">Formato inválido</small>
+            </p>
+            <p>
+                <label for="direccion">Direccion</label>
+                <input id="direccion" type="text" #direccion="ngModel" class="input" name="direccion"
+                    [(ngModel)]="client.direccion" required placeholder="" readonly/>
+                <small class="invalid-feedback d-block" *ngIf="direccion.invalid && direccion.touched">Formato inválido</small>
+            </p>
+            <p>
+                <label for="fecha_nacimiento">Fecha de Nacimiento</label>
+                <input id="fecha_nacimiento" type="text" #fecha_nacimiento="ngModel" class="input" name="fecha_nacimiento"
+                    [(ngModel)]="client.fecha_nacimiento" required placeholder="" readonly/>
+                <small class="invalid-feedback d-block" *ngIf="fecha_nacimiento.invalid && fecha_nacimiento.touched">Formato inválido</small>
+            </p>
+            </form>
+        </div>
+        <div class="client-info">
+            <img src="../assets/img/2.png" alt="Anuncio Imagen">
+        </div>
+    </div>
+</div>
+
+<body>
+    <div class="container">
+        <h2>Licencias del Cliente</h2>
+        <div class="table_header">
+            <div class="input_search">
+                <input type="search" placeholder="Buscar" />
+                <i class="bi bi-search" id="search"></i>
+            </div>
+        </div>
+        <div class="table_container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id<i class="bi bi-chevron-expand"></i></th>
+                        <th>Id Cliente<i class="bi bi-chevron-expand"></i></th>
+                        <th>Fecha de Vencimiento<i class="bi bi-chevron-expand"></i></th>
+                        <th>Tipo<i class="bi bi-chevron-expand"></i></th>
+                        <th>Imagen<i class="bi bi-chevron-expand"></i></th>
+                      
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let licencia of licencias">
+                        <td>{{ licencia.id }}</td>
+                        <td>{{ licencia.cliente_id }}</td>
+                        <td>{{ licencia.fecha_vencimiento }}</td>
+                        <td>{{ licencia.tipo }}</td>
+                        <td>{{ licencia.img }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="table_footer">
+            <p>Registro de rentas</p>
+        </div>
+    </div>
+</body>

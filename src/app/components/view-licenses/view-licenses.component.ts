@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { LicenciaService } from '../../services/licencia.service';
 import { Licencia } from '../../models/licencia';
 import { ActivatedRoute, Router } from '@angular/router';
+import { server } from '../../services/global';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -17,6 +18,7 @@ export class ViewLicensesComponent {
   public status:number;
   public license:Licencia;
   public licenses:Licencia[];
+  public url:string;
 
   constructor(
     private _licenseService:LicenciaService,
@@ -25,6 +27,7 @@ export class ViewLicensesComponent {
       this.status = -1;
       this.license = new Licencia(0, 0, "", "", "");
       this.licenses = [];
+      this.url=server.url
     }
 
     ngOnInit(): void {
