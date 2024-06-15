@@ -1,1 +1,87 @@
-<p>show-card works!</p>
+<div class="content">
+    <div class="card-wrapper">
+        <div class="card-form">
+            <h3>Tarjeta</h3>
+            <form #updateForm="ngForm" (ngSubmit)="onSubmit(updateForm)">
+                <p>
+                    <label for="id">Tarjeta terminada en</label>
+                    <input id="id" type="text" #id="ngModel" class="input" name="id" 
+                    [(ngModel)]="card.id" required placeholder="" readonly/>  
+                    <small class="invalid-feedback d-block" *ngIf="id.invalid && id.touched">Formato inválido</small>
+                </p>
+                <p>
+                    <label for="titular">Titular</label>
+                    <input id="titular" type="text" #titular="ngModel" class="input" name="titular"
+                        pattern="^[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]+$" [(ngModel)]="card.titular" 
+                        placeholder="" readonly/>
+                    <small class="invalid-feedback d-block" *ngIf="titular.invalid && titular.touched">Formato inválido</small>
+                </p>
+                <p>
+                    <label for="fecha_vencimiento">Fecha de vencimiento</label>
+                    <input id="fecha_vencimiento" type="text" #fecha_vencimiento="ngModel" class="input" name="fecha_vencimiento"
+                        pattern="^(19|20)\d{2}-(0?[1-9]|1[0-2])-(0?[1-9]|[12]\d|3[01])$" [(ngModel)]="card.fecha_vencimiento" readonly
+                        placeholder=""/>  <!--CAMBIAR EL PATRON PARA PERMITIR NOMBRES Y APELLIDOS CON ESPACIOS AQUI Y EN EL BACKEND-->
+                    <small class="invalid-feedback d-block" *ngIf="fecha_vencimiento.invalid && fecha_vencimiento.touched">Formato inválido</small>
+                </p>
+                <p>
+                    <label for="cvv">Cvv</label>
+                    <input id="cvv" type="text" class="input"
+                        placeholder="Protegido" readonly/>
+                </p>
+            </form>
+        </div>
+        <div class="card-info">
+            <img src="../assets/img/2.png" alt="Anuncio Imagen">
+        </div>
+    </div>
+</div>
+
+<body>
+    <div class="container">
+        <h2>Rentas hechas con esta tarjeta</h2>
+        <div class="table_header">
+            <div class="input_search">
+                <input type="search" placeholder="Buscar" />
+                <i class="bi bi-search" id="search"></i>
+            </div>
+        </div>
+        <div class="table_container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id<i class="bi bi-chevron-expand"></i></th>
+                        <th>Id Usuario<i class="bi bi-chevron-expand"></i></th>
+                        <th>Id Cliente<i class="bi bi-chevron-expand"></i></th>
+                        <th>Id Vehículo<i class="bi bi-chevron-expand"></i></th>
+                        <th>Id Tarjeta<i class="bi bi-chevron-expand"></i></th>
+                        <th>Tarifa Base<i class="bi bi-chevron-expand"></i></th>
+                        <th>Fecha De Entrega<i class="bi bi-chevron-expand"></i></th>
+                        <th>Fecha de Devolución<i class="bi bi-chevron-expand"></i></th>
+                        <th>Total<i class="bi bi-chevron-expand"></i></th>
+                      
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let rent of rents">
+                        <td>{{ rent.id }}</td>
+                        <td>{{ rent.user_id }}</td>
+                        <td>{{ rent.cliente_id }}</td>
+                        <td>{{ rent.vehiculo_id }}</td>
+                        <td>{{ rent.tarjeta_id }}</td>
+                        <td>{{ rent.tarifa_base }}</td>
+                        <td>{{ rent.fecha_entrega }}</td>
+                        <td>{{ rent.fecha_devolucion }}</td>
+                        <td>{{ rent.total }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="table_footer">
+            <p>Registro de Clientes</p>
+        </div>
+    </div>
+</body>
+
+
+
+

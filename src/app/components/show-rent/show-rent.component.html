@@ -1,1 +1,68 @@
-<p>show-rent works!</p>
+<div class="content">
+    <div class="addRent-wrapper">
+      <div class="rent-form">
+        <h3>Renta</h3>
+        <form #updateForm="ngForm" (ngSubmit)="onSubmit(updateForm)">
+          <p>
+            <label for="renta_id">ID Renta</label>
+            <input id="renta_id" type="number" #renta_id="ngModel" class="input" name="renta_id" [(ngModel)]="rent.id" readonly/>
+            <small class="invalid-feedback d-block" *ngIf="renta_id.invalid && renta_id.touched">Campo requerido</small>
+          </p>
+  
+          <p>
+            <label for="cliente_id">Cliente</label>
+            <input id="cliente_id" type="text" #cliente_id="ngModel" class="input" name="cliente_id" [(ngModel)]="rent.cliente_id" readonly/>
+            <small class="invalid-feedback d-block" *ngIf="cliente_id.invalid && cliente_id.touched">Campo requerido</small>
+          </p>
+
+          <p>
+            <label for="user_id">Usuario</label>
+            <input id="user_id" type="text" #user_id="ngModel" class="input" name="user" [(ngModel)]="user.name" readonly/>
+            <small class="invalid-feedback d-block" *ngIf="cliente_id.invalid && cliente_id.touched">Campo requerido</small>
+          </p>
+  
+          <p>
+            <label for="vehiculo_id">Placa del vehiculo</label>
+            <input id="vehiculo_id" type="text" #vehiculo_id="ngModel" class="input" name="vehiculo_id"  [(ngModel)]="vehicle.placa" readonly/>
+            <img [src]="'http://127.0.0.1:8000/api/v1/vehiculo/getImage/' + vehicle.img" alt="{{vehicle.img}}" style="width: 100px; height: auto; border-radius: 10px;">
+            <small class="invalid-feedback d-block" *ngIf="vehiculo_id.invalid && vehiculo_id.touched">Campo requerido</small>
+          </p> 
+  
+          <p>
+            <label for="tarjeta_id">Tarjeta terminada en</label>
+            <input id="tarjeta_id" type="text" #tarjeta_id="ngModel" class="input" name="tarjeta_id" [(ngModel)]="rent.tarjeta_id" readonly/>
+            <small class="invalid-feedback d-block" *ngIf="tarjeta_id.invalid && tarjeta_id.touched">Campo requerido</small>
+          </p> 
+  
+          <p>
+            <label for="tarifa_base">Tarifa Base</label>
+            <input id="tarifa_base" type="number" #tarifa_base="ngModel" class="input" name="tarifa_base" [(ngModel)]="rent.tarifa_base" readonly />
+            <small class="invalid-feedback d-block" *ngIf="tarifa_base.invalid && tarifa_base.touched">Campo requerido</small>
+          </p>
+  
+          <p>
+            <label for="fecha_entrega">Fecha de Entrega</label>
+            <input id="fecha_entrega" type="text" #fecha_entrega="ngModel" class="input" name="fecha_entrega" [(ngModel)]="rent.fecha_entrega" readonly />
+            <small class="invalid-feedback d-block" *ngIf="fecha_entrega.invalid && fecha_entrega.touched">Campo requerido</small>
+          </p>
+  
+          <p>
+            <label for="fecha_devolucion">Fecha de Devolución</label>
+            <input id="fecha_devolucion" type="text" #fecha_devolucion="ngModel" class="input" name="fecha_devolucion" [(ngModel)]="rent.fecha_devolucion" readonly />
+            <small class="invalid-feedback d-block" *ngIf="fecha_devolucion.invalid && fecha_devolucion.touched">Campo requerido</small>
+          </p>
+  
+          <p>
+            <label for="total">Total</label>
+            <input id="total" type="number" #total="ngModel" class="input" name="total" [(ngModel)]="rent.total" readonly />
+            <small class="invalid-feedback d-block" *ngIf="total.invalid && total.touched">Campo requerido</small>
+          </p>
+        </form>
+      </div>
+      <div class="rent-info">
+        <img src="../assets/img/2.png" alt="Imagen de Renta">
+      </div>
+    </div>
+  </div>
+  
+

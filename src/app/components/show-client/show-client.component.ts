@@ -40,6 +40,7 @@ export class ShowClientComponent {
                 if (response && response.Cliente) {
                   this.client = response.Cliente;
                   this.licencias = response.Cliente.licencia;
+                  console.log(this.client);
                 } else {
                   this.showAlert('error', 'No se pudo cargar el usuario');
                 }

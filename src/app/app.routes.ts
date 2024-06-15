@@ -30,6 +30,7 @@ import { UpdateLicenseComponent } from './components/update-license/update-licen
 import { UpdateRentComponent } from './components/update-rent/update-rent.component';
 import { UpdateUserComponent } from './components/update-user/update-user.component';
 import { UpdateVehicleComponent } from './components/update-vehicle/update-vehicle.component';
+import { ShowVehicleComponent } from './components/show-vehicle/show-vehicle.component';
 
 export const routes: Routes = [
     {path:'',component:HomeComponent}, //PATH ES EL ELEMENTO QUE VA DESPUES DEL LOCALHOST:4200
@@ -60,7 +61,7 @@ export const routes: Routes = [
     {path:'show-license/:id',component:ShowLicenseComponent},
     {path:'show-rent/:id',component:ShowRentComponent},
     {path:'show-user/:email',component:ShowUserComponent},
-    {path:'show-vehicle/:placa',component:ShowCardComponent},
+    {path:'show-vehicle/:placa',component:ShowVehicleComponent},
          /**  RUTAS DE UPDATE*/
     {path:'update-card/:id',component:UpdateCardComponent},
     {path:'update-client/:id',component:UpdateClientComponent},

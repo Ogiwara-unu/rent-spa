@@ -1,1 +1,113 @@
-<p>show-vehicle works!</p>
+<div class="content">
+    <div class="addVehicle-wrapper">
+      <div class="vehicle-form">
+        <h3>Vehículo</h3>
+        <form #updateForm="ngForm" (ngSubmit)="onSubmit(updateForm)">
+          <p>
+            <label for="placa">Placa</label>
+            <input id="placa" type="text" #placa="ngModel" class="input" name="placa" [(ngModel)]="vehicle.placa"
+              required readonly />
+            <small class="invalid-feedback d-block" *ngIf="placa.invalid && placa.touched">Campo requerido</small>
+          </p>
+          <p>
+            <label for="marca">Marca</label>
+            <input id="marca" type="text" #marca="ngModel" class="input" name="marca" [(ngModel)]="vehicle.marca"
+              readonly />
+            <small class="invalid-feedback d-block" *ngIf="marca.invalid && marca.touched">Campo requerido</small>
+          </p>
+          <p>
+            <label for="modelo">Modelo</label>
+            <input id="modelo" type="text" #modelo="ngModel" class="input" name="modelo" [(ngModel)]="vehicle.modelo"
+              readonly />
+            <small class="invalid-feedback d-block" *ngIf="modelo.invalid && modelo.touched">Campo requerido</small>
+          </p>
+          <p>
+            <label for="transmision">Transmisión</label>
+            <input id="transmision" type="text" #transmision="ngModel" class="input" name="transmision"
+              [(ngModel)]="vehicle.transmision" readonly />
+            <small class="invalid-feedback d-block" *ngIf="transmision.invalid && transmision.touched">Campo
+              requerido</small>
+          </p>
+          <p>
+            <label for="precio">Precio</label>
+            <input id="precio" type="number" #precio="ngModel" class="input" name="precio" [(ngModel)]="vehicle.precio"
+              readonly />
+            <small class="invalid-feedback d-block" *ngIf="precio.invalid && precio.touched">Campo requerido</small>
+          </p>
+          <p>
+            <label for="kilometraje">Kilometraje</label>
+            <input id="kilometraje" type="number" #kilometraje="ngModel" class="input" name="kilometraje"
+              [(ngModel)]="vehicle.kilometraje" readonly />
+            <small class="invalid-feedback d-block" *ngIf="kilometraje.invalid && kilometraje.touched">Campo
+              requerido</small>
+          </p>
+          <p>
+            <label for="anio">Año</label>
+            <input id="anio" type="text" #anio="ngModel" class="input" name="anio" [(ngModel)]="vehicle.anio" readonly />
+            <small class="invalid-feedback d-block" *ngIf="anio.invalid && anio.touched">Campo requerido</small>
+          </p>
+          <p>
+            <label for="estado">Estado</label>
+            <input id="estado" type="text" #estado="ngModel" class="input" name="estado" [(ngModel)]="vehicle.estado"
+              readonly />
+            <small class="invalid-feedback d-block" *ngIf="estado.invalid && estado.touched">Campo requerido</small>
+          </p>
+          <p class="block">
+            <label for="tipo">Imagen</label>
+            <img [src]="'http://127.0.0.1:8000/api/v1/vehiculo/getImage/' + vehicle.img" alt="{{vehicle.img}}" style="width: 100px; height: auto; border-radius: 10px;">
+          </p>
+        </form>
+      </div>
+      <div class="vehicle-info">
+        <img src="../assets/img/2.png" alt="Anuncio Imagen">
+      </div>
+    </div>
+  </div>
+
+  <body>
+    <div class="container">
+        <h2>Rentas del vehiculo</h2>
+        <div class="table_header">
+            <div class="input_search">
+                <input type="search" placeholder="Buscar" />
+                <i class="bi bi-search" id="search"></i>
+            </div>
+        </div>
+        <div class="table_container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id<i class="bi bi-chevron-expand"></i></th>
+                        <th>Id Usuario<i class="bi bi-chevron-expand"></i></th>
+                        <th>Id Cliente<i class="bi bi-chevron-expand"></i></th>
+                        <th>Id Vehículo<i class="bi bi-chevron-expand"></i></th>
+                        <th>Id Tarjeta<i class="bi bi-chevron-expand"></i></th>
+                        <th>Tarifa Base<i class="bi bi-chevron-expand"></i></th>
+                        <th>Fecha De Entrega<i class="bi bi-chevron-expand"></i></th>
+                        <th>Fecha de Devolución<i class="bi bi-chevron-expand"></i></th>
+                        <th>Total<i class="bi bi-chevron-expand"></i></th>
+                      
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let rent of rents">
+                        <td>{{ rent.id }}</td>
+                        <td>{{ rent.user_id }}</td>
+                        <td>{{ rent.cliente_id }}</td>
+                        <td>{{ rent.vehiculo_id }}</td>
+                        <td>{{ rent.tarjeta_id }}</td>
+                        <td>{{ rent.tarifa_base }}</td>
+                        <td>{{ rent.fecha_entrega }}</td>
+                        <td>{{ rent.fecha_devolucion }}</td>
+                        <td>{{ rent.total }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="table_footer">
+            <p>Registro de Rentas hechas con este vehiculo</p>
+        </div>
+    </div>
+</body>
+
+

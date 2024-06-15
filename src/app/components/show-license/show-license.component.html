@@ -1,1 +1,41 @@
-<p>show-license works!</p>
+<div class="content">
+    <div class="license-wrapper">
+        <div class="license-form">
+            <h3>Licencia</h3>
+            <form #updateForm="ngForm" (ngSubmit)="onSubmit(updateForm)">
+                <p>
+                    <label for="id">Id</label>
+                    <input id="id" type="text" #id="ngModel" class="input" name="id" pattern=""
+                    [(ngModel)]="license.id" required placeholder="" readonly/>
+                    <small class="invalid-feedback d-block" *ngIf="id.invalid && id.touched">Formato Inválido</small>
+                </p>
+                <p>
+                    <label for="cliente_id">Cliente id</label>
+                    <input id="cliente_id" type="text" #cliente_id="ngModel" class="input" name="id" pattern=""
+                    [(ngModel)]="license.cliente_id" required placeholder="" readonly/>
+                    <small class="invalid-feedback d-block" *ngIf="cliente_id.invalid && cliente_id.touched">Formato Inválido</small>
+                </p>
+                <p>
+                    <label for="fecha_vencimiento">Fecha de Vencimiento</label>
+                    <input id="fecha_vencimiento" type="date" #fecha_vencimiento="ngModel" class="input" name="fecha_vencimiento"
+                            [(ngModel)]="license.fecha_vencimiento" readonly
+                            placeholder="YYYY-MM-DD"/>
+                    <small class="invalid-feedback d-block" *ngIf="fecha_vencimiento.invalid && fecha_vencimiento.touched">Formato Inválido</small>
+                </p>
+                <p>
+                    <label for="tipo">Tipo</label>
+                        <input id="tipo" #tipo="ngModel" class="input" type="text" name="tipo"
+                            [(ngModel)]="license.tipo" required placeholder="" readonly/>
+                     <small class="invalid-feedback d-block" *ngIf="tipo.invalid && tipo.touched">Formato Inválido</small>
+                </p>
+                <p class="block">
+                    <label for="img">Imagen</label>
+                    <img [src]="'http://127.0.0.1:8000/api/v1/licencia/getImage/' + license.img" alt="{{license.img}}">
+                </p>
+            </form>
+        </div>
+        <div class="license-info">
+            <img src="../assets/img/2.png" alt="Anuncio Imagen">
+        </div>
+    </div>
+</div>

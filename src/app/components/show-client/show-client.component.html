@@ -1,7 +1,7 @@
 <div class="content">
     <div class="client-wrapper">
         <div class="client-form">
-            <h3>Modificar Cliente</h3>
+            <h3>Cliente</h3>
             <form #updateForm="ngForm" (ngSubmit)="onSubmit(updateForm)">
                 <p>
                     <label for="name">Nombre</label>
@@ -84,7 +84,11 @@
                         <td>{{ licencia.cliente_id }}</td>
                         <td>{{ licencia.fecha_vencimiento }}</td>
                         <td>{{ licencia.tipo }}</td>
-                        <td>{{ licencia.img }}</td>
+                        <td>
+                            <img [src]="'http://127.0.0.1:8000/api/v1/licencia/getImage/' + licencia.img" 
+                                 alt="{{licencia.img}}" 
+                                 style="width: 100px; height: auto; border-radius: 10px;">
+                        </td>
                     </tr>
                 </tbody>
             </table>
