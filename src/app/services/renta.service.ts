@@ -1,8 +1,8 @@
-import { HttpClient,HttpHeaders } from "@angular/common/http";
+import { HttpClient,HttpErrorResponse,HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { server } from "./global";
 import { Renta } from "../models/renta";
-import { Observable } from "rxjs"; //Genera observable retornable al metodo que solicita la peticion
+import { Observable, catchError, throwError } from "rxjs"; //Genera observable retornable al metodo que solicita la peticion
 
 @Injectable({
     providedIn:'root' //LO LLEVA TODA PROPIEDAD INJ Y ES ROOT PQ LO DEFINO EN LA RAIZ DE LA APP
@@ -31,7 +31,7 @@ export class RentaService{
         headers
       };
     
-      return this._http.post(this.urlAPI + 'renta/add', params, options);
+      return this._http.post(this.urlAPI + 'renta/add', params, options).pipe(catchError(this.handleError));
     }
 
     update(id:number , rent:Renta):Observable<any>{
@@ -104,5 +104,18 @@ export class RentaService{
         };
   
         return this._http.delete(this.urlAPI + 'renta/destroyRent/' + id ,options);
+      }
+
+      private handleError(error: HttpErrorResponse) {
+        let errorMessage = 'Error desconocido';
+        if (error.error instanceof ErrorEvent) {
+          // Error del lado del cliente
+          errorMessage = `Error: ${error.error.message}`;
+        } else {
+          // Error del lado del servidor
+          errorMessage = `Error: ${error.error.message}`; // Así accedes al mensaje de error enviado desde Laravel
+        }
+        console.error(errorMessage);
+        return throwError(errorMessage);
       }
 }

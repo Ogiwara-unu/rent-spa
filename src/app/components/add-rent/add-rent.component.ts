@@ -62,12 +62,12 @@ export class AddRentComponent {
           this.showAlert('success', response.message);
         } else if (response.status == 406) {
           this.showAlert('error', 'Datos inválidos >:(');
-        } else {
-          this.showAlert('error', response.message);
+        } else if(response.status == 500){
+          this.showAlert('error', response.mensaje);
         }
       },
       error: (error: Error) => {
-        this.showAlert('error', 'Error del servidor');
+        this.showAlert('error', error);
       }
     })
   }
@@ -213,7 +213,7 @@ export class AddRentComponent {
     );
   }
 
-  showAlert(type: 'success' | 'error', message: string) {
+  showAlert(type: 'success' | 'error', message: any) {
     Swal.fire({
       title: message,
       icon: type,
