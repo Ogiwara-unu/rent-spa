@@ -31,6 +31,7 @@ import { UpdateRentComponent } from './components/update-rent/update-rent.compon
 import { UpdateUserComponent } from './components/update-user/update-user.component';
 import { UpdateVehicleComponent } from './components/update-vehicle/update-vehicle.component';
 import { ShowVehicleComponent } from './components/show-vehicle/show-vehicle.component';
+import { AddRentCatalogComponent } from './components/add-rent-catalog/add-rent-catalog.component';
 
 export const routes: Routes = [
     {path:'',component:HomeComponent}, //PATH ES EL ELEMENTO QUE VA DESPUES DEL LOCALHOST:4200
@@ -45,6 +46,7 @@ export const routes: Routes = [
     {path:'add-vehicle',component:AddVehicleComponent},
     {path:'administrador',component:AdministradorComponent},
     {path:'licencias',component:LicenciaComponent},
+    {path:'add-rent-catalog/:placa',component:AddRentCatalogComponent},
      /**  RUTAS DE VISTA DE TODAS ENTIDADES */
     {path:'view-users',component:ViewUsersComponent},
     {path:'view-clients',component:ViewClientsComponent},

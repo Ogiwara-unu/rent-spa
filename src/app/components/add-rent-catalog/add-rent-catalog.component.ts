@@ -1,25 +1,27 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Renta } from '../../models/renta';
+import { VehiculoService } from '../../services/vehiculo.service';
 import { RentaService } from '../../services/renta.service';
 import { UserService } from '../../services/user.service';
 import { ClienteService } from '../../services/cliente.service';
-import { VehiculoService } from '../../services/vehiculo.service';
 import { TarjetaService } from '../../services/tarjeta.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Renta } from '../../models/renta';
 import Swal from 'sweetalert2';
+import { Vehiculo } from '../../models/vehiculo';
 
 @Component({
-  selector: 'app-add-rent',
+  selector: 'app-add-rent-catalog',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './add-rent.component.html',
-  styleUrl: './add-rent.component.css',
-  providers: [RentaService, UserService, ClienteService, VehiculoService, TarjetaService]
+  templateUrl: './add-rent-catalog.component.html',
+  styleUrls: ['./add-rent-catalog.component.css'],
+  providers: [VehiculoService]
 })
-export class AddRentComponent {
+export class AddRentCatalogComponent {
   public status: number;
+  public vehicle: Vehiculo;
   public rent: Renta;
   public users: any[] = [];
   public clients: any[] = [];
@@ -39,6 +41,8 @@ export class AddRentComponent {
   ) {
     this.status = -1;
     this.rent = new Renta(1, 0, 0, 0, "", 0, "", "", 0);
+    this.vehicle = new Vehiculo(0, "", "", "", "", 0, 0, "", "", "");
+    this.loadVehicle();
   }
 
   get vehiculo_id(): number | null {
@@ -51,15 +55,14 @@ export class AddRentComponent {
   }
 
   onSubmit(form: any) {
-    // Formatear las fechas al formato "yyyy-MM-dd"
     this.rent.fecha_entrega = this.formatDate(this.rent.fecha_entrega);
     this.rent.fecha_devolucion = this.formatDate(this.rent.fecha_devolucion);
- 
+
     this._rentaService.store(this.rent).subscribe({
       next: (response) => {
         if (response.status == 201) {
           form.reset();
-          this.showAlert('success', response.message);
+          this.showAlertSuccess('success', response.message);
         } else if (response.status == 406) {
           this.showAlert('error', 'Datos inválidos >:(');
         }
@@ -71,6 +74,29 @@ export class AddRentComponent {
     })
   }
 
+  loadVehicle() {
+    this._routes.params.subscribe(
+      params => {
+        let placaVehicle = params['placa'];
+        if (placaVehicle) {
+          this._vehiculoService.show(placaVehicle).subscribe(
+            response => {
+              if (response && response.Vehiculo) {
+                this.vehicle = response.Vehiculo;
+                this.updateTarifaBase(); // Llamar aquí para asegurar la actualización
+              } else {
+                this.showAlert('error', 'No se pudo cargar el Vehiculo');
+              }
+            },
+            error => {
+              this.showAlert('error', 'Error en la solicitud');
+            }
+          );
+        }
+      }
+    );
+  }
+
   formatDate(dateString: string): string {
     const parts = dateString.split('/');
     const formattedDate = new Date(`${parts[2]}-${parts[1]}-${parts[0]}`);
@@ -78,12 +104,10 @@ export class AddRentComponent {
   }
 
   updateTarifaBase() {
-    if (this.rent.vehiculo_id) {
-      // Se pasa estrictamente a string el valor que hay en rent.vehiculo_id para luego hacerlo int
-      const vehiculoId = parseInt(this.rent.vehiculo_id.toString());
+    if (this.vehicle) {
+      const vehiculoId = this.vehicle.id;
       console.log("Vehiculo seleccionado " + vehiculoId);
-      // Busca el vehículo en la lista de vehículos
-      const selectedVehicle = this.vehicles.find(vehicle => vehicle.id === vehiculoId);
+      const selectedVehicle = this.vehicle;
 
       if (selectedVehicle) {
         this.rent.tarifa_base = selectedVehicle.precio;
@@ -101,12 +125,14 @@ export class AddRentComponent {
   onCardSelect() {
     console.log('Tarjeta seleccionada:', this.rent.tarjeta_id);
   }
+
   onIdRentSelect() {
     console.log('ID seleccionado:', this.rent.id);
     const rent_id = parseInt(this.rent.id.toString());
     this.rent.id = rent_id;
     console.log(this.rent.id);
   }
+
   onClientSelect() {
     console.log('Cliente seleccionado:', this.rent.cliente_id);
     const cliente_id = parseInt(this.rent.cliente_id.toString());
@@ -118,7 +144,7 @@ export class AddRentComponent {
     const fechaEntrega = new Date(this.rent.fecha_entrega);
     const fechaDevolucion = new Date(this.rent.fecha_devolucion);
     const diferenciaDias = Math.floor((fechaDevolucion.getTime() - fechaEntrega.getTime()) / (1000 * 3600 * 24));
-    const tarifaAdicionalPorDia = 30; 
+    const tarifaAdicionalPorDia = 30;
     this.rent.total = this.rent.tarifa_base + (diferenciaDias * tarifaAdicionalPorDia);
   }
 
@@ -127,34 +153,13 @@ export class AddRentComponent {
     console.log(this.rent.total);
   }
 
-  /* Rutas Clientes */
   navigateToCliente(): void {
     this._router.navigate(['/add-client']);
   }
 
   ngOnInit(): void {
-    this.loadUsers();
     this.loadClients();
     this.loadCards();
-    this.loadVehicles();
-  }
-
-  loadUsers() {
-    this._userService.getUsers().subscribe(
-      response => {
-        if (response.status === 200) {
-          this.users = response.data;
-          console.log(this.users);
-          this.status = response.status;
-        } else {
-          this.status = response.status;
-        }
-      },
-      error => {
-        console.error(error);
-        this.status = error.status;
-      }
-    );
   }
 
   loadClients() {
@@ -175,25 +180,6 @@ export class AddRentComponent {
     );
   }
 
-  loadVehicles() {
-    this._vehiculoService.getVehicles().subscribe(
-      response => {
-        if (response.status === 200) {
-          this.vehicles = response.data;
-          console.log('Vehículos cargados:', this.vehicles);
-          this.status = response.status;  
-        } else {
-          this.status = response.status;
-        }
-      },
-      error => {
-        console.error(error);
-        this.status = error.status;
-      }
-    );
-  }
-
-
   loadCards() {
     this._tarjetaService.getCards().subscribe(
       response => {
@@ -212,7 +198,7 @@ export class AddRentComponent {
     );
   }
 
-  showAlert(type: 'success' | 'error', message: any) {
+  showAlert(type:'error', message: any) {
     Swal.fire({
       title: message,
       icon: type,
@@ -221,4 +207,19 @@ export class AddRentComponent {
     });
   }
 
+  showAlertSuccess(type: 'success', message: any) {
+    Swal.fire({
+      title: message,
+      icon: type,
+      timer: 3000,
+      showConfirmButton: true,
+      didClose: () => {
+        window.location.href = '/catalog';
+      }
+    }).then((result) => {
+      if (result.isConfirmed || result.dismiss === Swal.DismissReason.timer) {
+        window.location.href = '/catalog';
+      }
+    });
+  }
 }

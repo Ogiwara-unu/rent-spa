@@ -30,6 +30,11 @@ export class CatalogComponent {
       this.getVehiculos();
     }
 
+    navigateToAddRent(placa:string): void{
+      this._router.navigate(['/add-rent-catalog/'+placa]);
+    }
+
+
     getVehiculos() {
       this._vehiculoService.getCars().subscribe(
         response => {

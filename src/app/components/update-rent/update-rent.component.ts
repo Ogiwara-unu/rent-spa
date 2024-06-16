@@ -49,12 +49,13 @@ export class UpdateRentComponent {
         response => {
           if (response && response.status === 200) {
             this.showAlertSuccess('success',response.message);
-           } else {
-             this.showAlert('error', 'No se pudo actualizar la renta');
+           } else if (response.status === 406) {
+             this.showAlert('error', response.message);
            }
         },
         error => {
-          this.showAlert('error', 'Error en la solicitud');
+          this.showAlert('error', 'Ha ocurrido un error en la solicitud');
+          console.log(error);
         }
       );      
     }else{
@@ -94,8 +95,7 @@ export class UpdateRentComponent {
     Swal.fire({
       title: message,
       icon: type,
-      timer: 1000,
-      showConfirmButton: false
+      showConfirmButton: true
     });
   }
 

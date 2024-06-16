@@ -50,7 +50,7 @@ export class RentaService{
           headers
       };
 
-      return this._http.put(this.urlAPI + 'renta/updateRent/' + id , params,options);
+      return this._http.put(this.urlAPI + 'renta/updateRent/' + id , params,options).pipe(catchError(this.handleError));
   }
 
   show(id:number):Observable<any>{
@@ -115,7 +115,6 @@ export class RentaService{
           // Error del lado del servidor
           errorMessage = `Error: ${error.error.message}`; // Así accedes al mensaje de error enviado desde Laravel
         }
-        console.error(errorMessage);
         return throwError(errorMessage);
       }
 }
