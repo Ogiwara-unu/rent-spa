@@ -3,8 +3,8 @@
         <h2>Clientes</h2>
         <div class="table_header">
             <div class="input_search">
-                <input type="search" placeholder="Buscar" />
-                <i class="bi bi-search" id="search"></i>
+                <input type="search" placeholder="Buscar por ID" [(ngModel)]="searchQuery" (keyup.enter)="searchClientById()" />
+                <i class="bi bi-search" id="search" (click)="searchClientById()"></i>
             </div>
             <button (click)="navigateToAddCliente()">Crear nuevo</button>
         </div>
@@ -24,7 +24,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let client of clients">
+                    <tr *ngFor="let client of filteredClients">
                         <td>{{ client.id }}</td>
                         <td>{{ client.nombre }}</td>
                         <td>{{ client.primer_apellido }}</td>

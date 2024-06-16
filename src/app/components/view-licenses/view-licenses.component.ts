@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { LicenciaService } from '../../services/licencia.service';
 import { Licencia } from '../../models/licencia';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -9,7 +10,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-view-licenses',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './view-licenses.component.html',
   styleUrl: './view-licenses.component.css',
   providers:[LicenciaService]
@@ -18,6 +19,8 @@ export class ViewLicensesComponent {
   public status:number;
   public license:Licencia;
   public licenses:Licencia[];
+  public filteredLicenses: Licencia[];
+  public searchQuery: string = "";
   public url:string;
 
   constructor(
@@ -27,6 +30,7 @@ export class ViewLicensesComponent {
       this.status = -1;
       this.license = new Licencia(0, 0, "", "", "");
       this.licenses = [];
+      this.filteredLicenses = [];
       this.url=server.url
     }
 
@@ -51,6 +55,7 @@ export class ViewLicensesComponent {
         response => {
           if (response.status === 200) {
             this.licenses = response.data;
+            this.filteredLicenses = this.licenses;
             this.status = response.status;
           } else {
             this.status = response.status;
@@ -61,6 +66,30 @@ export class ViewLicensesComponent {
           this.status = error.status;
         }
       );
+    }
+
+    searchLicenseById(): void {
+      const query = parseInt(this.searchQuery);
+      if (query) {
+        this._licenseService.show(query).subscribe(
+          response => {
+            if (response && response.Licencia) {
+              this.license = response.Licencia;
+              this.filteredLicenses = [response.Licencia];
+            } else {
+              this.filteredLicenses = [];
+              this.showAlert('error', 'No se encontró la licencia');
+            }
+          },
+          error => {
+            console.error('Error al buscar la licencia:', error);
+            this.filteredLicenses = [];
+            this.showAlert('error', 'Error en la solicitud');
+          }
+        );
+      } else {
+        this.filteredLicenses = this.licenses;
+      }
     }
 
     confirmDelete(id: number) {
@@ -111,6 +140,15 @@ export class ViewLicensesComponent {
           );
         }
       );
+    }
+
+    showAlert(type:'error', message: string) {
+      Swal.fire({
+        title: message,
+        icon: type,
+        timer: 1000,
+        showConfirmButton: false
+      });
     }
 
 }

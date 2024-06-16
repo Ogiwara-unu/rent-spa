@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { RentaService } from '../../services/renta.service';
@@ -8,7 +9,7 @@ import { Renta } from '../../models/renta';
 @Component({
   selector: 'app-view-rents',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './view-rents.component.html',
   styleUrl: './view-rents.component.css',
   providers:[RentaService]
@@ -17,6 +18,8 @@ export class ViewRentsComponent {
   public status:number;
   public rent:Renta;
   public rents:Renta[];
+  public filteredRents: Renta[];
+  public searchQuery: string = "";
 
   constructor(
     private _rentService:RentaService,
@@ -25,6 +28,7 @@ export class ViewRentsComponent {
       this.status = -1;
       this.rent = new Renta(0,0,0,0,"",0,"","",0);
       this.rents = [];
+      this.filteredRents = [];
     }
 
     ngOnInit(): void {
@@ -49,6 +53,7 @@ export class ViewRentsComponent {
         response => {
           if (response.status === 200) {
             this.rents = response.data;
+            this.filteredRents = this.rents;
             this.status = response.status;
           } else {
             this.status = response.status;
@@ -59,6 +64,30 @@ export class ViewRentsComponent {
           this.status = error.status;
         }
       );
+    }
+
+    searchRentById(): void {
+      const query = parseInt(this.searchQuery);
+      if (query) {
+        this._rentService.show(query).subscribe(
+          response => {
+            if (response && response.Renta) {
+              this.rent = response.Renta;
+              this.filteredRents = [response.Renta];
+            } else {
+              this.filteredRents = [];
+              this.showAlert('error', 'No se encontró la renta');
+            }
+          },
+          error => {
+            console.error('Error al buscar la renta:', error);
+            this.filteredRents = [];
+            this.showAlert('error', 'Error en la solicitud');
+          }
+        );
+      } else {
+        this.filteredRents = this.rents;
+      }
     }
 
     confirmDelete(id: number) {
@@ -108,6 +137,15 @@ export class ViewRentsComponent {
           );
         }
       );
+    }
+
+    showAlert(type:'error', message: string) {
+      Swal.fire({
+        title: message,
+        icon: type,
+        timer: 1000,
+        showConfirmButton: false
+      });
     }
 
 }

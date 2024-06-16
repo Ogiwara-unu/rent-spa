@@ -1,30 +1,34 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { TarjetaService } from '../../services/tarjeta.service';
 import { Tarjeta } from '../../models/tarjeta';
 import { ActivatedRoute, Router } from '@angular/router';
-import Swal from 'sweetalert2'; 
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-view-cards',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './view-cards.component.html',
   styleUrl: './view-cards.component.css',
   providers:[TarjetaService]
 })
 export class ViewCardsComponent {
-  public status:number;
-  public card:Tarjeta;
-  public cards:Tarjeta[];
+  public status: number;
+  public card: Tarjeta;
+  public cards: Tarjeta[];
+  public filteredCards: Tarjeta[];
+  public searchQuery: string = '';
 
   constructor(
-    private _cardService:TarjetaService,
-    private _router:Router,
-    private _routes:ActivatedRoute){
+    private _cardService: TarjetaService,
+    private _router: Router,
+    private _routes: ActivatedRoute) {
       this.status = -1;
-      this.card = new Tarjeta("","","","","");
+      this.card = new Tarjeta("", "", "", "", "");
       this.cards = [];
+      this.filteredCards = [];
     }
 
     ngOnInit(): void {
@@ -35,11 +39,11 @@ export class ViewCardsComponent {
       this._router.navigate(['/add-card']);
     }
 
-    navigateToShow(id:any): void{
-      this._router.navigate(['/show-card/'+id]);
+    navigateToShow(id: any): void {
+      this._router.navigate(['/show-card/' + id]);
     }
 
-    navigateToUpdate(id:any): void{
+    navigateToUpdate(id: any): void {
       this._router.navigate(['/update-card/' + id]);
     }
 
@@ -48,6 +52,7 @@ export class ViewCardsComponent {
         response => {
           if (response.status === 200) {
             this.cards = response.data;
+            this.filteredCards = this.cards; // Inicialmente, todas las tarjetas están en filteredCards
             this.status = response.status;
           } else {
             this.status = response.status;
@@ -59,6 +64,31 @@ export class ViewCardsComponent {
         }
       );
     }
+
+    searchCardById(): void {
+      const query = this.searchQuery.trim();
+      if (query) {
+        this._cardService.show(query).subscribe(
+          response => {
+            if (response && response.Tarjeta) {
+              this.card = response.Tarjeta;
+              this.filteredCards = [response.Tarjeta];
+            } else {
+              this.filteredCards = [];
+              this.showAlert('error', 'No se encontró la tarjeta');
+            }
+          },
+          error => {
+            console.error('Error al buscar la tarjeta:', error);
+            this.filteredCards = [];
+            this.showAlert('error', 'Error en la solicitud');
+          }
+        );
+      } else {
+        this.filteredCards = this.cards;
+      }
+    }
+    
 
     confirmDelete(id: string) {
       Swal.fire({
@@ -83,6 +113,7 @@ export class ViewCardsComponent {
           if (response.status === 200) {
             console.log('Tarjeta eliminada con éxito.');
             this.cards = this.cards.filter(card => card.id !== id);
+            this.filteredCards = this.filteredCards.filter(card => card.id !== id);
             Swal.fire(
               '¡Eliminado!',
               'La tarjeta ha sido eliminada.',
@@ -106,5 +137,13 @@ export class ViewCardsComponent {
           );
         }
       );
+    }
+    showAlert(type:'error', message: string) {
+      Swal.fire({
+        title: message,
+        icon: type,
+        timer: 1000,
+        showConfirmButton: false
+      });
     }
 }

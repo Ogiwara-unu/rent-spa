@@ -2,10 +2,9 @@
   <div class="container">
     <h2>Usuarios</h2>
       <div class="table_header">
-        
           <div class="input_search">
-              <input type="search" placeholder="Buscar" />
-              <i class="bi bi-search" id="search"></i>
+            <input type="search" placeholder="Buscar por Email" [(ngModel)]="searchQuery" (keyup.enter)="searchUserByEmail()" />
+            <i class="bi bi-search" id="search" (click)="searchUserByEmail()"></i>
           </div>
           <button (click)="navigateToAddUser()">Crear nuevo</button>
       </div>
@@ -19,7 +18,7 @@
               </tr>
           </thead>
           <tbody>
-              <tr *ngFor="let user of users">
+              <tr *ngFor="let user of filteredUsers">
                   <td>{{ user.name }}</td>
                   <td>{{ user.email }}</td>
                   <td>{{ user.rol }}</td>

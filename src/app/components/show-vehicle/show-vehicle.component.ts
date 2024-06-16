@@ -18,7 +18,10 @@ import { Renta } from '../../models/renta';
 export class ShowVehicleComponent {
   public status: number;
   public vehicle: Vehiculo;
+  public rent:Renta;
   public rents:Renta[];
+  public filteredRents: Renta[];
+  public searchQuery: string = "";
 
   constructor(
     private _vehicleService: VehiculoService,
@@ -27,7 +30,12 @@ export class ShowVehicleComponent {
   ) {
     this.status = -1;
     this.vehicle = new Vehiculo(1, "", "", "", "", 0, 0, "", "", "");
+    this.rent = new Renta(0,0,0,0,"",0,"","",0);
     this.rents = [];
+    this.filteredRents = [];
+  }
+
+  ngOnInit() {
     this.loadVehicle();
   }
 
@@ -45,6 +53,7 @@ export class ShowVehicleComponent {
                 console.log(response)
                 this.vehicle = response.Vehiculo;
                 this.rents = response.Vehiculo.renta;
+                this.filteredRents = this.rents;
               } else {
                 this.showAlert('error', 'No se pudo cargar el Vehiculo');
               }
@@ -56,6 +65,30 @@ export class ShowVehicleComponent {
         }
       }
     );
+  }
+
+  searchRentById(): void {
+    const query = parseInt(this.searchQuery);
+    if (!isNaN(query)) {
+      // Intentar encontrar la renta con el ID especificado
+      const foundRent = this.rents.find(rent => rent.id === query);
+  
+      if (foundRent) {
+        this.rent = foundRent;
+        this.filteredRents = [foundRent];
+      } else {
+        this.filteredRents = this.rents;
+        this.showAlert('error', 'No se encontró la renta');
+      }
+    } else {
+      // Mostrar todas las rentas asociadas a this.card.id si está definido
+      if (this.vehicle.id) {
+        this.filteredRents = this.rents.filter(rent => rent.vehiculo_id === this.vehicle.id);
+      } else {
+        // Si this.card.id no está definido, simplemente mostrar todas las rentas
+        this.filteredRents = this.rents;
+      }
+    }
   }
 
   showAlert(type:'error', message: string) {

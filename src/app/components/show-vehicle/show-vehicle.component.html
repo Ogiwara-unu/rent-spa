@@ -69,8 +69,8 @@
         <h2>Rentas del vehiculo</h2>
         <div class="table_header">
             <div class="input_search">
-                <input type="search" placeholder="Buscar" />
-                <i class="bi bi-search" id="search"></i>
+              <input type="search" placeholder="Buscar por ID" [(ngModel)]="searchQuery" (keyup.enter)="searchRentById()" />
+              <i class="bi bi-search" id="search" (click)="searchRentById()"></i>
             </div>
         </div>
         <div class="table_container">
@@ -90,7 +90,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let rent of rents">
+                    <tr *ngFor="let rent of filteredRents">
                         <td>{{ rent.id }}</td>
                         <td>{{ rent.user_id }}</td>
                         <td>{{ rent.cliente_id }}</td>

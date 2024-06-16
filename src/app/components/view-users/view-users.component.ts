@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -8,7 +9,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-view-users',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './view-users.component.html',
   styleUrl: './view-users.component.css',
   providers:[UserService]
@@ -17,6 +18,8 @@ export class ViewUsersComponent {
   public status:number;
   public user:User;
   public users:User[];
+  public filteredUsers: User[];
+  public searchQuery: string = "";
 
   constructor(
     private _userService:UserService,
@@ -25,6 +28,7 @@ export class ViewUsersComponent {
       this.status = -1;
       this.user = new User(0, "", "", "", "");
       this.users = [];
+      this.filteredUsers = [];
     }
 
     ngOnInit(): void {
@@ -48,6 +52,7 @@ export class ViewUsersComponent {
         response => {
           if (response.status === 200) {
             this.users = response.data;
+            this.filteredUsers = this.users;
             this.status = response.status;
           } else {
             this.status = response.status;
@@ -58,6 +63,30 @@ export class ViewUsersComponent {
           this.status = error.status;
         }
       );
+    }
+
+    searchUserByEmail(): void {
+      const query = this.searchQuery;
+      if (query) {
+        this._userService.show(query).subscribe(
+          response => {
+            if (response && response.Usuario) {
+              this.user = response.Usuario;
+              this.filteredUsers = [response.Usuario];
+            } else {
+              this.filteredUsers = [];
+              this.showAlert('error', 'No se encontró el Usuario');
+            }
+          },
+          error => {
+            console.error('Error al buscar el Usuario:', error);
+            this.filteredUsers = [];
+            this.showAlert('error', 'Error en la solicitud');
+          }
+        );
+      } else {
+        this.filteredUsers = this.users;
+      }
     }
 
     confirmDelete(email: string) {
@@ -107,6 +136,15 @@ export class ViewUsersComponent {
           );
         }
       );
+    }
+
+    showAlert(type:'error', message: string) {
+      Swal.fire({
+        title: message,
+        icon: type,
+        timer: 1000,
+        showConfirmButton: false
+      });
     }
     
 

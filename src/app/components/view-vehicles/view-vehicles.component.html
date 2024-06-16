@@ -3,8 +3,8 @@
         <h2>Vehículos</h2>
         <div class="table_header">
             <div class="input_search">
-                <input type="search" placeholder="Buscar" />
-                <i class="bi bi-search" id="search"></i>
+            <input type="search" placeholder="Buscar por Placa" [(ngModel)]="searchQuery" (keyup.enter)="searchVehicleById()" />
+            <i class="bi bi-search" id="search" (click)="searchVehicleById()"></i>
             </div>
             <button (click)="navigateToAddVehicle()">Crear nuevo</button>
         </div>
@@ -27,7 +27,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let vehicle of vehicles">
+                    <tr *ngFor="let vehicle of filteredVehicles">
                         <td>{{ vehicle.id }}</td>
                         <td>{{ vehicle.placa }}</td>
                         <td>{{ vehicle.marca }}</td>

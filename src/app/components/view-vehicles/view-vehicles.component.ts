@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { VehiculoService } from '../../services/vehiculo.service';
@@ -7,7 +8,7 @@ import { Vehiculo } from '../../models/vehiculo';
 @Component({
   selector: 'app-view-vehicles',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './view-vehicles.component.html',
   styleUrl: './view-vehicles.component.css',
   providers:[VehiculoService]
@@ -16,6 +17,8 @@ export class ViewVehiclesComponent {
   public status:number;
   public vehicle:Vehiculo;
   public vehicles:Vehiculo[];
+  public filteredVehicles: Vehiculo[];
+  public searchQuery: string = "";
 
   constructor(
     private _vehicleService:VehiculoService,
@@ -24,6 +27,7 @@ export class ViewVehiclesComponent {
       this.status = -1;
       this.vehicle = new Vehiculo(1, "", "", "", "", 0, 0, "", "", "");
       this.vehicles = [];
+      this.filteredVehicles = [];
     }
 
     ngOnInit(): void {
@@ -48,6 +52,7 @@ export class ViewVehiclesComponent {
         response => {
           if (response.status === 200) {
             this.vehicles = response.data;
+            this.filteredVehicles = this.vehicles;
             this.status = response.status;
           } else {
             this.status = response.status;
@@ -58,6 +63,30 @@ export class ViewVehiclesComponent {
           this.status = error.status;
         }
       );
+    }
+
+    searchVehicleById(): void {
+      const query = this.searchQuery;
+      if (query) {
+        this._vehicleService.show(query).subscribe(
+          response => {
+            if (response && response.Vehiculo) {
+              this.vehicle = response.Vehiculo;
+              this.filteredVehicles = [response.Vehiculo];
+            } else {
+              this.filteredVehicles = [];
+              this.showAlert('error', 'No se encontró el Vehiculo');
+            }
+          },
+          error => {
+            console.error('Error al buscar el Vehiculo:', error);
+            this.filteredVehicles = [];
+            this.showAlert('error', 'Error en la solicitud');
+          }
+        );
+      } else {
+        this.filteredVehicles = this.vehicles;
+      }
     }
 
     confirmDelete(placa: string) {
@@ -107,6 +136,15 @@ export class ViewVehiclesComponent {
           );
         }
       );
+    }
+
+    showAlert(type:'error', message: string) {
+      Swal.fire({
+        title: message,
+        icon: type,
+        timer: 1000,
+        showConfirmButton: false
+      });
     }
 
 }

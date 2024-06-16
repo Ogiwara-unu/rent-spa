@@ -62,8 +62,8 @@
         <h2>Licencias del Cliente</h2>
         <div class="table_header">
             <div class="input_search">
-                <input type="search" placeholder="Buscar" />
-                <i class="bi bi-search" id="search"></i>
+                <input type="search" placeholder="Buscar por ID" [(ngModel)]="searchQuery" (keyup.enter)="searchLicenseById()" />
+              <i class="bi bi-search" id="search" (click)="searchLicenseById()"></i>
             </div>
         </div>
         <div class="table_container">
@@ -79,7 +79,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let licencia of licencias">
+                    <tr *ngFor="let licencia of filteredLicencias">
                         <td>{{ licencia.id }}</td>
                         <td>{{ licencia.cliente_id }}</td>
                         <td>{{ licencia.fecha_vencimiento }}</td>
@@ -94,7 +94,7 @@
             </table>
         </div>
         <div class="table_footer">
-            <p>Registro de rentas</p>
+            <p>Registro de licencias</p>
         </div>
     </div>
 </body>

@@ -18,7 +18,10 @@ import Swal from 'sweetalert2';
 export class ShowClientComponent {
   public status: number;
   public client: Cliente;
+  public licencia:Licencia;
   public licencias:Licencia[];
+  public filteredLicencias: Licencia[];
+  public searchQuery: string = "";
 
   constructor(
     private _clientService:ClienteService,
@@ -26,7 +29,13 @@ export class ShowClientComponent {
     private _routes:ActivatedRoute){
       this.status = -1;
       this.client = new Cliente(0, "", "", "", "", "", "", "");
+      this.licencia = new Licencia(0, 0, "", "", "");
       this.licencias = [];
+      this.filteredLicencias = [];
+      
+    }
+
+    ngOnInit() {
       this.loadClient();
     }
 
@@ -40,6 +49,7 @@ export class ShowClientComponent {
                 if (response && response.Cliente) {
                   this.client = response.Cliente;
                   this.licencias = response.Cliente.licencia;
+                  this.filteredLicencias = this.licencias;
                   console.log(this.client);
                 } else {
                   this.showAlert('error', 'No se pudo cargar el usuario');
@@ -52,6 +62,30 @@ export class ShowClientComponent {
           }
         }
       );
+    }
+
+    searchLicenseById(): void {
+      const query = parseInt(this.searchQuery);
+      if (!isNaN(query)) {
+        // Intentar encontrar la renta con el ID especificado
+        const foundLicense = this.licencias.find(licencia => licencia.id === query);
+    
+        if (foundLicense) {
+          this.licencia = foundLicense;
+          this.filteredLicencias = [foundLicense];
+        } else {
+          this.filteredLicencias = this.licencias;
+          this.showAlert('error', 'No se encontró la licencia');
+        }
+      } else {
+        // Mostrar todas las rentas asociadas a this.card.id si está definido
+        if (this.client.id) {
+          this.filteredLicencias = this.licencias.filter(licencia => licencia.cliente_id === this.client.id);
+        } else {
+          // Si this.card.id no está definido, simplemente mostrar todas las rentas
+          this.filteredLicencias = this.licencias;
+        }
+      }
     }
 
     onSubmit(form:any){}
