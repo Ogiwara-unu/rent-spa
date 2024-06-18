@@ -114,11 +114,7 @@ export class ViewRentsComponent {
           if (response.status === 200) {
             console.log('Renta eliminada con éxito.');
             this.rents = this.rents.filter(rent => rent.id !== id);
-            Swal.fire(
-              '¡Eliminado!',
-              'La renta ha sido eliminada.',
-              'success'
-            );
+            this.showAlertSuccess('success',response.message);
           } else if (response.status === 400) {
             console.error('No se pudo eliminar la renta:', response.error);
             Swal.fire(
@@ -146,6 +142,22 @@ export class ViewRentsComponent {
         timer: 1000,
         showConfirmButton: false
       });
+    }
+
+    showAlertSuccess(type:'success', message: string) {
+      Swal.fire({
+        title: message,
+        icon: type,
+        timer: 2000,
+        showConfirmButton: true,
+        didClose : () => {
+          location.reload();
+        }
+      }).then((result) => {
+        if (result.isConfirmed || result.dismiss === Swal.DismissReason.timer) {
+          location.reload();
+        }
+      });;
     }
 
 }

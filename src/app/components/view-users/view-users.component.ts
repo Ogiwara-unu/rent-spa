@@ -17,6 +17,7 @@ import Swal from 'sweetalert2';
 export class ViewUsersComponent {
   public status:number;
   public user:User;
+  public identity:any;
   public users:User[];
   public filteredUsers: User[];
   public searchQuery: string = "";
@@ -33,6 +34,7 @@ export class ViewUsersComponent {
 
     ngOnInit(): void {
       this.getUsers();
+      this.loadIdentity();
     }
 
     navigateToAddUser(): void {
@@ -47,6 +49,18 @@ export class ViewUsersComponent {
       this._router.navigate(['/update-user/'+email]);
     }
 
+    loadIdentity() {
+      const identity = sessionStorage.getItem('identity');
+      if (identity) {
+        try {
+          this.identity = JSON.parse(identity);
+        } catch (error) {
+          console.error("Invalid JSON in sessionStorage for key 'identity':", error);
+          this.identity = null;
+        }
+      }
+    }
+  
     getUsers() {
       this._userService.getUsers().subscribe(
         response => {
@@ -113,11 +127,7 @@ export class ViewUsersComponent {
           if (response.status === 200) {
             console.log('Usuario eliminado con éxito.');
             this.users = this.users.filter(user => user.email !== email);
-            Swal.fire(
-              '¡Eliminado!',
-              'El usuario ha sido eliminado.',
-              'success'
-            );
+            this.showAlertSuccess('success',response.message);
           } else if (response.status === 400) {
             console.error('No se pudo eliminar el usuario:', response.error);
             Swal.fire(
@@ -145,6 +155,22 @@ export class ViewUsersComponent {
         timer: 1000,
         showConfirmButton: false
       });
+    }
+
+    showAlertSuccess(type:'success', message: string) {
+      Swal.fire({
+        title: message,
+        icon: type,
+        timer: 2000,
+        showConfirmButton: true,
+        didClose : () => {
+          location.reload();
+        }
+      }).then((result) => {
+        if (result.isConfirmed || result.dismiss === Swal.DismissReason.timer) {
+          location.reload();
+        }
+      });;
     }
     
 

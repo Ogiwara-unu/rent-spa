@@ -117,11 +117,7 @@ export class ViewLicensesComponent {
           if (response.status === 200) {
             console.log('Licencia eliminada con éxito.');
             this.licenses = this.licenses.filter(license => license.id !== id);
-            Swal.fire(
-              '¡Eliminado!',
-              'La licencia ha sido eliminada.',
-              'success'
-            );
+            this.showAlertSuccess('success',response.message);
           } else if (response.status === 400) {
             console.error('No se pudo eliminar la licencia:', response.message);
             Swal.fire(
@@ -149,6 +145,22 @@ export class ViewLicensesComponent {
         timer: 1000,
         showConfirmButton: false
       });
+    }
+
+    showAlertSuccess(type:'success', message: string) {
+      Swal.fire({
+        title: message,
+        icon: type,
+        timer: 2000,
+        showConfirmButton: true,
+        didClose : () => {
+          location.reload();
+        }
+      }).then((result) => {
+        if (result.isConfirmed || result.dismiss === Swal.DismissReason.timer) {
+          location.reload();
+        }
+      });;
     }
 
 }

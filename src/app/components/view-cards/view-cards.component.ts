@@ -114,11 +114,7 @@ export class ViewCardsComponent {
             console.log('Tarjeta eliminada con éxito.');
             this.cards = this.cards.filter(card => card.id !== id);
             this.filteredCards = this.filteredCards.filter(card => card.id !== id);
-            Swal.fire(
-              '¡Eliminado!',
-              'La tarjeta ha sido eliminada.',
-              'success'
-            );
+            this.showAlertSuccess('success',response.message);
           } else if (response.status === 400) {
             console.error('No se pudo eliminar la tarjeta:', response.error);
             Swal.fire(
@@ -138,6 +134,7 @@ export class ViewCardsComponent {
         }
       );
     }
+
     showAlert(type:'error', message: string) {
       Swal.fire({
         title: message,
@@ -145,5 +142,21 @@ export class ViewCardsComponent {
         timer: 1000,
         showConfirmButton: false
       });
+    }
+
+    showAlertSuccess(type:'success', message: string) {
+      Swal.fire({
+        title: message,
+        icon: type,
+        timer: 2000,
+        showConfirmButton: true,
+        didClose : () => {
+          location.reload();
+        }
+      }).then((result) => {
+        if (result.isConfirmed || result.dismiss === Swal.DismissReason.timer) {
+          location.reload();
+        }
+      });;
     }
 }

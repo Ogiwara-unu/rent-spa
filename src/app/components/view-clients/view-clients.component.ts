@@ -97,7 +97,8 @@ export class ViewClientsComponent {
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Sí, eliminarlo'
+        confirmButtonText: 'Sí, eliminarlo',
+        cancelButtonText: 'Cancelar unu'
       }).then((result) => {
         if (result.isConfirmed) {
           this.destroyClient(id);
@@ -112,11 +113,7 @@ export class ViewClientsComponent {
           if (response.status === 200) {
             console.log('Cliente eliminado con éxito.');
             this.clients = this.clients.filter(client => client.id !== id);
-            Swal.fire(
-              '¡Eliminado!',
-              'El cliente ha sido eliminado.',
-              'success'
-            );
+            this.showAlertSuccess('success',response.message);
           } else if (response.status === 400) {
             console.error('No se pudo eliminar al cliente:', response.error);
             Swal.fire(
@@ -144,5 +141,21 @@ export class ViewClientsComponent {
         timer: 1000,
         showConfirmButton: false
       });
+    }
+
+    showAlertSuccess(type:'success', message: string) {
+      Swal.fire({
+        title: message,
+        icon: type,
+        timer: 2000,
+        showConfirmButton: true,
+        didClose : () => {
+          location.reload();
+        }
+      }).then((result) => {
+        if (result.isConfirmed || result.dismiss === Swal.DismissReason.timer) {
+          location.reload();
+        }
+      });;
     }
 }

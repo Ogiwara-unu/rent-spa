@@ -38,7 +38,7 @@
                         <td>{{ rent.total }}</td>
                         <td>
                             <i class="bi bi-pencil-square" id="icons" (click)="navigateToUpdate(rent.id)"></i>
-                            <i class="bi bi-trash" id="icons" (click)="destroyRent(rent.id)"></i>
+                            <i class="bi bi-trash" id="icons" (click)="confirmDelete(rent.id)"></i>
                             <i class="bi bi-eye" id="icons" (click)="navigateToShow(rent.id)"></i>
                         </td>
                     </tr>

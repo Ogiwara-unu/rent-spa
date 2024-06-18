@@ -35,7 +35,7 @@
                         <td>{{ client.fecha_nacimiento }}</td>
                         <td>
                             <i class="bi bi-pencil-square" id="icons" (click)="navigateToUpdate(client.id)"></i>
-                            <i class="bi bi-trash" id="icons" (click)="destroyClient(client.id)"></i>
+                            <i class="bi bi-trash" id="icons" (click)="confirmDelete(client.id)"></i>
                             <i class="bi bi-eye" id="icons" (click)="navigateToShow(client.id)"></i>
                         </td>
                     </tr>

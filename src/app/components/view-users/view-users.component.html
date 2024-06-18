@@ -24,7 +24,10 @@
                   <td>{{ user.rol }}</td>
                   <td>
                       <i class="bi bi-pencil-square" id="icons" (click)="navigateToUpdate(user.email)"></i>
-                      <i class="bi bi-trash" id="icons" (click)="destroy(user.email)"></i>
+                      <i class="bi bi-trash" id="icons" 
+                        *ngIf="identity && identity.iss !== user.id" 
+                        (click)="confirmDelete(user.email)">
+                        </i>
                       <i class="bi bi-eye" id="icons" (click)="navigateToShow(user.email)"></i>
                   </td>
               </tr>

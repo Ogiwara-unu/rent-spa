@@ -24,7 +24,7 @@
           <p>
             <label for="vehiculo_id">ID Vehículo</label>
             <select id="vehiculo_id" #vehiculo_id="ngModel" class="input" name="vehiculo_id" [(ngModel)]="rent.vehiculo_id" required (change)="updateTarifaBase()">
-              <option *ngFor="let vehicle of vehicles" [value]="vehicle.id">{{ vehicle.placa }}</option>
+              <option *ngFor="let vehicle of vehicles" [value]="vehicle.id">{{ vehicle.placa +' - '+ vehicle.estado }}</option>
             </select>
             <small class="invalid-feedback d-block" *ngIf="vehiculo_id.invalid && vehiculo_id.touched">Campo requerido</small>
           </p>    

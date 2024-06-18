@@ -113,11 +113,7 @@ export class ViewVehiclesComponent {
           if (response.status === 200) {
             console.log('Vehiculo eliminado con éxito.');
             this.vehicles = this.vehicles.filter(vehicle => vehicle.placa !== placa);
-            Swal.fire(
-              '¡Eliminado!',
-              'El vehiculo se ha sido eliminado.',
-              'success'
-            );
+            this.showAlertSuccess('success',response.message);
           } else if (response.status === 400) {
             console.error('No se pudo eliminar el vehiculo:', response.error);
             Swal.fire(
@@ -145,6 +141,22 @@ export class ViewVehiclesComponent {
         timer: 1000,
         showConfirmButton: false
       });
+    }
+
+    showAlertSuccess(type:'success', message: string) {
+      Swal.fire({
+        title: message,
+        icon: type,
+        timer: 2000,
+        showConfirmButton: true,
+        didClose : () => {
+          location.reload();
+        }
+      }).then((result) => {
+        if (result.isConfirmed || result.dismiss === Swal.DismissReason.timer) {
+          location.reload();
+        }
+      });;
     }
 
 }
