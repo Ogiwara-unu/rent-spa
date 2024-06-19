@@ -88,6 +88,11 @@
     width: 100%;
     height: auto;
 }
+.license-form .fotoo{
+    align-content: center;
+    text-align: center;
+    border-radius: 5px;
+}
 
 /* MEDIUM SCREEN */
 @media (min-width: 700px) {

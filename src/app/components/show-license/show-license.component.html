@@ -28,8 +28,7 @@
                             [(ngModel)]="license.tipo" required placeholder="" readonly/>
                      <small class="invalid-feedback d-block" *ngIf="tipo.invalid && tipo.touched">Formato Inválido</small>
                 </p>
-                <p class="block">
-                    <label for="img">Imagen</label>
+                <p class="block fotoo">
                     <img [src]="'http://127.0.0.1:8000/api/v1/licencia/getImage/' + license.img" alt="{{license.img}}">
                 </p>
             </form>

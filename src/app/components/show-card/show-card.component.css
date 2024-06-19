@@ -2,40 +2,57 @@
     box-sizing: border-box;
 }
 
-.card-wrapper {
-    background-color: #F2F2F2;
-    color: #0D0D0D;
-    margin: 50px;
-    max-width: 1170px;
-    margin-left: auto;
-    margin-right: auto;
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 20px; /* Ajusta este margen si es necesario */
+    background-color: #f9f9f9;
     font-family: 'Times New Roman', Times, serif;
-    font-size: 1.4em;
-    box-shadow: 0 0 20px rgba(50, 50, 50, 0.5);
+}
+
+.card-wrapper, .container {
+    width: 100%;
+    max-width: 1170px;
+    margin: 20px auto; /* Ajusta este margen si es necesario */
+    background-color: #F2F2F2;
+    box-shadow: 0 0 10px rgba(50, 50, 50, 0.3); /* Ajusta sombra si es necesario */
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #737373;
+}
+
+/* Eliminar margen inferior del card-wrapper y superior del container */
+.card-wrapper {
+    margin-top: 70px;
+    margin-bottom: 10px;
+    color: #0D0D0D;
+    font-size: 1.2em;
     display: flex;
     flex-wrap: wrap;
 }
 
 .card-wrapper > * {
-    padding: 1em;
+    padding: 0.5em;
     flex: 1 1 100%;
 }
 
 .card-info {
     margin: 0;
     background-color: #0D0D0D;
-    padding: 0;
+    padding: 0.5em;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;  /* Ensure the container has a height */
-    min-height: 300px;  /* Optional: minimum height to ensure vertical centering even if content is small */
+    height: 100%;
+    min-height: 200px;
 }
 
 .card-form form {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1em;
+    gap: 0.5em;
 }
 
 .card-form form .block {
@@ -44,14 +61,14 @@
 
 .card-form form p {
     margin: 0;
-    padding: 1em;
+    padding: 0.5em;
 }
 
-.card-form form .button,
+.card-form form button,
 .card-form form input,
 .card-form form textarea {
     width: 100%;
-    padding: .7em;
+    padding: .5em;
     border: none;
     background-color: #F2F2F2;
     outline: 0;
@@ -63,12 +80,12 @@
     background-color: #737373;
     border: 0;
     text-transform: uppercase;
-    padding: 1em;
+    padding: 0.5em;
 }
 
 .card-form h3 {
     text-align: center;
-    padding: 1em;
+    padding: 0.5em;
 }
 
 .card-form form .button:hover,
@@ -85,15 +102,14 @@
     height: auto;
 }
 
-/* MEDIUM SCREEN */
 @media (min-width: 700px) {
     .card-wrapper {
         display: grid;
         grid-template-columns: 2fr 1fr;
     }
-    
+
     .card-wrapper > * {
-        padding: 2em;
+        padding: 1em;
     }
 
     .card-form form {
@@ -105,60 +121,33 @@
     }
 
     .card-info {
-        height: auto;  /* Allow height to adjust based on content */
+        height: auto;
     }
-}
-
-/* LARGE SCREEN */
-@media (min-width: 1170px) {
-    .card-wrapper {
-        margin: 50px auto;
-        max-width: 1170px;
-    }
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 40px;
 }
 
 .container {
     display: flex;
     flex-direction: column;
-    box-shadow: 0 0 20px rgba(50, 50, 50, 0.5);
-    width: 100%;
-    background-color: #F2F2F2;
-    border-radius: 30px;
-    padding: 20px;
-    overflow: hidden;
+    padding: 10px;
 }
 
 .table_header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 30px 0;
-    margin: 20px;
+    padding: 10px 15px 0;
+    margin: 10px;
 }
 
 .header_right {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
 }
 
 .container h2 {
     margin: 10px;
-    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.4em;
 }
 
 button {
@@ -166,8 +155,8 @@ button {
     border: none;
     background-color: #222121;
     color: #fff;
-    padding: 10px 30px;
-    border-radius: 20px;
+    padding: 10px 20px;
+    border-radius: 10px;
     text-transform: uppercase;
     font-size: 14px;
     cursor: pointer;
@@ -183,13 +172,13 @@ button:hover {
 }
 
 .input_search input {
-    border-radius: 30px;
+    border-radius: 20px;
     width: 100%;
     outline: none;
-    padding: 10px 20px;
+    padding: 10px 15px;
     border: 1px solid #c9c9c9;
     box-sizing: border-box;
-    padding-right: 50px;
+    padding-right: 40px;
 }
 
 .input_search #search {
@@ -208,6 +197,8 @@ button:hover {
 table {
     border-spacing: 0;
     width: 100%;
+    border-radius: 10px;
+    border: 1px solid #737373;
 }
 
 table thead {
@@ -216,7 +207,7 @@ table thead {
 }
 
 table th, table td {
-    padding: 10px;
+    padding: 5px;
     text-align: center;
     border-bottom: 1px solid #dfdfdf;
 }
@@ -298,7 +289,7 @@ tbody tr:hover {
         border: none;
         position: relative;
         text-align: center;
-        padding: 10px 15px;
+        padding: 5px 10px;
     }
 
     table tbody tr td:before {
@@ -306,13 +297,12 @@ tbody tr:hover {
         position: absolute;
         left: 0;
         width: 50%;
-        padding-left: 10px;
+        padding-left: 5px;
         font-weight: bold;
         text-align: left;
     }
 
     .table_header button {
-        margin-top: 15px;
+        margin-top: 10px;
     }
 }
-

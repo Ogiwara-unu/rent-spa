@@ -52,10 +52,9 @@
               readonly />
             <small class="invalid-feedback d-block" *ngIf="estado.invalid && estado.touched">Campo requerido</small>
           </p>
-          <p class="block">
-            <label for="tipo">Imagen</label>
-            <img [src]="'http://127.0.0.1:8000/api/v1/vehiculo/getImage/' + vehicle.img" alt="{{vehicle.img}}" style="width: 100px; height: auto; border-radius: 10px;">
-          </p>
+          <p class="fotoo block">
+            <img style="border-radius: 7px;" [src]="'http://127.0.0.1:8000/api/v1/vehiculo/getImage/' + vehicle.img" alt="{{vehicle.img}}">
+        </p>
         </form>
       </div>
       <div class="vehicle-info">

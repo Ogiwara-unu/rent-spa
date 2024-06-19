@@ -32,9 +32,8 @@
                     <label for="img">Imagen</label>
                     <input class="form-control" type="file" id="formFile " (change)="onFileChange($event)">
                 </p>
-                <p>
-                    <label for="foto">Foto</label>
-                    <img [src]="'http://127.0.0.1:8000/api/v1/licencia/getImage/' + license.img" alt="{{license.img}}">
+                <p class="fotoo block">
+                    <img style="border-radius: 7px;"  [src]="'http://127.0.0.1:8000/api/v1/licencia/getImage/' + license.img" alt="{{license.img}}">
                 </p>
                 <p class="block .button">
                     <input type="submit" class="submit button" value="Guardar" [disabled]="updateForm.invalid" />

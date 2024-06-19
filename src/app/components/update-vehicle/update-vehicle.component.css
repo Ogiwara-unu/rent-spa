@@ -84,6 +84,18 @@
     width: 100%;
     height: auto;
   }
+
+  .vehicle-form .fotoo{
+    align-content: center;
+    text-align: center;
+}
+
+.vehicle-form .fotoo img {
+  max-width: 400px; /* Ajusta el tamaño máximo de la imagen */
+  height: auto;
+  border-radius: 7px;
+}
+
   
   @media (min-width: 700px) {
     .addVehicle-wrapper {
