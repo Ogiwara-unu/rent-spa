@@ -65,7 +65,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   handleInvalidToken() {
     sessionStorage.removeItem('identity');
-    sessionStorage.removeItem('token');
     this.identity = null;
   }
 

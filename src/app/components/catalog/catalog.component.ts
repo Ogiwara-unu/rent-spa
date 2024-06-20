@@ -40,6 +40,8 @@ export class CatalogComponent {
         response => {
           if (response.status === 200) {
             this.vehiculos = response.data;
+            // Ordenar los vehículos por modelo en orden alfabético
+            this.vehiculos.sort((a, b) => a.marca.localeCompare(b.marca));
             this.status = response.status;
           } else {
             this.status = response.status;
@@ -51,6 +53,7 @@ export class CatalogComponent {
         }
       );
     }
+  
 
 
 }
